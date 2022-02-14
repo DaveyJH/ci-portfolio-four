@@ -1,0 +1,14 @@
+wip/
+.venv/
+.vscode/
+env.py
+*.code-workspace
+__pycache__/
+core.mongo*
+core.python*
+*.py[cod]
+*.vscode
+*.sqlite3
+*.pyc
+*.flake8
+node_modules/
