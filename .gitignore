@@ -2,6 +2,7 @@ wip/
 .venv/
 .vscode/
 env.py
+.env
 *.code-workspace
 __pycache__/
 core.mongo*
