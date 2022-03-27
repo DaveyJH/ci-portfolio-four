@@ -12,4 +12,5 @@ core.python*
 *.sqlite3
 *.pyc
 *.flake8
+.github/
 node_modules/
