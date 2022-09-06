@@ -1,12 +1,81 @@
-/* test styles */
+/* 'c' added before custom classes to avoid clash with bootstrap */
+:root {
+  --white: #fafafa;
+  --off-white: #f4f3f0;
+  --green-grey: #dfe4dc;
+  --green: #84a98c;
+  --dark: #2f3e46;
+  --light-green: #c5dfb9;
+  --orange: #f9cb9c;
+  --grey: #c8d0ca;
+}
+
+/* bootstrap resets */
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+}
+a.glow:hover,
+a.glow:focus {
+  text-shadow: 3px 3px 3px var(--orange);
+}
+
+/* utilities */
+/* TODO - remove before final deployement
+identify image with no alt text */
+img[alt=""],
+img:not([alt]) {
+  border: red 10px dashed !important;
+}
+a[href="#"],
+a:not([href]) {
+  background-color: fuchsia;
+}
+.mobile-hide {
+  display: none;
+}
+
+/* global styling */
 body {
-  background-color: #dead00;
-  font-family: "Dosis";
+  background-color: var(--white);
+  color: var(--dark);
+  font-family: Dosis, Verdana, Geneva, Tahoma, sans-serif;
 }
 header {
-  background-color: #bad455;
+  box-shadow: 0 3px 3px var(--green-grey);
+  margin-bottom: 5px;
+}
+h1 {
+  font-family: "Grape Nuts", "Brush Script MT", cursive;
+  font-size: calc(1.675rem + 1.5vw);
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.c-bg-off-white {
+  background-color: var(--off-white);
 }
 footer {
-  font-family: "Grape Nut";
-  background-color: #663399;
+  box-shadow: 0 -3px 3px var(--green-grey);
+}
+footer .nav {
+  /* tap target requires 48×48px */
+  font-size: 3rem;
+}
+
+/* media queries */
+@media screen and (min-width: 992px) {
+  .desktop-hide {
+    display: none;
+  }
+  .mobile-hide {
+    display: initial;
+  }
+}
+
+/* TODO - remove before final deployement
+dev styles */
+main {
+  min-height: 50px;
 }
