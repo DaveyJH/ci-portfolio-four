@@ -12,3 +12,4 @@ core.python*
 *.pyc
 *.flake8
 node_modules/
+.env
