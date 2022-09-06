@@ -1,0 +1,12 @@
+/* test styles */
+body {
+  background-color: #dead00;
+  font-family: "Dosis";
+}
+header {
+  background-color: #bad455;
+}
+footer {
+  font-family: "Grape Nut";
+  background-color: #663399;
+}
