@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'home',
     'therapists',
     'therapies',
-    # 'bookings',
+    'bookings',
     'reviews',
 ]
 
