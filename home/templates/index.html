@@ -7,20 +7,20 @@
 {% endblock css %}
 
 {% block pre_content %}
-  <nav class="d-flex mobile-hide" id="desktop-second-nav">
-    <a href="#" class="link-button-lg">Therapies</a>
-    <a href="#" class="link-button-lg">Therapists</a>
-    <a href="#" class="link-button-lg">Bookings</a>
+  <nav class="d-flex justify-content-evenly mobile-hide" id="desktop-second-nav">
+    <a href="#" class="link-button-lg link-button-lg-desktop">Therapies</a>
+    <a href="#" class="link-button-lg link-button-lg-desktop">Therapists</a>
+    <a href="#" class="link-button-lg link-button-lg-desktop">Bookings</a>
   </nav>
 {% endblock pre_content %}
 
 {% block content %}
-  <div id="background">
+  <div id="background" class="d-flex flex-column justify-content-between">
     <div id="home-info">
       {{ home.content | safe }}
     </div>
 
-    <nav class="d-flex flex-column desktop-hide" id="mobile-second-nav">
+    <nav class="d-flex flex-column justify-content-evenly desktop-hide" id="mobile-second-nav">
       <a href="" class="link-button-lg">Therapies</a>
       <a href="" class="link-button-lg">Therapists</a>
       <a href="" class="link-button-lg">Bookings</a>
@@ -31,3 +31,7 @@
     </div>
   </div>
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'home/js/home-check.js' %}"></script>
+{% endblock extras %}

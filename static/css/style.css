@@ -56,10 +56,6 @@ a:not([href]) {
 }
 /* *********************************** */
 
-.mobile-hide {
-  display: none !important;
-}
-
 html,
 body {
   height: 100%;
@@ -139,19 +135,25 @@ footer .nav {
   }
 }
 
+@media screen and (max-width: 991px) {
+  .mobile-hide {
+    display: none !important;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .desktop-hide {
     display: none !important;
-  }
-
-  .mobile-hide {
-    display: initial !important;
   }
 
   .navbar-brand,
   .navbar-expand-lg .navbar-collapse {
     flex-basis: 30%;
     flex-grow: 0;
+  }
+
+  .navbar-collapse {
+    font-size: 1.6rem;
   }
 }
 

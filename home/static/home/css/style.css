@@ -3,9 +3,6 @@
   background-color: var(--white);
   background: url('../images/candle-table.webp') center center / cover no-repeat;
   padding: 3rem 2rem 2rem;
-  /* position: relative; */
-  display: flex;
-  flex-direction: column;
 }
 
 #home-info {
@@ -25,7 +22,7 @@
   flex-grow: 1;
 }
 
-#mobile-second-nav a {
+.link-button-lg {
   margin: 1rem 0;
   background-color: var(--grey-80);
   font-size: 1.2em;
@@ -54,10 +51,27 @@
   border-radius: 5px;
 }
 
-/* media queries */
+/* desktop */
+#desktop-second-nav {
+  padding: 1rem;
+  box-shadow: inset 0 -4px 4px var(--green-grey);
+}
 
+.link-button-lg-desktop {
+  font-size: 1.8em;
+  margin: .5rem 0;
+}
+
+/* media queries */
 @media screen and (min-width: 375px) {
-  #mobile-second-nav a {
+  .link-button-lg:not(.link-button-lg-desktop) {
     margin: 2rem 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #home-info {
+    font-size: 1.3em;
+    margin-bottom: 2.5rem;
   }
 }
