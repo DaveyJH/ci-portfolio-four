@@ -7,4 +7,4 @@ from django_summernote.admin import SummernoteModelAdmin
 class HomeAdmin(SummernoteModelAdmin):
     """Add Home model to admin pages"""
 
-    summernote_fields = ('content')
+    summernote_fields = ('content', 'address')
