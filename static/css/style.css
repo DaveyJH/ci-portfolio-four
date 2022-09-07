@@ -3,11 +3,15 @@
   --white: #fafafa;
   --off-white: #f4f3f0;
   --green-grey: #dfe4dc;
+  --green-grey-40: #dfe4dc66;
+  --green-grey-60: #dfe4dc99;
   --green: #84a98c;
   --dark: #2f3e46;
   --light-green: #c5dfb9;
   --orange: #f9cb9c;
   --grey: #c8d0ca;
+  --grey-60: #c8d0ca99;
+  --grey-80: #c8d0cacc;
 }
 
 /* resets */
@@ -24,13 +28,16 @@ a:focus {
   color: inherit;
   text-decoration: none;
 }
+
 a.glow:hover,
 a.glow:focus {
   text-shadow: 3px 3px 3px var(--orange);
 }
+
 p {
   margin-bottom: 0;
 }
+
 .navbar-toggler {
   border: none;
 }
@@ -42,17 +49,47 @@ img[alt=""],
 img:not([alt]) {
   border: red 10px dashed !important;
 }
+
 a[href="#"],
 a:not([href]) {
-  background-color: fuchsia;
+  background-color: fuchsia !important;
 }
+/* *********************************** */
+
 .mobile-hide {
-  display: none;
+  display: none !important;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#flex-height {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
 header,
 footer {
   position: relative;
   z-index: 99;
+  flex-shrink: 0;
+}
+
+/* colors */
+.c-bg-off-white {
+  background-color: var(--off-white);
 }
 
 /* global styling */
@@ -61,22 +98,24 @@ body {
   color: var(--dark);
   font-family: Dosis, Verdana, Geneva, Tahoma, sans-serif;
 }
+
+/* header */
 header {
   box-shadow: 0 3px 3px var(--green-grey);
-  margin-bottom: 5px;
 }
+
 h1 {
   font-family: "Grape Nuts", "Brush Script MT", cursive;
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 0;
 }
-.c-bg-off-white {
-  background-color: var(--off-white);
-}
+
+/* footer */
 footer {
   box-shadow: 0 -3px 3px var(--green-grey);
 }
+
 footer .nav {
   /* tap target requires 48×48px */
   font-size: 3rem;
@@ -93,6 +132,7 @@ footer .nav {
   h1 {
     font-size: calc(1.675rem + 1.5vw);
   }
+
   #brand-logo {
     height: 40px;
     width: 50px;
@@ -101,11 +141,13 @@ footer .nav {
 
 @media screen and (min-width: 992px) {
   .desktop-hide {
-    display: none;
+    display: none !important;
   }
+
   .mobile-hide {
-    display: initial;
+    display: initial !important;
   }
+
   .navbar-brand,
   .navbar-expand-lg .navbar-collapse {
     flex-basis: 30%;
@@ -115,6 +157,4 @@ footer .nav {
 
 /* TODO - remove before final deployement
 dev styles */
-main {
-  min-height: 50px;
-}
+/* *********************************** */

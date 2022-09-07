@@ -60,7 +60,10 @@
         </div>
       </nav>
     </header>
+    <div id="flex-height">
+    {% block pre_content %}
 
+    {% endblock pre_content %}
     <main>
       {% block content %}
 
@@ -69,6 +72,7 @@
     {% block extra_content %}
 
     {% endblock extra_content %}
+    </div>
 {# TODO - Add privacy policy modal #}
     <footer class="container-fluid text-center c-bg-off-white">
       <div class="row align-items-center">
@@ -103,4 +107,4 @@
     {% endblock extras %}
   </body>
 
-  </html>
+</html>
