@@ -1,0 +1,63 @@
+#background {
+  height: 100%;
+  background-color: var(--white);
+  background: url('../images/candle-table.webp') center center / cover no-repeat;
+  padding: 3rem 2rem 2rem;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+}
+
+#home-info {
+  background: var(--green-grey-60);
+  border-radius: 5px;
+  padding: 1.2em;
+  font-size: 1em;
+  max-width: 32ch;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 13px 3px var(--green);
+}
+
+#mobile-second-nav {
+  max-width: 45rem;
+  margin: 0 auto;
+  width: 100%;
+  flex-grow: 1;
+}
+
+#mobile-second-nav a {
+  margin: 1rem 0;
+  background-color: var(--grey-80);
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 3px 3px 11px var(--dark);
+  border: 1.2px solid var(--dark);
+  border-radius: 5px;
+  width: 13.5rem;
+}
+
+#mobile-second-nav a:nth-of-type(2) {
+  align-self: center;
+}
+
+#mobile-second-nav a:last-of-type {
+  align-self: flex-end;
+}
+
+#address-info {
+  line-height: 1.1rem;
+  margin-top: 1rem;
+  background-color: var(--green-grey-40);
+  width: fit-content;
+  padding: .5rem;
+  border-radius: 5px;
+}
+
+/* media queries */
+
+@media screen and (min-width: 375px) {
+  #mobile-second-nav a {
+    margin: 2rem 0;
+  }
+}

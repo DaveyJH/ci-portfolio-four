@@ -1,5 +1,33 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+{% endblock css %}
+
+{% block pre_content %}
+  <nav class="d-flex mobile-hide" id="desktop-second-nav">
+    <a href="#" class="link-button-lg">Therapies</a>
+    <a href="#" class="link-button-lg">Therapists</a>
+    <a href="#" class="link-button-lg">Bookings</a>
+  </nav>
+{% endblock pre_content %}
 
 {% block content %}
-  {{ home.content | safe }}
+  <div id="background">
+    <div id="home-info">
+      {{ home.content | safe }}
+    </div>
+
+    <nav class="d-flex flex-column desktop-hide" id="mobile-second-nav">
+      <a href="" class="link-button-lg">Therapies</a>
+      <a href="" class="link-button-lg">Therapists</a>
+      <a href="" class="link-button-lg">Bookings</a>
+    </nav>
+
+    <div id="address-info">
+      {{ home.address | safe }}
+    </div>
+  </div>
 {% endblock content %}
