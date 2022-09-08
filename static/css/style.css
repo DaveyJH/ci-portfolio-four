@@ -1,4 +1,3 @@
-/* 'c' added before custom classes to avoid clash with bootstrap */
 :root {
   --white: #fafafa;
   --off-white: #f4f3f0;
@@ -13,6 +12,8 @@
   --grey-60: #c8d0ca99;
   --grey-80: #c8d0cacc;
 }
+
+/* * 'c' added before custom classes to avoid clash with bootstrap * */
 
 /* resets */
 * {
