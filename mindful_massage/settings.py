@@ -27,7 +27,7 @@ HOST = os.environ.get("HOST")
 SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = DEVELOPMENT
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -163,7 +163,10 @@ USE_TZ = True
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = (
+    'django.contrib.staticfiles.'
+    'storage.ManifestStaticFilesStorage'
+)
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
