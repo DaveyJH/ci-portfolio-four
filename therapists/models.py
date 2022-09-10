@@ -19,6 +19,7 @@ class Therapist(models.Model):
     last_name = models.CharField(max_length=20)
     bio = models.CharField(max_length=240)
     image = CloudinaryField('image', default='no_image')
+    image_alt_text = models.CharField(max_length=80, default="the therapist")
     hourly_rate = models.PositiveSmallIntegerField()
 
     def __str__(self):
@@ -28,4 +29,12 @@ class Therapist(models.Model):
     @property
     def avg_rating(self):
         """Returns average rating of therapist"""
-        return self.reviews.aggregate(avg=models.Avg('rating'))['avg']
+        avg = self.reviews.aggregate(
+            avg=models.Avg('rating'))['avg']  # type: float | None
+        if avg:
+            if avg.is_integer():
+                avg = int(avg)
+            else:
+                avg = round(avg, 1)
+
+        return avg

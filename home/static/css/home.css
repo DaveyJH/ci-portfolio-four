@@ -29,7 +29,6 @@
   font-weight: bold;
   text-align: center;
   box-shadow: 3px 3px 11px var(--dark);
-  border: 1.2px solid var(--dark);
   border-radius: 5px;
   width: 13.5rem;
 }

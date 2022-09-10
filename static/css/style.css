@@ -4,6 +4,7 @@
   --green-grey: #dfe4dc;
   --green-grey-40: #dfe4dc66;
   --green-grey-60: #dfe4dc99;
+  --green-grey-80: #dfe4dccc;
   --green: #84a98c;
   --dark: #2f3e46;
   --light-green: #c5dfb9;
@@ -11,6 +12,8 @@
   --grey: #c8d0ca;
   --grey-60: #c8d0ca99;
   --grey-80: #c8d0cacc;
+  --curly-font: "Grape Nuts", "Brush Script MT", cursive;
+  --standard-font: Dosis, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* * 'c' added before custom classes to avoid clash with bootstrap * */
@@ -93,24 +96,38 @@ footer {
 body {
   background-color: var(--white);
   color: var(--dark);
-  font-family: Dosis, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--standard-font);
 }
 
 /* header */
 header {
-  box-shadow: 0 3px 3px var(--green-grey);
+  box-shadow: 0 2px 3px 2px var(--green-grey);
 }
 
 h1 {
-  font-family: "Grape Nuts", "Brush Script MT", cursive;
+  font-family: var(--curly-font);  
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 0;
 }
 
+/* page content */
+#background {
+  height: 100%;
+}
+
+.page-heading {
+  font-family: var(--curly-font);
+  text-align: center;
+  margin: 5px 0 1.5rem;
+  background: var(--off-white);
+  box-shadow: 0 -2px 3px 2px var(--off-white),
+              0 2px 3px 2px var(--off-white);
+}
+
 /* footer */
 footer {
-  box-shadow: 0 -3px 3px var(--green-grey);
+  box-shadow: 0 -3px 3px 2px var(--green-grey);
 }
 
 footer .nav {

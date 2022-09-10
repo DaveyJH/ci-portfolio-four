@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+  {{block.super}}
+  <link rel="stylesheet" href="{% static 'css/therapists.css' %}">
+{% endblock css %}
+
+{% block title %} | Therapists{% endblock title %}
+
+{% block content %}
+  <div id="background" class="d-flex flex-column justify-content-between">
+    <h2 class="page-heading">Therapists</h2>
+    {% for therapist in therapists %}
+    <section class="therapist-card mb-4 p-2">
+      <div class="therapist-summary d-flex justify-content-between">
+        {% if forloop.counter|divisibleby:2 %}
+        <div class="flex-shrink-0">
+          <img src="{{ CLOUD }}{{ therapist.image }}"
+            alt="{{ therapist.image_alt_text }}"
+            height="150" width="150"
+            class="img-fluid therapist-image rounded-4 p-2">
+        </div>
+        {% endif %}
+        <div class="therapist-brief d-flex flex-column flex-grow-1 justify-content-between my-2">
+          <ul class="fa-ul specialism-ul">
+              {% for therapy in therapies %}
+                {% if forloop.counter <= 3 %}
+                  {% if therapist in therapy.specialism.all %}
+                    <li class="specialism-li"><span class="fa-li"><i class="fa-solid fa-spa"></i></span>{{ therapy }}</li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+          </ul>
+          <div class="therapist-figures d-flex flex-column align-items-center mt-1">
+            <p class="therapist-hourly">
+              {{ therapist.hourly_rate }}.00/hr
+            </p>
+            <p class="therapist-rating">
+              {% if therapist.avg_rating %}
+                {{ therapist.avg_rating }}
+              {% else %}
+                5
+              {% endif %}/ 5 <i class="fa-solid fa-star"></i>
+            </p>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:2 %}
+        {% else %}
+        <div class="flex-shrink-0">
+          <img src="{{ CLOUD }}{{ therapist.image }}"
+            alt="{{ therapist.image_alt_text }}"
+            height="150" width="150"
+            class="img-fluid therapist-image rounded-4 p-2">
+        </div>
+        {% endif %}
+      </div>
+      <div class="therapist-details text-center my-2">
+        <h3>{{ therapist }}</h3>
+        <p>{{ therapist.bio | safe }}</p>
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+#background {
+  background-color: var(--orange);
+  background: url('../images/splash-stones.jpg') center center / cover no-repeat;
+}
+
+/* font awesome reset */
+.specialism-ul {
+  margin-left: 2em;
+  margin-bottom: 0;
+  font-size: .875em;
+  line-height: 1.26em;
+}
+
+.specialism-li {
+  margin: .3em 0;
+  text-transform: lowercase;
+}
+
+.specialism-li::first-letter {
+  text-transform: uppercase;
+}
+
+.therapist-card {
+  background: var(--green-grey-80);
+}
+
+.therapist-image {
+  flex-grow: 1;
+}
