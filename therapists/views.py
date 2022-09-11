@@ -1,4 +1,6 @@
-from django.views.generic import TemplateView, CreateView, UpdateView
+from django.views.generic import (
+    TemplateView, CreateView, UpdateView, DeleteView
+)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from .models import Therapist
@@ -57,4 +59,22 @@ class EditTherapistView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         """ Check user is staff else throw 403 """
+        return self.request.user.is_superuser
+
+
+class DeleteTherapistView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """ A view to delete a menu """
+    model = Therapist
+    success_url = "/therapists/"
+
+    def form_valid(self, form):
+        """ Display toast message on form success """
+        messages.success(
+            self.request,
+            'Successfully deleted therapist'
+        )
+        return super(DeleteTherapistView, self).form_valid(form)
+
+    def test_func(self):
+        """ Test user is staff else throw 403 """
         return self.request.user.is_superuser

@@ -28,6 +28,8 @@ class CreateTherapistForm(forms.ModelForm):
     )
     image = CloudinaryField('image')
     image_alt_text = forms.CharField(
-        max_length=80, label="Accessibility description of image"
+        max_length=80,
+        label="Accessibility description of image",
+        required=False
     )
     hourly_rate = forms.IntegerField(max_value=100)
