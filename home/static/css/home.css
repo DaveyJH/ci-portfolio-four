@@ -7,7 +7,7 @@
 
 #home-info {
   background: var(--green-grey-60);
-  border-radius: 5px;
+  border-radius: var(--small-radius);
   padding: 1.2em;
   font-size: 1em;
   max-width: 32ch;
@@ -29,7 +29,7 @@
   font-weight: bold;
   text-align: center;
   box-shadow: 3px 3px 11px var(--dark);
-  border-radius: 5px;
+  border-radius: var(--small-radius);
   width: 13.5rem;
 }
 
@@ -47,7 +47,7 @@
   background-color: var(--green-grey-40);
   width: fit-content;
   padding: .5rem;
-  border-radius: 5px;
+  border-radius: var(--small-radius);
 }
 
 /* desktop */

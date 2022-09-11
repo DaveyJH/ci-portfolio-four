@@ -10,9 +10,9 @@
 
 {% block content %}
   <div id="background" class="d-flex flex-column justify-content-between">
-    <h2 class="page-heading">Therapists</h2>
+    <h2 class="page-heading c-bg-off-white">Therapists</h2>
     {% for therapist in therapists %}
-    <section class="therapist-card mb-4 p-2">
+    <section class="c-bg-green-grey-80 mb-4 p-2">
       <div class="therapist-summary d-flex justify-content-between">
         {% if forloop.counter|divisibleby:2 %}
         <div class="flex-shrink-0">
@@ -63,3 +63,26 @@
     {% endfor %}
   </div>
 {% endblock content %}
+
+{% block extra_content %}
+{% if request.user.is_superuser %}
+<section class="admin-only c-bg-orange">
+  <h2>Admin</h2>
+  <div class="c-bg-green-grey-80 p-2">
+    <ul class="fa-ul admin-list">
+      <li>
+        <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapist' %}">New Therapist</a>
+      </li>
+      {% comment %} ? move edit/delete to each therapist card {% endcomment %}
+      <li>
+        <span class="fa-li"><i class="fa-solid fa-pen"></i></span><a href="{% url 'edit_therapist' %}">Edit Therapist</a>
+      </li>
+      </li>
+      <li>
+        <span class="fa-li"><i class="fa-solid fa-minus"></i></span><a href="{% url 'delete_therapist' %}">Remove Therapist</a>
+    </ul>
+  </div>
+</section>
+{% endif %}
+{% endblock extra_content %}
+

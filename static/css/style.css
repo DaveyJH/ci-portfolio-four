@@ -9,11 +9,13 @@
   --dark: #2f3e46;
   --light-green: #c5dfb9;
   --orange: #f9cb9c;
+  --orange-60: #f9cb9c99;
   --grey: #c8d0ca;
   --grey-60: #c8d0ca99;
   --grey-80: #c8d0cacc;
   --curly-font: "Grape Nuts", "Brush Script MT", cursive;
   --standard-font: Dosis, Verdana, Geneva, Tahoma, sans-serif;
+  --small-radius: 5px;
 }
 
 /* * 'c' added before custom classes to avoid clash with bootstrap * */
@@ -44,6 +46,10 @@ p {
 
 .navbar-toggler {
   border: none;
+}
+
+ul {
+  margin-bottom: 0;
 }
 
 /* utilities */
@@ -92,7 +98,15 @@ footer {
   background-color: var(--off-white);
 }
 
-/* global styling */
+.c-bg-green-grey-80 {
+  background: var(--green-grey-80);
+}
+
+.c-bg-orange {
+  background-color: var(--orange);
+}
+
+/* global styling ------------- */
 body {
   background-color: var(--white);
   color: var(--dark);
@@ -120,9 +134,13 @@ h1 {
   font-family: var(--curly-font);
   text-align: center;
   margin: 5px 0 1.5rem;
-  background: var(--off-white);
   box-shadow: 0 -2px 3px 2px var(--off-white),
               0 2px 3px 2px var(--off-white);
+}
+
+.low-char-remain {
+  font-weight: bold;
+  color: #e84610;
 }
 
 /* footer */
@@ -133,6 +151,59 @@ footer {
 footer .nav {
   /* tap target requires 48×48px */
   font-size: 3rem;
+}
+
+/* admin */
+.admin-only {
+  position: relative;
+  padding-bottom: 2rem;
+  margin-bottom: 5px;
+  border: 3px solid var(--dark);
+}
+
+.admin-only h2 {
+  margin-top: .5rem;
+  text-align: center;
+}
+
+.admin-list > li {
+  margin: .5rem 0;
+}
+
+.admin-only .page-heading {
+  font-family: var(--standard-font);
+  box-shadow: none;
+  border-top: 3px solid var(--dark);
+  border-bottom: 3px solid var(--dark);
+}
+
+.admin-only button,
+.admin-only .button-styling {
+  width: 10rem;
+  border-radius: var(--small-radius);
+  background-color: var(--green-grey);
+  color: var(--dark);
+  margin-top: 1rem;
+  height: 3rem;
+  font-size: 1.3rem;
+  border: 1.5px solid var(--dark);
+  text-align: center;
+  line-height: 2.8rem;
+}
+
+.admin-only .button-styling.cancel {
+  background-color: var(--orange-60);
+}
+
+.admin-only button:hover,
+.admin-only .button-styling:hover {
+  background-color: var(--orange);
+  border-width: 3px;
+  line-height: 2.65rem;
+}
+
+.admin-only button[type="submit"]:hover {
+  background-color: var(--light-green);
 }
 
 /* media queries */

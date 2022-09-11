@@ -9,7 +9,7 @@
 {% block pre_content %}
   <nav class="d-flex justify-content-evenly mobile-hide" id="desktop-second-nav">
     <a href="#" class="link-button-lg link-button-lg-desktop">Therapies</a>
-    <a href="#" class="link-button-lg link-button-lg-desktop">Therapists</a>
+    <a href="{% url 'therapists' %}" class="link-button-lg link-button-lg-desktop">Therapists</a>
     <a href="#" class="link-button-lg link-button-lg-desktop">Bookings</a>
   </nav>
 {% endblock pre_content %}
@@ -32,6 +32,6 @@
   </div>
 {% endblock content %}
 
-{% block extras %}
+{% block extra_js %}
 <script src="{% static 'js/home-check.js' %}"></script>
-{% endblock extras %}
+{% endblock extra_js %}
