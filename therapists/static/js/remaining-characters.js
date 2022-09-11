@@ -25,7 +25,7 @@ const updateRemainingChars = elem => {
     elem => elem.classList.contains("remaining-char-para")
   );
   if (charPara) charPara.textContent = ` ${remaining} characters remaining...`;
-  charPara.classList.toggle("low-char-remain", remaining <= 3 ? true : false);
+  charPara.classList.toggle("bold-red", remaining <= 3 ? true : false);
 };
 
 document.addEventListener('input', (e) => {
