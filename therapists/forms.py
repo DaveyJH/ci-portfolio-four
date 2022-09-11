@@ -30,6 +30,4 @@ class CreateTherapistForm(forms.ModelForm):
     image_alt_text = forms.CharField(
         max_length=80, label="Accessibility description of image"
     )
-    hourly_rate = forms.IntegerField(
-        max_value=100, label="Hourly rate (whole numbers only)"
-    )
+    hourly_rate = forms.IntegerField(max_value=100)
