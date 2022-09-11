@@ -177,7 +177,7 @@ footer .nav {
   border-bottom: 3px solid var(--dark);
 }
 
-.admin-only button,
+.admin-only button:not(.dropdown-list),
 .admin-only .button-styling {
   width: 10rem;
   border-radius: var(--small-radius);
@@ -195,7 +195,7 @@ footer .nav {
   background-color: var(--orange-60);
 }
 
-.admin-only button:hover,
+.admin-only button:hover:not(.dropdown-list),
 .admin-only .button-styling:hover {
   background-color: var(--orange);
   border-width: 3px;
@@ -204,6 +204,11 @@ footer .nav {
 
 .admin-only button[type="submit"]:hover {
   background-color: var(--light-green);
+}
+
+button.dropdown-list {
+  background-color: transparent;
+  border: none;
 }
 
 /* media queries */

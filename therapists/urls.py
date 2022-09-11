@@ -14,8 +14,8 @@ urlpatterns = [
         name='delete_therapist'
     ),
     path(
-        'edit_therapist/',
-        views.TherapistsView.as_view(),
+        'edit_therapist/<int:pk>',
+        views.EditTherapistView.as_view(),
         name='edit_therapist'
     ),
 ]

@@ -27,7 +27,9 @@
               {% for therapy in therapies %}
                 {% if forloop.counter <= 3 %}
                   {% if therapist in therapy.specialism.all %}
-                    <li class="specialism-li"><span class="fa-li"><i class="fa-solid fa-spa"></i></span>{{ therapy }}</li>
+                    <li class="specialism-li">
+                      <span class="fa-li"><i class="fa-solid fa-spa"></i></span>{{ therapy }}
+                    </li>
                   {% endif %}
                 {% endif %}
               {% endfor %}
@@ -73,16 +75,43 @@
       <li>
         <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapist' %}">New Therapist</a>
       </li>
-      {% comment %} ? move edit/delete to each therapist card {% endcomment %}
       <li>
-        <span class="fa-li"><i class="fa-solid fa-pen"></i></span><a href="{% url 'edit_therapist' %}">Edit Therapist</a>
-      </li>
+        <button class="dropdown-list" id="edit-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapists-list" aria-expanded="false" aria-controls="edit-therapists-list">
+          <span class="fa-li"><i class="fa-solid fa-pen"></i></span>Edit Therapist
+        </button>
+        {% if therapists|length %}
+        <ul class="fa-ul collapse" id="edit-therapists-list">
+          {% for therapist in therapists %}
+          <li class="therapist-li">
+            <span class="fa-li"><i class="fa-solid fa-user"></i></span>
+            <a href="{% url 'edit_therapist' therapist.id %}">{{ therapist }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </li>
       <li>
-        <span class="fa-li"><i class="fa-solid fa-minus"></i></span><a href="{% url 'delete_therapist' %}">Remove Therapist</a>
+        <button class="dropdown-list" id="delete-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapists-list" aria-expanded="false" aria-controls="delete-therapists-list">
+          <span class="fa-li"><i class="fa-solid fa-minus"></i></span>Remove Therapist
+        </button>
+        {% if therapists|length %}
+        <ul class="fa-ul collapse" id="delete-therapists-list">
+          {% for therapist in therapists %}
+          <li class="therapist-li">
+            <span class="fa-li"><i class="fa-solid fa-user"></i></span>
+            <a href="{% url 'delete_therapist' %}">{{ therapist }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
     </ul>
   </div>
 </section>
 {% endif %}
 {% endblock extra_content %}
+
+{% block extra_js %}
+<script src="{% static 'js/bullet-toggle.js' %}"></script>
+{% endblock extra_js %}
 
