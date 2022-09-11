@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import socket  # TODO remove before final deployment (bfd)
+
 import os
 import dj_database_url
 from pathlib import Path
@@ -31,8 +33,11 @@ DEBUG = DEVELOPMENT
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = [HOST]
-
+ALLOWED_HOSTS = [
+    HOST,
+    socket.gethostbyname(socket.gethostname())  # TODO remove bfd
+]
+print(ALLOWED_HOSTS)
 # Application definition
 
 INSTALLED_APPS = [
@@ -112,12 +117,12 @@ WSGI_APPLICATION = 'mindful_massage.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if not DEVELOPMENT:
-    print("HEROKU DATABASE")
+    print("HEROKU DATABASE")  # TODO remove before final deployment
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
 else:
-    print("DEV DATABASE")
+    print("DEV DATABASE")  # TODO remove before final deployment
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_DEV"))
     }
