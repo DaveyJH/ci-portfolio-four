@@ -10,7 +10,7 @@ from therapists.models import Therapist
 
 class TherapiesView(TemplateView):
     """Renders the therapies (all) page"""
-    template_name = "therapies.html"
+    template_name = "therapies/therapies.html"
 
     def get_context_data(self):
         """Returns Therapist and Therapies objects"""
@@ -25,7 +25,7 @@ class AddTherapyView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """ Add Therapist view """
     model = Therapist
     form_class = CreateTherapyForm
-    template_name = 'add_therapy.html'
+    template_name = 'therapies/add_therapy.html'
     success_url = '/therapies/'
 
     def test_func(self):

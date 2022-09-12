@@ -10,7 +10,7 @@ from therapies.models import Therapy
 
 class TherapistsView(TemplateView):
     """Renders the therapists (all) page"""
-    template_name = "therapists.html"
+    template_name = "therapists/therapists.html"
 
     def get_context_data(self):
         """Returns Therapist and Therapies objects"""
@@ -25,7 +25,7 @@ class AddTherapistView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """ Add Therapist view """
     model = Therapist
     form_class = CreateTherapistForm
-    template_name = 'add_therapist.html'
+    template_name = 'therapists/add_therapist.html'
     success_url = '/therapists/'
 
     def test_func(self):
@@ -46,7 +46,7 @@ class EditTherapistView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """ Edit Therapist view """
     model = Therapist
     form_class = CreateTherapistForm
-    template_name = 'edit_therapist.html'
+    template_name = 'therapists/edit_therapist.html'
     success_url = "/therapists/"
 
     def form_valid(self, form):
