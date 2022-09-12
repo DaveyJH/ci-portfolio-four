@@ -18,7 +18,3 @@
 .specialism-li::first-letter {
   text-transform: uppercase;
 }
-
-.therapist-image {
-  flex-grow: 1;
-}

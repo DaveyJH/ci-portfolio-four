@@ -15,13 +15,15 @@
     <section class="c-bg-green-grey-80 mb-4 p-2">
       <div class="therapist-summary d-flex justify-content-between">
         {% if forloop.counter|divisibleby:2 %}
-        <div class="flex-shrink-0">
-          <img 
-          {% if "no_image" in therapist.image.url %}
-            src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
-          {% else %}
-            src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
-          {% endif %} height="150" width="150" class="img-fluid therapist-image rounded-4 p-2">
+        <div class="p-2 flex-shrink-0">
+          <div class="overflow-hidden position-relative rounded-4 image-square">
+            <img 
+            {% if "no_image" in therapist.image.url %}
+              src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
+            {% else %}
+              src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
+            {% endif %} height="150" width="150" class="img-fluid">
+          </div>
         </div>
         {% endif %}
         <div class="therapist-brief d-flex flex-column flex-grow-1 justify-content-between my-2">
@@ -49,21 +51,22 @@
             </p>
           </div>
         </div>
-        {% if forloop.counter|divisibleby:2 %}
-        {% else %}
-        <div class="flex-shrink-0">
-          <img 
-          {% if "no_image" in therapist.image.url %}
-            src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
-          {% else %}
-            src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
-          {% endif %} height="150" width="150" class="img-fluid therapist-image rounded-4 p-2">
+        {% if not forloop.counter|divisibleby:2 %}
+        <div class="p-2 flex-shrink-0">
+          <div class="overflow-hidden position-relative rounded-4 image-square">
+            <img 
+            {% if "no_image" in therapist.image.url %}
+              src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
+            {% else %}
+              src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
+            {% endif %} height="150" width="150" class="img-fluid">
+          </div>
         </div>
         {% endif %}
       </div>
       <div class="therapist-details text-center my-2">
         <h3>{{ therapist }}</h3>
-        <p>{{ therapist.bio | safe }}</p>
+        <p>{{ therapist.bio|safe }}</p>
       </div>
     </section>
     {% endfor %}
@@ -83,31 +86,36 @@
         <button class="dropdown-list" id="edit-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapists-list" aria-expanded="false" aria-controls="edit-therapists-list">
           <span class="fa-li"><i class="fa-solid fa-pen"></i></span>Edit Therapist
         </button>
-        {% if therapists|length %}
         <ul class="fa-ul collapse" id="edit-therapists-list">
+          {% if therapists|length %}
           {% for therapist in therapists %}
           <li class="therapist-li">
             <span class="fa-li"><i class="fa-solid fa-user"></i></span>
             <a href="{% url 'edit_therapist' therapist.id %}">{{ therapist }}</a>
           </li>
           {% endfor %}
+          {% endif %}
         </ul>
-        {% endif %}
       </li>
       <li>
         <button class="dropdown-list" id="delete-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapists-list" aria-expanded="false" aria-controls="delete-therapists-list">
           <span class="fa-li"><i class="fa-solid fa-minus"></i></span>Remove Therapist
         </button>
-        {% if therapists|length %}
         <ul class="fa-ul collapse" id="delete-therapists-list">
+          {% if therapists|length %}
           {% for therapist in therapists %}
           <li class="therapist-li">
             <span class="fa-li"><i class="fa-solid fa-user"></i></span>
             <a href="{% url 'delete_therapist' therapist.id %}">{{ therapist }}</a>
           </li>
           {% endfor %}
+          {% else %}
+          <li class="therapy-li">
+            <span class="fa-li"><i class="fa-solid fa-question"></i></span>
+            No Therapies
+          </li>
+          {% endif %}
         </ul>
-        {% endif %}
       </li>
     </ul>
   </div>
@@ -118,4 +126,3 @@
 {% block extra_js %}
 <script src="{% static 'js/bullet-toggle.js' %}"></script>
 {% endblock extra_js %}
-

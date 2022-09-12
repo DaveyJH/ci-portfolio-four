@@ -5,8 +5,10 @@ const editListRef = document.querySelector("#edit-therapists-list-toggle");
 const deleteListRef = document.querySelector("#delete-therapists-list-toggle");
 
 const toggleBullet = (item, addIcon, removeIcon) => {
-  item.querySelector("i").classList.toggle(addIcon, true);
-  item.querySelector("i").classList.toggle(removeIcon, false);
+  if (!item.querySelector("i").classList.contains("fa-question")) {
+    item.querySelector("i").classList.toggle(addIcon, true);
+    item.querySelector("i").classList.toggle(removeIcon, false);
+  }
 };
 
 editListRef.addEventListener("click", () => {

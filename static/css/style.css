@@ -93,6 +93,20 @@ footer {
   flex-shrink: 0;
 }
 
+.image-square {
+  height: 150px;
+  width: 150px;
+  position: relative;
+}
+
+.image-square img {
+  width: 100%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
 /* colors */
 .c-bg-off-white {
   background-color: var(--off-white);
@@ -143,6 +157,11 @@ h1 {
   color: #e84610;
 }
 
+/* forms */
+.form-new-line-span {
+  display: block;
+}
+
 /* footer */
 footer {
   box-shadow: 0 -3px 3px 2px var(--green-grey);
@@ -185,8 +204,9 @@ footer .nav {
   border-bottom: 3px solid var(--dark);
 }
 
+/* button style */
 .admin-only button:not(.dropdown-list),
-.admin-only .button-styling {
+.button-styling {
   width: 10rem;
   border-radius: var(--small-radius);
   background-color: var(--green-grey);
@@ -204,14 +224,14 @@ footer .nav {
 }
 
 .admin-only button:hover:not(.dropdown-list),
-.admin-only .button-styling:hover {
-  background-color: var(--orange);
+.button-styling:hover {
+  background-color: var(--light-green);
   border-width: 3px;
   line-height: 2.65rem;
-}
+  }
 
-.admin-only button[type="submit"]:hover {
-  background-color: var(--light-green);
+.button-styling.cancel:hover {
+  background-color: var(--orange);
 }
 
 button.dropdown-list {

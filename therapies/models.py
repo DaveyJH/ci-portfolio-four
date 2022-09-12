@@ -4,20 +4,18 @@ import django.contrib.postgres.fields as pg_fields
 
 from therapists.models import Therapist
 
-BODY_AREAS = (
-    (1, "Head"),
-    (2, "Neck"),
-    (3, "Shoulders"),
-    (4, "Torso"),
-    (5, "Upper Legs"),
-    (6, "Lower Legs"),
-    (7, "Buttocks"),
-    (8, "Feet"),
-    (9, "Full Body"),
-    (10, "Upper Body"),
-    (11, "Lower Body"),
-    (12, "Back"),
-)
+
+class BodyArea(models.Model):
+    """BodyArea model"""
+    area = models.CharField(max_length=15, unique=True)
+    order_position = models.PositiveSmallIntegerField()
+
+    class Meta:
+        ordering = ['order_position']
+
+    def __str__(self):
+        """Returns body area"""
+        return self.area
 
 
 class Therapy(models.Model):
@@ -37,9 +35,9 @@ class Therapy(models.Model):
     """
 
     therapy_name = models.CharField(max_length=40, unique=True)
-    body_area = pg_fields.ArrayField(models.IntegerField(
-        choices=BODY_AREAS
-    ))
+    body_area = models.ManyToManyField(
+        BodyArea, related_name="body_area"
+    )
     benefits = pg_fields.ArrayField(models.CharField(max_length=50))
     description = models.CharField(max_length=180)
     duration = models.PositiveSmallIntegerField()
@@ -61,4 +59,11 @@ class Therapy(models.Model):
     @property
     def avg_rating(self):
         """Returns average rating of therapy"""
-        return self.reviews.aggregate(avg=models.Avg('rating'))['avg']
+        avg = self.reviews.aggregate(
+            avg=models.Avg('rating'))['avg']  # type: float | None
+        if avg:
+            if avg.is_integer():
+                avg = int(avg)
+            else:
+                avg = round(avg, 1)
+        return avg
