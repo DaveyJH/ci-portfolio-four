@@ -8,10 +8,10 @@ const formElems = formInputRefs.map(
 // add "remaining characters" paragraph below labels
 formElems.forEach(({elem, id}) => {
   const max = elem.getAttribute('maxlength');
-  const newCharPara = document.createElement("p");
-  newCharPara.classList.add("remaining-char-para");
-  newCharPara.textContent = ` ${max} characters remaining...`;
-  elem.previousElementSibling.append(newCharPara);
+  const newCharSpan = document.createElement("span");
+  newCharSpan.classList.add("remaining-char-span", "form-new-line-span");
+  newCharSpan.textContent = ` ${max} characters remaining...`;
+  elem.previousElementSibling.append(newCharSpan);
 });
 
 /**
@@ -21,11 +21,11 @@ formElems.forEach(({elem, id}) => {
 const updateRemainingChars = elem => {
   const max = elem.getAttribute('maxlength');
   const remaining = max - elem.value.length;
-  const charPara = Array.from(elem.previousElementSibling.children).find(
-    elem => elem.classList.contains("remaining-char-para")
+  const charSpan = Array.from(elem.previousElementSibling.children).find(
+    elem => elem.classList.contains("remaining-char-span")
   );
-  if (charPara) charPara.textContent = ` ${remaining} characters remaining...`;
-  charPara.classList.toggle("bold-red", remaining <= 3 ? true : false);
+  if (charSpan) charSpan.textContent = ` ${remaining} characters remaining...`;
+  charSpan.classList.toggle("bold-red", remaining <= 3 ? true : false);
 };
 
 document.addEventListener('input', (e) => {

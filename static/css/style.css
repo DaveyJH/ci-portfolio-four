@@ -157,6 +157,11 @@ h1 {
   color: #e84610;
 }
 
+/* forms */
+.form-new-line-span {
+  display: block;
+}
+
 /* footer */
 footer {
   box-shadow: 0 -3px 3px 2px var(--green-grey);
