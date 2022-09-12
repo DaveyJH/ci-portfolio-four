@@ -1,23 +1,8 @@
 from django import forms
 from cloudinary.models import CloudinaryField
 from django.contrib.postgres.forms import SimpleArrayField
-from .models import Therapy
+from .models import Therapy, BodyArea
 from therapists.models import Therapist
-
-BODY_AREAS = (
-    (1, "Head"),
-    (2, "Neck"),
-    (3, "Shoulders"),
-    (4, "Torso"),
-    (5, "Upper Legs"),
-    (6, "Lower Legs"),
-    (7, "Buttocks"),
-    (8, "Feet"),
-    (9, "Full Body"),
-    (10, "Upper Body"),
-    (11, "Lower Body"),
-    (12, "Back"),
-)
 
 
 class CreateTherapyForm(forms.ModelForm):
@@ -31,33 +16,38 @@ class CreateTherapyForm(forms.ModelForm):
             'benefits',
             'description',
             'duration',
+            'duration_is_variable',
             'image',
             'image_alt_text',
             'therapists',
-            'duration_is_variable',
             'specialism',
         ]
 
     therapy_name = forms.CharField(max_length=40)
-    body_area = forms.MultipleChoiceField(
+    body_area = forms.ModelMultipleChoiceField(
         label='Body areas treated',
-        choices=BODY_AREAS
+        queryset=BodyArea.objects.all(),
+        widget=forms.CheckboxSelectMultiple()
     )
     benefits = SimpleArrayField(forms.CharField(max_length=50))
-    description = forms.CharField(max_length=180)
+    description = forms.CharField(
+        max_length=180,
+        widget=forms.Textarea(attrs={'rows': 4}),
+    )
     duration = forms.IntegerField(label="Duration in minutes")
+    duration_is_variable = forms.BooleanField(required=False)
     image = CloudinaryField('image')
     image_alt_text = forms.CharField(
         max_length=80,
         label="Accessibility description of image",
-        required=False
+        required=False,
     )
     therapists = forms.ModelMultipleChoiceField(
         queryset=Therapist.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple(),
     )
-    duration_is_variable = forms.BooleanField()
     specialism = forms.ModelMultipleChoiceField(
         queryset=Therapist.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple(),
+        required=False,
     )

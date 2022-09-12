@@ -61,7 +61,7 @@
     {% endfor %}
   </div>
 {% endblock content %}
-{% comment %} 
+
 {% block extra_content %}
 {% if request.user.is_superuser %}
 <section class="admin-only c-bg-orange">
@@ -69,43 +69,55 @@
   <div class="c-bg-green-grey-80 p-2">
     <ul class="fa-ul admin-list">
       <li>
-        <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapist' %}">New Therapist</a>
+        <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapy' %}">New Therapy</a>
       </li>
       <li>
-        <button class="dropdown-list" id="edit-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapists-list" aria-expanded="false" aria-controls="edit-therapists-list">
-          <span class="fa-li"><i class="fa-solid fa-pen"></i></span>Edit Therapist
+        <button class="dropdown-list" id="edit-therapies-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapies-list" aria-expanded="false" aria-controls="edit-therapies-list">
+          <span class="fa-li"><i class="fa-solid fa-pen"></i></span>Edit Therapy
         </button>
-        {% if therapists|length %}
-        <ul class="fa-ul collapse" id="edit-therapists-list">
-          {% for therapist in therapists %}
-          <li class="therapist-li">
+        <ul class="fa-ul collapse" id="edit-therapies-list">
+          {% if therapies|length %}
+          {% for therapy in therapies %}
+          <li class="therapy-li">
             <span class="fa-li"><i class="fa-solid fa-user"></i></span>
-            <a href="{% url 'edit_therapist' therapist.id %}">{{ therapist }}</a>
+            {% comment %} <a href="{% url 'edit_therapy' therapy.id %}">{{ therapy }}</a> {% endcomment %}
+            {{ therapy }}
           </li>
           {% endfor %}
+          {% else %}
+          <li class="therapy-li">
+            <span class="fa-li"><i class="fa-solid fa-question"></i></span>
+            No Therapies
+          </li>
+          {% endif %}
         </ul>
-        {% endif %}
       </li>
       <li>
-        <button class="dropdown-list" id="delete-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapists-list" aria-expanded="false" aria-controls="delete-therapists-list">
-          <span class="fa-li"><i class="fa-solid fa-minus"></i></span>Remove Therapist
+        <button class="dropdown-list" id="delete-therapies-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapies-list" aria-expanded="false" aria-controls="delete-therapies-list">
+          <span class="fa-li"><i class="fa-solid fa-minus"></i></span>Remove Therapy
         </button>
-        {% if therapists|length %}
-        <ul class="fa-ul collapse" id="delete-therapists-list">
-          {% for therapist in therapists %}
-          <li class="therapist-li">
+        <ul class="fa-ul collapse" id="delete-therapies-list">
+          {% if therapies|length %}
+          {% for therapy in therapies %}
+          <li class="therapy-li">
             <span class="fa-li"><i class="fa-solid fa-user"></i></span>
-            <a href="{% url 'delete_therapist' therapist.id %}">{{ therapist }}</a>
+            {% comment %} <a href="{% url 'delete_therapy' therapy.id %}">{{ therapy }}</a> {% endcomment %}
+            {{ therapy }}
           </li>
           {% endfor %}
+          {% else %}
+          <li class="therapy-li">
+            <span class="fa-li"><i class="fa-solid fa-question"></i></span>
+            No Therapies
+          </li>
+          {% endif %}
         </ul>
-        {% endif %}
       </li>
     </ul>
   </div>
 </section>
 {% endif %}
-{% endblock extra_content %} {% endcomment %}
+{% endblock extra_content %}
 
 {% block extra_js %}
 {% comment %} <script src="{% static 'js/bullet-toggle.js' %}"></script> {% endcomment %}

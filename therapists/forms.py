@@ -20,12 +20,13 @@ class CreateTherapistForm(forms.ModelForm):
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length=20)
     bio = forms.CharField(
-        max_length=240, widget=forms.Textarea(attrs={'rows': 4}),
+        max_length=240,
+        widget=forms.Textarea(attrs={'rows': 4}),
     )
     image = CloudinaryField('image')
     image_alt_text = forms.CharField(
         max_length=80,
         label="Accessibility description of image",
-        required=False
+        required=False,
     )
     hourly_rate = forms.IntegerField(max_value=100)

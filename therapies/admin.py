@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Therapy
+from .models import Therapy, BodyArea
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -10,3 +10,8 @@ class TherapiesAdmin(SummernoteModelAdmin):
     summernote_fields = (
         'description',
     )
+
+
+@admin.register(BodyArea)
+class BodyAreaAdmin(SummernoteModelAdmin):
+    """Add BodyArea model to admin pages"""

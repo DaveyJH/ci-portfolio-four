@@ -4,3 +4,7 @@
   center center / cover
   no-repeat;
 }
+
+.form-check {
+  margin: .5rem 0;
+}
