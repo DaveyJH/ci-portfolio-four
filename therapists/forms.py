@@ -4,13 +4,9 @@ from cloudinary.models import CloudinaryField
 
 
 class CreateTherapistForm(forms.ModelForm):
-    """
-    Form to edit and delete menus
-    """
+    """Form to add and edit Therapists"""
     class Meta:
-        """
-        Define model, form fields and label
-        """
+        """Define model, form fields (and labels as needed)"""
         model = Therapist
         fields = [
             'first_name',

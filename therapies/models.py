@@ -61,4 +61,11 @@ class Therapy(models.Model):
     @property
     def avg_rating(self):
         """Returns average rating of therapy"""
-        return self.reviews.aggregate(avg=models.Avg('rating'))['avg']
+        avg = self.reviews.aggregate(
+            avg=models.Avg('rating'))['avg']  # type: float | None
+        if avg:
+            if avg.is_integer():
+                avg = int(avg)
+            else:
+                avg = round(avg, 1)
+        return avg

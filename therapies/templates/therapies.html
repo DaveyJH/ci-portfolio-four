@@ -3,77 +3,65 @@
 
 {% block css %}
   {{block.super}}
-  <link rel="stylesheet" href="{% static 'css/therapists.css' %}">
+  <link rel="stylesheet" href="{% static 'css/therapies.css' %}">
 {% endblock css %}
 
-{% block title %} | Therapists{% endblock title %}
+{% block title %} | Therapies{% endblock title %}
 
 {% block content %}
   <div id="background" class="d-flex flex-column justify-content-between">
     <h2 class="page-heading c-bg-off-white">Therapists</h2>
-    {% for therapist in therapists %}
+    {% for therapy in therapies %}
     <section class="c-bg-green-grey-80 mb-4 p-2">
-      <div class="therapist-summary d-flex justify-content-between">
+      <div class="d-flex justify-content-between">
         {% if forloop.counter|divisibleby:2 %}
         <div class="p-2 flex-shrink-0">
           <div class="overflow-hidden position-relative rounded-4 image-square">
             <img 
-            {% if "no_image" in therapist.image.url %}
-              src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
+            {% if "no_image" in therapy.image.url %}
+            src="{% static 'https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE' %}" alt=""
             {% else %}
-              src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
+            src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
             {% endif %} height="150" width="150" class="img-fluid">
           </div>
         </div>
         {% endif %}
-        <div class="therapist-brief d-flex flex-column flex-grow-1 justify-content-between my-2">
-          <ul class="fa-ul specialism-ul">
-              {% for therapy in therapies %}
-                {% if forloop.counter <= 3 %}
-                  {% if therapist in therapy.specialism.all %}
-                    <li class="specialism-li">
-                      <span class="fa-li"><i class="fa-solid fa-spa"></i></span>{{ therapy }}
-                    </li>
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-          </ul>
-          <div class="therapist-figures d-flex flex-column align-items-center mt-1">
-            <p class="therapist-hourly">
-              {{ therapist.hourly_rate }}.00/hr
-            </p>
-            <p class="therapist-rating">
-              {% if therapist.avg_rating %}
-                {{ therapist.avg_rating }}
+        <div class="d-flex flex-column flex-grow-1 justify-content-evenly align-items-center my-2">
+          <p>
+            <i class="fa-regular fa-clock"></i> {{ therapy.duration }} mins.
+          </p>
+          <p>
+            <i class="fa-solid fa-star"></i> {% if therapy.avg_rating %}
+                {{ therapy.avg_rating }}
               {% else %}
                 5
-              {% endif %}/ 5 <i class="fa-solid fa-star"></i>
-            </p>
-          </div>
+              {% endif %}/ 5
+          </p>
         </div>
         {% if forloop.counter|divisibleby:2 %}
         {% else %}
-        <div class="p-2 flex-shrink-0">
-          <div class="overflow-hidden position-relative rounded-4 image-square">
-            <img 
-            {% if "no_image" in therapist.image.url %}
-              src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
-            {% else %}
-              src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
-            {% endif %} height="150" width="150" class="img-fluid">
-          </div>
+        <div class="flex-shrink-0">
+          <img 
+          {% if "no_image" in therapy.image.url %}
+            src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
+          {% else %}
+            src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
+          {% endif %} height="150" width="150" class="img-fluid therapy-image rounded-4 p-2">
         </div>
         {% endif %}
       </div>
       <div class="therapist-details text-center my-2">
-        <h3>{{ therapist }}</h3>
-        <p>{{ therapist.bio|safe }}</p>
+        <h3>{{ therapy }}</h3>
+        <p>{{ therapy.description|safe }}</p>
+      </div>
+      <div class="d-flex flex-column align-items-center mb-2">
+        <a href="/therapies/" class="button-styling">More info...</a>
       </div>
     </section>
     {% endfor %}
   </div>
 {% endblock content %}
-
+{% comment %} 
 {% block extra_content %}
 {% if request.user.is_superuser %}
 <section class="admin-only c-bg-orange">
@@ -117,8 +105,8 @@
   </div>
 </section>
 {% endif %}
-{% endblock extra_content %}
+{% endblock extra_content %} {% endcomment %}
 
 {% block extra_js %}
-<script src="{% static 'js/bullet-toggle.js' %}"></script>
+{% comment %} <script src="{% static 'js/bullet-toggle.js' %}"></script> {% endcomment %}
 {% endblock extra_js %}

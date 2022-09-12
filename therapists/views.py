@@ -13,7 +13,7 @@ class TherapistsView(TemplateView):
     template_name = "therapists.html"
 
     def get_context_data(self):
-        """Returns first Therapist object"""
+        """Returns Therapist and Therapies objects"""
         context = {
             'therapists': Therapist.objects.all().order_by('last_name'),
             'therapies': Therapy.objects.all()
@@ -63,12 +63,12 @@ class EditTherapistView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class DeleteTherapistView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    """ A view to delete a menu """
+    """ Delete therapist view """
     model = Therapist
     success_url = "/therapists/"
 
     def form_valid(self, form):
-        """ Display toast message on form success """
+        """ Validate form """
         messages.success(
             self.request,
             'Successfully deleted therapist'
