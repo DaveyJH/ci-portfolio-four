@@ -9,18 +9,19 @@
 {% block title %} | Delete Therapist{% endblock title %}
 
 {% block content %}
-  <!-- Menu confirm delete form -->
   <section class="admin-only text-center">
     <h2 class="page-heading c-bg-orange">Confirm Therapist Deletion</h1>
     <section class="c-bg-green-grey-80 mb-4 p-2">
       <div class="therapist-summary d-flex justify-content-between">
-        <div class="flex-shrink-0">
-          <img 
-          {% if "no_image" in therapist.image.url %}
-            src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
-          {% else %}
-            src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
-          {% endif %} height="150" width="150" class="img-fluid therapist-image rounded-4 p-2">
+        <div class="p-2 flex-shrink-0">
+          <div class="overflow-hidden position-relative rounded-4 image-square">
+            <img 
+            {% if "no_image" in therapist.image.url %}
+              src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
+            {% else %}
+              src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
+            {% endif %} height="150" width="150" class="img-fluid therapist-image rounded-4 p-2">
+          </div>
         </div>
         <div class="therapist-brief d-flex flex-column flex-grow-1 justify-content-between my-2">
           <ul class="fa-ul specialism-ul">

@@ -13,4 +13,9 @@ urlpatterns = [
         views.EditTherapyView.as_view(),
         name='edit_therapy'
     ),
+    path(
+        'delete_therapy/<int:pk>',
+        views.DeleteTherapyView.as_view(),
+        name='delete_therapy'
+    ),
 ]

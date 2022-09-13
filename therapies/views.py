@@ -62,19 +62,19 @@ class EditTherapyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.is_superuser
 
 
-# class DeleteTherapistView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-#     """ Delete therapist view """
-#     model = Therapist
-#     success_url = "/therapists/"
+class DeleteTherapyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """ Delete therapist view """
+    model = Therapy
+    success_url = "/therapists/"
 
-#     def form_valid(self, form):
-#         """ Validate form """
-#         messages.success(
-#             self.request,
-#             'Successfully deleted therapist'
-#         )
-#         return super(DeleteTherapistView, self).form_valid(form)
+    def form_valid(self, form):
+        """ Validate form """
+        messages.success(
+            self.request,
+            'Successfully deleted therapist'
+        )
+        return super(DeleteTherapyView, self).form_valid(form)
 
-#     def test_func(self):
-#         """ Test user is staff else throw 403 """
-#         return self.request.user.is_superuser
+    def test_func(self):
+        """ Test user is staff else throw 403 """
+        return self.request.user.is_superuser
