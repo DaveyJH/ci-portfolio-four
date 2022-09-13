@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="{% static 'css/therapies.css' %}">
 {% endblock css %}
 
-{% block title %} | Add Therapy{% endblock title %}
+{% block title %} | Edit Therapy{% endblock title %}
 
 {% block content %}
   <section class="admin-only">
-    <h2 class="page-heading c-bg-orange">Add Therapy</h2>
-    <form class="px-2" method="POST" action="{% url 'add_therapy' %}" enctype="multipart/form-data">
+    <h2 class="page-heading c-bg-orange">Edit Therapy</h2>
+    <form class="px-2" method="POST" action="{% url 'edit_therapy' therapy.id %}" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form|crispy }}
       <div class="d-flex flex-column align-items-center">

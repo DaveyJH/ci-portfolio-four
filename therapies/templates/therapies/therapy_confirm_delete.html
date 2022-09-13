@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  {{block.super}}
+  <link rel="stylesheet" href="{% static 'css/therapies.css' %}">
+{% endblock css %}
+
+{% block title %} | Delete Therapy{% endblock title %}
+
+{% block content %}
+  <section class="admin-only text-center">
+    <h2 class="page-heading c-bg-orange">Confirm Therapy Deletion</h1>
+    <section class="c-bg-green-grey-80 mb-4 p-2">
+      <div class="d-flex justify-content-between">
+        <div class="p-2 flex-shrink-0">
+          <div class="overflow-hidden position-relative rounded-4 image-square">
+            <img 
+            {% if "no_image" in therapy.image.url %}
+            src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
+            {% else %}
+            src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
+            {% endif %} height="150" width="150" class="img-fluid">
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-grow-1 justify-content-evenly align-items-center my-2">
+          <p>
+            <i class="fa-regular fa-clock"></i> {{ therapy.duration }} mins.
+          </p>
+          <p>
+            <i class="fa-solid fa-star"></i> {% if therapy.avg_rating %}
+                {{ therapy.avg_rating }}
+              {% else %}
+                5
+              {% endif %}/ 5
+          </p>
+        </div>
+      </div>
+      <div class="therapist-details text-center my-2">
+        <h3>{{ therapy }}</h3>
+        <p>{{ therapy.description|safe }}</p>
+      </div>
+    </section>
+    <form method="post">
+      {% csrf_token %}
+      <p class="alert-big-text">Are you sure you want to delete:</p>
+      <p class="alert-bigger-text">{{ therapy }}</p>
+      <p class="alert-big-text bold-red">This cannot be undone!</p>
+      <div class="d-flex flex-column align-items-center">
+        <button type="submit">Confirm</button>
+        <a href="{% url 'therapies' %}" class="button-styling cancel">Cancel</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

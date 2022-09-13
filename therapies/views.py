@@ -23,7 +23,7 @@ class TherapiesView(TemplateView):
 
 class AddTherapyView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """ Add Therapist view """
-    model = Therapist
+    model = Therapy
     form_class = CreateTherapyForm
     template_name = 'therapies/add_therapy.html'
     success_url = '/therapies/'
@@ -42,39 +42,39 @@ class AddTherapyView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return super(AddTherapyView, self).form_valid(form)
 
 
-# class EditTherapistView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     """ Edit Therapist view """
-#     model = Therapist
-#     form_class = CreateTherapistForm
-#     template_name = 'edit_therapist.html'
-#     success_url = "/therapists/"
+class EditTherapyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """ Edit Therapy view """
+    model = Therapy
+    form_class = CreateTherapyForm
+    template_name = 'therapies/edit_therapy.html'
+    success_url = "/therapies/"
 
-#     def form_valid(self, form):
-#         """ Validate form """
-#         messages.success(
-#             self.request,
-#             'Successfully edited therapist!'
-#         )
-#         return super(EditTherapistView, self).form_valid(form)
+    def form_valid(self, form):
+        """ Validate form """
+        messages.success(
+            self.request,
+            'Successfully edited therapy!'
+        )
+        return super(EditTherapyView, self).form_valid(form)
 
-#     def test_func(self):
-#         """ Check user is staff else throw 403 """
-#         return self.request.user.is_superuser
+    def test_func(self):
+        """ Check user is staff else throw 403 """
+        return self.request.user.is_superuser
 
 
-# class DeleteTherapistView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-#     """ Delete therapist view """
-#     model = Therapist
-#     success_url = "/therapists/"
+class DeleteTherapyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """ Delete therapist view """
+    model = Therapy
+    success_url = "/therapists/"
 
-#     def form_valid(self, form):
-#         """ Validate form """
-#         messages.success(
-#             self.request,
-#             'Successfully deleted therapist'
-#         )
-#         return super(DeleteTherapistView, self).form_valid(form)
+    def form_valid(self, form):
+        """ Validate form """
+        messages.success(
+            self.request,
+            'Successfully deleted therapist'
+        )
+        return super(DeleteTherapyView, self).form_valid(form)
 
-#     def test_func(self):
-#         """ Test user is staff else throw 403 """
-#         return self.request.user.is_superuser
+    def test_func(self):
+        """ Test user is staff else throw 403 """
+        return self.request.user.is_superuser
