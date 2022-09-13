@@ -20,7 +20,7 @@ class CreateTherapyForm(forms.ModelForm):
             'image',
             'image_alt_text',
             'therapists',
-            'specialism',
+            'specialists',
         ]
 
     therapy_name = forms.CharField(max_length=40)
@@ -46,7 +46,7 @@ class CreateTherapyForm(forms.ModelForm):
         queryset=Therapist.objects.all(),
         widget=forms.CheckboxSelectMultiple(),
     )
-    specialism = forms.ModelMultipleChoiceField(
+    specialists = forms.ModelMultipleChoiceField(
         queryset=Therapist.objects.all(),
         widget=forms.CheckboxSelectMultiple(),
         required=False,

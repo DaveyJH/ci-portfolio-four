@@ -27,7 +27,7 @@
         </div>
         {% endif %}
         <div class="therapist-brief d-flex flex-column flex-grow-1 justify-content-between my-2">
-          <ul class="fa-ul specialism-ul">
+          <ul class="fa-ul specialism-ul d-flex flex-column flex-grow-1 justify-content-center">
               {% for therapy in therapies %}
                 {% if forloop.counter <= 3 %}
                   {% if therapist in therapy.specialism.all %}
