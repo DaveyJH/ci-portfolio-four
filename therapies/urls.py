@@ -8,4 +8,9 @@ urlpatterns = [
         views.AddTherapyView.as_view(),
         name='add_therapy'
     ),
+    path(
+        'edit_therapy/<int:pk>',
+        views.EditTherapyView.as_view(),
+        name='edit_therapy'
+    ),
 ]

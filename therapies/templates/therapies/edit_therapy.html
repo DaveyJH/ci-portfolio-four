@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+  {{block.super}}
+  <link rel="stylesheet" href="{% static 'css/therapies.css' %}">
+{% endblock css %}
+
+{% block title %} | Edit Therapy{% endblock title %}
+
+{% block content %}
+  <section class="admin-only">
+    <h2 class="page-heading c-bg-orange">Edit Therapy</h2>
+    <form class="px-2" method="POST" action="{% url 'edit_therapy' therapy.id %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="d-flex flex-column align-items-center">
+        <button type="submit">Submit</button>
+        <a href="{% url 'therapies' %}" class="button-styling cancel">Cancel</a>
+      </div>
+    </form>
+  </section>
+{% endblock content %}
+
+{% block extra_js %}
+  <script src="{% static 'js/remaining-characters.js' %}"></script>
+  <script src="{% static 'js/image-prompt.js' %}"></script>
+  <script src="{% static 'js/benefits-prompt.js' %}"></script>
+  <script src="{% static 'js/multi-select-prompt.js' %}"></script>
+  <script src="{% static 'js/toggle-specialisms.js' %}"></script>
+{% endblock extra_js  %}
