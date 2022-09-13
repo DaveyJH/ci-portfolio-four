@@ -83,34 +83,39 @@
         <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapist' %}">New Therapist</a>
       </li>
       <li>
-        <button class="dropdown-list" id="edit-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapists-list" aria-expanded="false" aria-controls="edit-therapists-list">
+        <button class="dropdown-list" id="edit-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapists-list" aria-expanded="false" aria-controls="edit-therapists-list">
           <span class="fa-li"><i class="fa-solid fa-pen"></i></span>Edit Therapist
         </button>
         <ul class="fa-ul collapse" id="edit-therapists-list">
           {% if therapists|length %}
           {% for therapist in therapists %}
-          <li class="therapist-li">
+          <li data-type="user">
             <span class="fa-li"><i class="fa-solid fa-user"></i></span>
             <a href="{% url 'edit_therapist' therapist.id %}">{{ therapist }}</a>
           </li>
           {% endfor %}
+          {% else %}
+          <li data-type="question">
+            <span class="fa-li"><i class="fa-solid fa-question"></i></span>
+            No Therapies
+          </li>
           {% endif %}
         </ul>
       </li>
       <li>
-        <button class="dropdown-list" id="delete-therapists-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapists-list" aria-expanded="false" aria-controls="delete-therapists-list">
+        <button class="dropdown-list" id="delete-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapists-list" aria-expanded="false" aria-controls="delete-therapists-list">
           <span class="fa-li"><i class="fa-solid fa-minus"></i></span>Remove Therapist
         </button>
         <ul class="fa-ul collapse" id="delete-therapists-list">
           {% if therapists|length %}
           {% for therapist in therapists %}
-          <li class="therapist-li">
+          <li data-type="user">
             <span class="fa-li"><i class="fa-solid fa-user"></i></span>
             <a href="{% url 'delete_therapist' therapist.id %}">{{ therapist }}</a>
           </li>
           {% endfor %}
           {% else %}
-          <li class="therapy-li">
+          <li data-type="question">
             <span class="fa-li"><i class="fa-solid fa-question"></i></span>
             No Therapies
           </li>

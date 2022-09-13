@@ -65,7 +65,7 @@ class EditTherapyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class DeleteTherapyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """ Delete therapist view """
     model = Therapy
-    success_url = "/therapists/"
+    success_url = "/therapies/"
 
     def form_valid(self, form):
         """ Validate form """
