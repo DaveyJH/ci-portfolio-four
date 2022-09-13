@@ -3,6 +3,7 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import Therapy
 from .forms import CreateTherapyForm
 from therapists.models import Therapist
@@ -21,59 +22,58 @@ class TherapiesView(TemplateView):
         return context
 
 
-class AddTherapyView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class AddTherapyView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    CreateView
+):
     """ Add Therapist view """
     model = Therapy
     form_class = CreateTherapyForm
     template_name = 'therapies/add_therapy.html'
     success_url = '/therapies/'
+    success_message = '%(therapy_name)s added successfully!'
 
     def test_func(self):
         """ Test user is superuser else throw 403 """
         return self.request.user.is_superuser
 
-    def form_valid(self, form):
-        """ Validate form """
-        messages.success(
-            self.request,
-            'Successfully added new therapy!'
-        )
 
-        return super(AddTherapyView, self).form_valid(form)
-
-
-class EditTherapyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditTherapyView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    UpdateView
+):
     """ Edit Therapy view """
     model = Therapy
     form_class = CreateTherapyForm
     template_name = 'therapies/edit_therapy.html'
     success_url = "/therapies/"
-
-    def form_valid(self, form):
-        """ Validate form """
-        messages.success(
-            self.request,
-            'Successfully edited therapy!'
-        )
-        return super(EditTherapyView, self).form_valid(form)
+    success_message = '%(therapy_name)s edited successfully!'
 
     def test_func(self):
         """ Check user is staff else throw 403 """
         return self.request.user.is_superuser
 
 
-class DeleteTherapyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteTherapyView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
     """ Delete therapist view """
     model = Therapy
     success_url = "/therapies/"
+    success_message = '%(therapy_name)s deleted successfully!'
 
-    def form_valid(self, form):
-        """ Validate form """
-        messages.success(
-            self.request,
-            'Successfully deleted therapist'
-        )
-        return super(DeleteTherapyView, self).form_valid(form)
+    def delete(self, request, *args, **kwargs):
+        """ Display success message """
+        obj = self.get_object()
+        messages.success(self.request, self.success_message % obj.__dict__)
+        return super(DeleteTherapyView, self).delete(request)
 
     def test_func(self):
         """ Test user is staff else throw 403 """

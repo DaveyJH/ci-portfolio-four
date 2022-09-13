@@ -10,6 +10,13 @@
 
 {% block content %}
   <div id="background" class="d-flex flex-column justify-content-between">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="message rounded-0 text-center alert alert-{{ message.tags }}">
+          {{ message|safe }}
+        </div>
+      {% endfor %}
+    {% endif %}
     <h2 class="page-heading c-bg-off-white">Therapies</h2>
     {% for therapy in therapies %}
     <section class="c-bg-green-grey-80 mb-4 p-2">
@@ -71,6 +78,7 @@
 {% if request.user.is_superuser %}
 <section class="admin-only c-bg-orange">
   <h2>Admin</h2>
+  
   <div class="c-bg-green-grey-80 p-2">
     <ul class="fa-ul admin-list">
       <li>

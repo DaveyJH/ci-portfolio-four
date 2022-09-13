@@ -6,7 +6,7 @@
 
 {% block content %}
   <section class="admin-only">
-    <h2 class="page-heading c-bg-orange">Add Therapist</h2>
+    <h2 class="page-heading c-bg-orange">Edit Therapist</h2>
     <form class="px-2" method="POST" action="{% url 'edit_therapist' therapist.id %}" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form|crispy }}
