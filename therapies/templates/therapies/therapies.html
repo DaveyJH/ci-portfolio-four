@@ -38,8 +38,7 @@
               {% endif %}/ 5
           </p>
         </div>
-        {% if forloop.counter|divisibleby:2 %}
-        {% else %}
+        {% if not forloop.counter|divisibleby:2 %}
         <div class="flex-shrink-0">
           <img 
           {% if "no_image" in therapy.image.url %}
@@ -55,7 +54,7 @@
         <p>{{ therapy.description|safe }}</p>
       </div>
       <div class="d-flex flex-column align-items-center mb-2">
-        <a href="/therapies/" class="button-styling">More info...</a>
+        <a href="#" class="button-styling">More info...</a>
       </div>
     </section>
     {% endfor %}
@@ -80,8 +79,7 @@
           {% for therapy in therapies %}
           <li class="therapy-li">
             <span class="fa-li"><i class="fa-solid fa-user"></i></span>
-            {% comment %} <a href="{% url 'edit_therapy' therapy.id %}">{{ therapy }}</a> {% endcomment %}
-            {{ therapy }}
+            <a href="{% url 'edit_therapy' therapy.id %}">{{ therapy }}</a>
           </li>
           {% endfor %}
           {% else %}
