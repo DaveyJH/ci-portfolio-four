@@ -15,6 +15,13 @@
 {% endblock pre_content %}
 
 {% block content %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="message rounded-0 text-center alert alert-{{ message.tags }}">
+      {{ message|safe }}
+    </div>
+  {% endfor %}
+{% endif %}
   <div id="background" class="d-flex flex-column justify-content-between">
     <div id="home-info">
       {{ home.content|safe }}
@@ -33,5 +40,5 @@
 {% endblock content %}
 
 {% block extra_js %}
-<script src="{% static 'js/home-check.js' %}"></script>
+  <script src="{% static 'js/home-check.js' %}"></script>
 {% endblock extra_js %}

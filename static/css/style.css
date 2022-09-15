@@ -8,6 +8,7 @@
   --green: #84a98c;
   --dark: #2f3e46;
   --light-green: #c5dfb9;
+  --light-green-80: #c5dfb9cc;
   --orange: #f9cb9c;
   --orange-60: #f9cb9c99;
   --grey: #c8d0ca;
@@ -107,7 +108,7 @@ footer {
   left: 50%;
 }
 
-/* colors */
+/* background colors */
 .c-bg-off-white {
   background-color: var(--off-white);
 }
@@ -118,6 +119,10 @@ footer {
 
 .c-bg-orange {
   background-color: var(--orange);
+}
+
+.c-bg-grey-80 {
+  background-color: var(--grey-80);
 }
 
 /* global styling ------------- */
@@ -150,6 +155,10 @@ h1 {
   margin: 5px 0 1.5rem;
   box-shadow: 0 -2px 3px 2px var(--off-white),
               0 2px 3px 2px var(--off-white);
+}
+
+.card-heading {
+  box-shadow: 0 1px 23px 8px var(--dark);
 }
 
 .bold-red {
@@ -206,7 +215,7 @@ footer .nav {
 
 /* button style */
 .admin-only button:not(.dropdown-list),
-.button-styling {
+#background .button-styling {
   width: 10rem;
   border-radius: var(--small-radius);
   background-color: var(--green-grey);
@@ -224,13 +233,13 @@ footer .nav {
 }
 
 .admin-only button:hover:not(.dropdown-list),
-.button-styling:hover {
+#background .button-styling:hover {
   background-color: var(--light-green);
   border-width: 3px;
   line-height: 2.65rem;
   }
 
-.button-styling.cancel:hover {
+#background .button-styling.cancel:hover {
   background-color: var(--orange);
 }
 

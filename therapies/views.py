@@ -1,5 +1,7 @@
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.views.generic import (
-    TemplateView, CreateView, UpdateView, DeleteView
+    DetailView, TemplateView, CreateView, UpdateView, DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
@@ -7,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .models import Therapy
 from .forms import CreateTherapyForm
 from therapists.models import Therapist
+from reviews.forms import CreateReviewForm
 
 
 class TherapiesView(TemplateView):
@@ -78,3 +81,27 @@ class DeleteTherapyView(
     def test_func(self):
         """ Test user is staff else throw 403 """
         return self.request.user.is_superuser
+
+
+class TherapyDetailView(
+    SuccessMessageMixin,
+    DetailView
+):
+    """Renders a single therapy"""
+    model = Therapy
+    template_name = "therapies/therapy_details.html"
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse_lazy('therapy_detail', pk=self.kwargs['pk'])
+
+    def get_context_data(self, *args, **kwargs):
+        """Returns Therapist and Therapies objects and therapists in JSON"""
+        form = CreateReviewForm()
+        therapy = get_object_or_404(Therapy, id=self.kwargs['pk'])
+        if self.request.method == "POST":
+            form = CreateReviewForm({'therapy': therapy.id})
+        context = {
+            'therapy': therapy,
+            'form': form,
+        }
+        return context
