@@ -10,6 +10,7 @@ from .models import Therapy
 from .forms import CreateTherapyForm
 from therapists.models import Therapist
 from reviews.forms import CreateReviewForm
+from reviews.models import Review
 
 
 class TherapiesView(TemplateView):
@@ -102,6 +103,7 @@ class TherapyDetailView(
             form = CreateReviewForm({'therapy': therapy.id})
         context = {
             'therapy': therapy,
+            'reviews': Review.objects.filter(therapy=therapy.id),
             'form': form,
         }
         return context

@@ -53,6 +53,10 @@ ul {
   margin-bottom: 0;
 }
 
+h4 {
+  margin: 0;
+}
+
 /* utilities */
 /* TODO - remove before final deployement
 identify image with no alt text */
@@ -121,8 +125,16 @@ footer {
   background-color: var(--orange);
 }
 
+.c-bg-grey {
+  background-color: var(--grey);
+}
+
 .c-bg-grey-80 {
   background-color: var(--grey-80);
+}
+
+.c-bg-grey-60 {
+  background-color: var(--grey-60);
 }
 
 /* global styling ------------- */
@@ -215,7 +227,8 @@ footer .nav {
 
 /* button style */
 .admin-only button:not(.dropdown-list),
-#background .button-styling {
+#background .button-styling,
+.button-styling  {
   width: 10rem;
   border-radius: var(--small-radius);
   background-color: var(--green-grey);
@@ -228,18 +241,21 @@ footer .nav {
   line-height: 2.8rem;
 }
 
-.admin-only .button-styling.cancel {
+.admin-only .button-styling.cancel,
+.button-styling.cancel {
   background-color: var(--orange-60);
 }
 
 .admin-only button:hover:not(.dropdown-list),
-#background .button-styling:hover {
+#background .button-styling:hover,
+.button-styling:hover {
   background-color: var(--light-green);
   border-width: 3px;
   line-height: 2.65rem;
   }
 
-#background .button-styling.cancel:hover {
+#background .button-styling.cancel:hover,
+.button-styling.cancel:hover {
   background-color: var(--orange);
 }
 
