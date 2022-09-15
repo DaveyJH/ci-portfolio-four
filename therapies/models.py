@@ -42,7 +42,9 @@ class Therapy(models.Model):
     description = models.CharField(max_length=180)
     duration = models.PositiveSmallIntegerField()
     image = CloudinaryField('image', default='no_image')
-    image_alt_text = models.CharField(max_length=80, default="the therapy")
+    image_alt_text = models.CharField(
+        max_length=80, default="the therapy", blank=True
+    )
     therapists = models.ManyToManyField(Therapist, related_name="therapies")
     duration_is_variable = models.BooleanField(default=False)
     specialism = models.ManyToManyField(

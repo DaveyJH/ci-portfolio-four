@@ -10,7 +10,14 @@
 
 {% block content %}
   <div id="background" class="d-flex flex-column justify-content-between">
-    <h2 class="page-heading c-bg-off-white">Therapists</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="message rounded-0 text-center alert alert-{{ message.tags }}">
+          {{ message|safe }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    <h2 class="page-heading c-bg-off-white">Therapies</h2>
     {% for therapy in therapies %}
     <section class="c-bg-green-grey-80 mb-4 p-2">
       <div class="d-flex justify-content-between">
@@ -26,9 +33,15 @@
           </div>
         </div>
         {% endif %}
-        <div class="d-flex flex-column flex-grow-1 justify-content-evenly align-items-center my-2">
-          <p>
-            <i class="fa-regular fa-clock"></i> {{ therapy.duration }} mins.
+        <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center my-2">
+          <p class="text-center">
+            {% if therapy.duration_is_variable %}
+            <i class="fa-solid fa-clock-rotate-left"></i>
+              Variable time
+            {% else %}
+            <i class="fa-regular fa-clock"></i>
+              {{ therapy.duration }} mins.
+            {% endif %}
           </p>
           <p>
             <i class="fa-solid fa-star"></i> {% if therapy.avg_rating %}
@@ -39,22 +52,24 @@
           </p>
         </div>
         {% if not forloop.counter|divisibleby:2 %}
-        <div class="flex-shrink-0">
-          <img 
-          {% if "no_image" in therapy.image.url %}
-            src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
-          {% else %}
-            src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
-          {% endif %} height="150" width="150" class="img-fluid therapy-image rounded-4 p-2">
+        <div class="p-2 flex-shrink-0">
+          <div class="overflow-hidden position-relative rounded-4 image-square">
+            <img 
+            {% if "no_image" in therapy.image.url %}
+              src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
+            {% else %}
+              src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
+            {% endif %} height="150" width="150" class="img-fluid">
+          </div>
         </div>
         {% endif %}
       </div>
-      <div class="therapist-details text-center my-2">
+      <div class="therapy-details text-center my-2">
         <h3>{{ therapy }}</h3>
         <p>{{ therapy.description|safe }}</p>
       </div>
       <div class="d-flex flex-column align-items-center mb-2">
-        <a href="#" class="button-styling">More info...</a>
+        <a href="{% url 'therapy_details' therapy.id %}" class="button-styling">More info...</a>
       </div>
     </section>
     {% endfor %}
@@ -62,60 +77,60 @@
 {% endblock content %}
 
 {% block extra_content %}
-{% if request.user.is_superuser %}
-<section class="admin-only c-bg-orange">
-  <h2>Admin</h2>
-  <div class="c-bg-green-grey-80 p-2">
-    <ul class="fa-ul admin-list">
-      <li>
-        <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapy' %}">New Therapy</a>
-      </li>
-      <li>
-        <button class="dropdown-list" id="edit-therapies-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapies-list" aria-expanded="false" aria-controls="edit-therapies-list">
-          <span class="fa-li"><i class="fa-solid fa-pen"></i></span>Edit Therapy
-        </button>
-        <ul class="fa-ul collapse" id="edit-therapies-list">
-          {% if therapies|length %}
-          {% for therapy in therapies %}
-          <li class="therapy-li">
-            <span class="fa-li"><i class="fa-solid fa-user"></i></span>
-            <a href="{% url 'edit_therapy' therapy.id %}">{{ therapy }}</a>
+  {% if request.user.is_superuser %}
+    <section class="admin-only c-bg-orange">
+      <h2>Admin</h2>
+      <div class="c-bg-green-grey-80 p-2">
+        <ul class="fa-ul admin-list">
+          <li>
+            <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapy' %}">New Therapy</a>
           </li>
-          {% endfor %}
-          {% else %}
-          <li class="therapy-li">
-            <span class="fa-li"><i class="fa-solid fa-question"></i></span>
-            No Therapies
+          <li>
+            <button class="dropdown-list" id="edit-list-toggle" data-bs-toggle="collapse" data-bs-target="#edit-therapies-list" aria-expanded="false" aria-controls="edit-therapies-list">
+              <span class="fa-li"><i class="fa-solid fa-pen"></i></span>Edit Therapy
+            </button>
+            <ul class="fa-ul collapse" id="edit-therapies-list">
+              {% if therapies|length %}
+              {% for therapy in therapies %}
+              <li data-type="spa">
+                <span class="fa-li"><i class="fa-solid fa-spa"></i></span>
+                <a href="{% url 'edit_therapy' therapy.id %}">{{ therapy }}</a>
+              </li>
+              {% endfor %}
+              {% else %}
+              <li data-type="question">
+                <span class="fa-li"><i class="fa-solid fa-question"></i></span>
+                No Therapies
+              </li>
+              {% endif %}
+            </ul>
           </li>
-          {% endif %}
+          <li>
+            <button class="dropdown-list" id="delete-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapies-list" aria-expanded="false" aria-controls="delete-therapies-list">
+              <span class="fa-li"><i class="fa-solid fa-minus"></i></span>Remove Therapy
+            </button>
+            <ul class="fa-ul collapse" id="delete-therapies-list">
+              {% if therapies|length %}
+              {% for therapy in therapies %}
+              <li data-type="spa">
+                <span class="fa-li"><i class="fa-solid fa-spa"></i></span>
+                <a href="{% url 'delete_therapy' therapy.id %}">{{ therapy }}</a>
+              </li>
+              {% endfor %}
+              {% else %}
+              <li data-type="question">
+                <span class="fa-li"><i class="fa-solid fa-question"></i></span>
+                No Therapies
+              </li>
+              {% endif %}
+            </ul>
+          </li>
         </ul>
-      </li>
-      <li>
-        <button class="dropdown-list" id="delete-therapies-list-toggle" data-bs-toggle="collapse" data-bs-target="#delete-therapies-list" aria-expanded="false" aria-controls="delete-therapies-list">
-          <span class="fa-li"><i class="fa-solid fa-minus"></i></span>Remove Therapy
-        </button>
-        <ul class="fa-ul collapse" id="delete-therapies-list">
-          {% if therapies|length %}
-          {% for therapy in therapies %}
-          <li class="therapy-li">
-            <span class="fa-li"><i class="fa-solid fa-user"></i></span>
-            <a href="{% url 'delete_therapy' therapy.id %}">{{ therapy }}</a>
-          </li>
-          {% endfor %}
-          {% else %}
-          <li class="therapy-li">
-            <span class="fa-li"><i class="fa-solid fa-question"></i></span>
-            No Therapies
-          </li>
-          {% endif %}
-        </ul>
-      </li>
-    </ul>
-  </div>
-</section>
-{% endif %}
+      </div>
+    </section>
+  {% endif %}
 {% endblock extra_content %}
 
 {% block extra_js %}
-{% comment %} <script src="{% static 'js/bullet-toggle.js' %}"></script> {% endcomment %}
+  <script src="{% static 'js/bullet-toggle.js' %}"></script>
 {% endblock extra_js %}

@@ -1,11 +1,16 @@
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.views.generic import (
-    TemplateView, CreateView, UpdateView, DeleteView
+    DetailView, TemplateView, CreateView, UpdateView, DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import Therapy
 from .forms import CreateTherapyForm
 from therapists.models import Therapist
+from reviews.forms import CreateReviewForm
+from reviews.models import Review
 
 
 class TherapiesView(TemplateView):
@@ -21,60 +26,84 @@ class TherapiesView(TemplateView):
         return context
 
 
-class AddTherapyView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class AddTherapyView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    CreateView
+):
     """ Add Therapist view """
     model = Therapy
     form_class = CreateTherapyForm
     template_name = 'therapies/add_therapy.html'
     success_url = '/therapies/'
+    success_message = '%(therapy_name)s added successfully!'
 
     def test_func(self):
         """ Test user is superuser else throw 403 """
         return self.request.user.is_superuser
 
-    def form_valid(self, form):
-        """ Validate form """
-        messages.success(
-            self.request,
-            'Successfully added new therapy!'
-        )
 
-        return super(AddTherapyView, self).form_valid(form)
-
-
-class EditTherapyView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditTherapyView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    UpdateView
+):
     """ Edit Therapy view """
     model = Therapy
     form_class = CreateTherapyForm
     template_name = 'therapies/edit_therapy.html'
     success_url = "/therapies/"
-
-    def form_valid(self, form):
-        """ Validate form """
-        messages.success(
-            self.request,
-            'Successfully edited therapy!'
-        )
-        return super(EditTherapyView, self).form_valid(form)
+    success_message = '%(therapy_name)s edited successfully!'
 
     def test_func(self):
         """ Check user is staff else throw 403 """
         return self.request.user.is_superuser
 
 
-class DeleteTherapyView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteTherapyView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
     """ Delete therapist view """
     model = Therapy
-    success_url = "/therapists/"
+    success_url = "/therapies/"
+    success_message = '%(therapy_name)s deleted successfully!'
 
-    def form_valid(self, form):
-        """ Validate form """
-        messages.success(
-            self.request,
-            'Successfully deleted therapist'
-        )
-        return super(DeleteTherapyView, self).form_valid(form)
+    def delete(self, request, *args, **kwargs):
+        """ Display success message """
+        obj = self.get_object()
+        messages.success(self.request, self.success_message % obj.__dict__)
+        return super(DeleteTherapyView, self).delete(request)
 
     def test_func(self):
         """ Test user is staff else throw 403 """
         return self.request.user.is_superuser
+
+
+class TherapyDetailView(
+    SuccessMessageMixin,
+    DetailView
+):
+    """Renders a single therapy"""
+    model = Therapy
+    template_name = "therapies/therapy_details.html"
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse_lazy('therapy_detail', pk=self.kwargs['pk'])
+
+    def get_context_data(self, *args, **kwargs):
+        """Returns Therapist and Therapies objects and therapists in JSON"""
+        form = CreateReviewForm()
+        therapy = get_object_or_404(Therapy, id=self.kwargs['pk'])
+        if self.request.method == "POST":
+            form = CreateReviewForm({'therapy': therapy.id})
+        context = {
+            'therapy': therapy,
+            'reviews': Review.objects.filter(therapy=therapy.id),
+            'form': form,
+        }
+        return context

@@ -8,5 +8,10 @@ class ReviewAdmin(SummernoteModelAdmin):
     """Add Review model to admin pages"""
 
     summernote_fields = (
-        'content',
+        'content',  # allow notes to be made to user if admin does not approve
     )
+    actions = ['approve_review']
+
+    def approve_review(self, request, queryset):
+        """Allows admin to approve reviews"""
+        queryset.update(approved=True)
