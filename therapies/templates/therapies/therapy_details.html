@@ -21,7 +21,7 @@
     <h3
       class="text-center c-bg-grey-80 card-heading rounded-2 my-3 mx-2 py-1 px-2">
       {{ therapy }}</h3>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
       <div class="p-2 flex-shrink-0">
         <div class="overflow-hidden position-relative rounded-4 image-square">
           <img {% if "no_image" in therapy.image.url %}
@@ -82,7 +82,7 @@
         class="d-flex flex-column justify-content-center align-items-center px-2">
         <h4 class="text-center w-100 c-bg-grey-60 rounded-2 my-2 py-1 px-2">
           {{ review }}</h4>
-        <p class="py-2 px-1 mb-2">
+        <p class="text-center py-2 px-1 mb-2">
           {{ review.content }}
         </p>
         <div class="d-flex justify-content-evenly w-100 star-rating mb-3">
@@ -117,15 +117,22 @@
         <p class="d-flex w-100 justify-content-between mb-2">
           <span>Performed by:</span><span>{{ review.therapist }}</span>
         </p>
+        {% if review.user == request.user %}
+        <div class="d-flex">
+          <button class="button-styling mb-2" id="edit-modal-toggle-{{ review.id }}"
+            data-bs-toggle="modal" data-bs-target="#edit-modal">
+            Edit review
+          </button>
+        </div>
+        {% endif %}
       </div>
     </section>
     {% endfor %}
   </section>
   {% endif %}
 </div>
-{% endblock content %}
-{% comment %} modals {% endcomment %}
 
+{% comment %} modals {% endcomment %}
 <section id="add-modal" class="modal fade" tabindex="-1"
   aria-labelledby="add-modal-label">
   <div class="modal-dialog modal-dialog-centered">
@@ -170,13 +177,11 @@
       </div>
       <div class="modal-body">
         {% if request.user.is_active %}
-        {% comment %} <form method="POST"
-          action="{% url 'edit_review' therapy.id %}">
+        <form method="POST" action="" data-therapy="{{ therapy.id }}">
           {% csrf_token %}
           {{ form|crispy }}
-
           <button type="submit" class="button-styling">Edit Review</button>
-        </form> {% endcomment %}
+        </form>
         <button type="button" class="button-styling cancel"
           data-bs-dismiss="modal">Cancel</button>
         {% else %}
@@ -216,6 +221,7 @@
     </div>
   </div>
 </section>
+{% endblock content %}
 
 {% block extra_js %}
 <script src="{% static 'js/modal.js' %}"></script>
