@@ -72,11 +72,20 @@
       </button>
     </div>
   </section>
-  {% if reviews|length %}
-  <section>
+  <section class="mb-4">
     <h3 class="text-center c-bg-grey card-heading rounded-2 my-4 mx-2 py-1">
       Reviews</h3>
-    {%for review in reviews%}
+    {% if reviews|length == 0 %}
+    <section class="c-bg-green-grey-80 mb-4 p-2">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center px-2">
+        <h4 class="text-center w-100 c-bg-grey-60 rounded-2 my-2 py-1 px-2">
+          No reviews yet...</h4>
+      </div>
+    </section>
+    {% else %}
+    {{reviews|length}}
+    {% for review in reviews %}
     <section class="c-bg-green-grey-80 mb-4 p-2">
       <div
         class="d-flex flex-column justify-content-center align-items-center px-2">
@@ -117,14 +126,23 @@
         <p class="d-flex w-100 justify-content-between mb-2">
           <span>Performed by:</span><span>{{ review.therapist }}</span>
         </p>
-        {% if review.user == request.user %}
-        <div class="d-flex">
-          <button class="button-styling mb-2" id="edit-modal-toggle-{{ review.id }}"
-            data-bs-toggle="modal" data-bs-target="#edit-modal">
+        <div class="d-flex flex-column">
+          {% if review.user == request.user %}
+          <button class="button-styling mb-2"
+            id="edit-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
+            data-bs-target="#edit-modal">
             Edit review
           </button>
+          {% endif %}
+          {% if review.user == request.user %}
+          <button class="button-styling mb-2 cancel"
+            id="delete-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
+            data-bs-target="#delete-modal">
+            Delete review
+          </button>
+          {% endif %}
         </div>
-        {% endif %}
+
       </div>
     </section>
     {% endfor %}
@@ -170,7 +188,7 @@
 
 <section id="edit-modal" class="modal fade" tabindex="-1"
   aria-labelledby="edit-modal-label">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="edit-modal-label">Edit review</h2>
@@ -180,14 +198,20 @@
         <form method="POST" action="" data-therapy="{{ therapy.id }}">
           {% csrf_token %}
           {{ form|crispy }}
-          <button type="submit" class="button-styling">Edit Review</button>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="button-styling">Edit Review</button>
+          </div>
         </form>
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% else %}
         <p>You need to be logged in to do that...</p>
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -196,26 +220,36 @@
 
 <section id="delete-modal" class="modal fade" tabindex="-1"
   aria-labelledby="delete-modal-label">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="delete-modal-label">Delete review</h2>
       </div>
       <div class="modal-body">
         {% if request.user.is_active %}
-        {% comment %} <form method="POST"
-          action="{% url 'delete_review' therapy.id %}">
+        <form method="POST" action="" data-therapy="{{ therapy.id }}">
           {% csrf_token %}
-          {{ form|crispy }}
-
-          <button type="submit" class="button-styling">Delete Review</button>
-        </form> {% endcomment %}
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+          <p class="text-center">
+            Are you sure you want to delete your review?
+          </p>
+          <p class="text-center alert-big-text bold-red">
+            This cannot be undone!
+          </p>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="button-styling mx-auto">Delete
+              Review</button>
+          </div>
+        </form>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% else %}
         <p>You need to be logged in to do that...</p>
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% endif %}
       </div>
     </div>

@@ -1,8 +1,6 @@
-from django.shortcuts import get_object_or_404
-from django.views.generic import (
-    CreateView, UpdateView,
-    # DeleteView
-)
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import Review
@@ -55,3 +53,27 @@ class EditReviewView(
         """Updates review and sets approved to false"""
         form.instance.approved = False
         return super(EditReviewView, self).form_valid(form)
+
+
+class DeleteReviewView(
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
+    """Deletes a review"""
+    model = Review
+    success_url = '/'
+
+    def delete(self, *args, **kwargs):
+        """Deletes the relevant review and redirects to the therapy details"""
+        user = self.request.user
+        self.object = get_object_or_404(Review, id=self.kwargs['pk'])
+        messages.success(
+            self.request, f'Thanks, {user}. Your review has been removed.'
+        )
+        therapy_pk = self.request.resolver_match.kwargs['therapy_pk']
+        self.success_url = (
+            f'/therapies/therapy_details/{str(therapy_pk)}/'
+        )
+        self.object.delete()
+        return redirect(self.success_url)

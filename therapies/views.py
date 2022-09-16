@@ -102,7 +102,7 @@ class TherapyDetailView(
         context = {
             'therapy': therapy,
             'reviews': Review.objects.filter(
-                therapy=therapy.id).order_by('-date_time'),
+                therapy=therapy).order_by('-date_time'),
             'form': form,
         }
         return context
