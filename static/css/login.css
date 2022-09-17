@@ -1,0 +1,32 @@
+#background {
+  height: 100%;
+  background-color: var(--white);
+  background: url('../images/pexels-asad-photo-maldives-457881.jpg') 50% 30% / cover no-repeat;
+}
+
+.login > p {
+  display: flex;
+  justify-content: space-between;
+  margin: .4em 0;
+}
+
+.login p:last-of-type {
+  margin: 0 2.2em;
+  position: relative;
+  left: -2px;
+  margin-top: .5em;
+}
+
+.login > p > input {
+  border-radius: var(--small-radius);
+  border-width: 1px;
+  padding: 0 2px;
+}
+
+.login input[type="checkbox"] {
+  transform: scale(1.6);
+}
+
+.c-width-175r {
+  max-width: 17.5rem;
+}
