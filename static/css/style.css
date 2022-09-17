@@ -145,6 +145,10 @@ body {
   font-family: var(--standard-font);
 }
 
+i {
+  color: var(--dark);
+}
+
 /* header */
 header {
   box-shadow: 0 2px 3px 2px var(--green-grey);
