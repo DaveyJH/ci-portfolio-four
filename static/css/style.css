@@ -60,7 +60,7 @@ h4 {
 /* utilities */
 /* TODO - remove before final deployement
 identify image with no alt text */
-/* img[alt=""],
+img[alt=""],
 img:not([alt]) {
   border: red 10px dashed !important;
 }
@@ -68,7 +68,7 @@ img:not([alt]) {
 a[href="#"],
 a:not([href]) {
   background-color: fuchsia !important;
-} */
+}
 /* *********************************** */
 
 html,
