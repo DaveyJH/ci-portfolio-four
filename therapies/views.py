@@ -96,14 +96,18 @@ class TherapyDetailView(
         return reverse_lazy('therapy_detail', pk=self.kwargs['pk'])
 
     def get_context_data(self, *args, **kwargs):
-        """Returns Therapist and Therapies objects and therapists in JSON"""
+        """Retrieves relevant therapy and creates forms"""
         form = CreateReviewForm()
         therapy = get_object_or_404(Therapy, id=self.kwargs['pk'])
-        if self.request.method == "POST":
-            form = CreateReviewForm({'therapy': therapy.id})
+        reviews = Review.objects.filter(
+                therapy=therapy, approved=True).order_by('-date_time')
+        if self.request.user.is_superuser:
+            reviews = Review.objects.filter(
+                therapy=therapy).order_by('-date_time')
+
         context = {
             'therapy': therapy,
-            'reviews': Review.objects.filter(therapy=therapy.id),
+            'reviews': reviews,
             'form': form,
         }
         return context

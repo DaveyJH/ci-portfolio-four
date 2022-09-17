@@ -41,7 +41,7 @@
         <p>{{ therapy.description|safe }}</p>
       </div>
     </section>
-    <form method="post">
+    <form method="POST">
       {% csrf_token %}
       <p class="alert-big-text">Are you sure you want to delete:</p>
       <p class="alert-bigger-text">{{ therapy }}</p>

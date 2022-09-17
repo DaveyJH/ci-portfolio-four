@@ -20,7 +20,7 @@ class Review(models.Model):
     """
 
     title = models.CharField(max_length=30, unique=True)
-    date_time = models.DateField(auto_now_add=True)
+    date_time = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(
         User, models.SET_NULL, blank=True, null=True, related_name="reviewer"
     )  # no CASCADE as reviews can remain once user is deleted

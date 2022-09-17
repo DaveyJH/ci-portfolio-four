@@ -18,10 +18,10 @@
     </div>
     {% endfor %}
     {% endif %}
-    <h3
-      class="text-center c-bg-grey-80 card-heading rounded-2 my-3 mx-2 py-1 px-2">
+    <h3 class="text-center c-bg-grey-80
+      card-heading rounded-2 my-3 mx-2 py-1 px-2">
       {{ therapy }}</h3>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
       <div class="p-2 flex-shrink-0">
         <div class="overflow-hidden position-relative rounded-4 image-square">
           <img {% if "no_image" in therapy.image.url %}
@@ -31,8 +31,8 @@
             width="150" class="img-fluid">
         </div>
       </div>
-      <div
-        class="d-flex flex-column flex-grow-1 justify-content-center align-items-center my-2">
+      <div class="d-flex flex-column
+          flex-grow-1 justify-content-center align-items-center my-2">
         <ul class="fa-ul ms-4">
           {% for benefit in therapy.benefits %}
           <li class="my-1">
@@ -46,8 +46,8 @@
     <div class="therapy-details text-center mt-3 mb-4">
       <p>{{ therapy.description|safe }}</p>
     </div>
-    <div
-      class="d-flex flex-grow-1 justify-content-evenly align-items-center my-2">
+    <div class="d-flex flex-grow-1
+        justify-content-evenly align-items-center my-2">
       <p class="text-center">
         {% if therapy.duration_is_variable %}
         <i class="fa-solid fa-clock-rotate-left"></i> Variable time
@@ -72,17 +72,26 @@
       </button>
     </div>
   </section>
-  {% if reviews|length %}
-  <section>
+  {% comment %} reviews {% endcomment %}
+  <section class="mb-4">
     <h3 class="text-center c-bg-grey card-heading rounded-2 my-4 mx-2 py-1">
       Reviews</h3>
-    {%for review in reviews%}
+    {% if reviews|length == 0 %}
     <section class="c-bg-green-grey-80 mb-4 p-2">
-      <div
-        class="d-flex flex-column justify-content-center align-items-center px-2">
+      <div class="d-flex flex-column
+            justify-content-center align-items-center px-2">
+        <h4 class="text-center w-100 c-bg-grey-60 rounded-2 my-2 py-1 px-2">
+          No reviews yet...</h4>
+      </div>
+    </section>
+    {% else %}
+    {% for review in reviews %}
+    <section class="c-bg-green-grey-80 mb-4 p-2">
+      <div class="d-flex flex-column
+          justify-content-center align-items-center px-2">
         <h4 class="text-center w-100 c-bg-grey-60 rounded-2 my-2 py-1 px-2">
           {{ review }}</h4>
-        <p class="py-2 px-1 mb-2">
+        <p class="text-center py-2 px-1 mb-2">
           {{ review.content }}
         </p>
         <div class="d-flex justify-content-evenly w-100 star-rating mb-3">
@@ -117,15 +126,34 @@
         <p class="d-flex w-100 justify-content-between mb-2">
           <span>Performed by:</span><span>{{ review.therapist }}</span>
         </p>
+        <div class="d-flex flex-column">
+          {% if review.user == request.user %}
+          <button class="button-styling mb-2"
+            id="edit-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
+            data-bs-target="#edit-modal">
+            Edit review
+          </button>
+          {% endif %}
+          {% if review.user == request.user or request.user.is_superuser %}
+          <button class="button-styling mb-2 cancel"
+            id="delete-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
+            data-bs-target="#delete-modal">
+            Delete review
+          </button>
+          {% endif %}
+          {% if not review.approved and request.user.is_superuser %}
+          {% comment %} TODO add url for review approval page {% endcomment %}
+          <a href="#" class="button-styling mb-2">Approval needed</a>
+          {% endif %}
+        </div>
       </div>
     </section>
     {% endfor %}
+    {% endif %}
   </section>
-  {% endif %}
 </div>
-{% endblock content %}
-{% comment %} modals {% endcomment %}
 
+{% comment %} modals {% endcomment %}
 <section id="add-modal" class="modal fade" tabindex="-1"
   aria-labelledby="add-modal-label">
   <div class="modal-dialog modal-dialog-centered">
@@ -163,26 +191,30 @@
 
 <section id="edit-modal" class="modal fade" tabindex="-1"
   aria-labelledby="edit-modal-label">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="edit-modal-label">Edit review</h2>
       </div>
       <div class="modal-body">
         {% if request.user.is_active %}
-        {% comment %} <form method="POST"
-          action="{% url 'edit_review' therapy.id %}">
+        <form method="POST" action="" data-therapy="{{ therapy.id }}">
           {% csrf_token %}
           {{ form|crispy }}
-
-          <button type="submit" class="button-styling">Edit Review</button>
-        </form> {% endcomment %}
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="button-styling">Edit Review</button>
+          </div>
+        </form>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% else %}
         <p>You need to be logged in to do that...</p>
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -191,33 +223,43 @@
 
 <section id="delete-modal" class="modal fade" tabindex="-1"
   aria-labelledby="delete-modal-label">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="delete-modal-label">Delete review</h2>
       </div>
       <div class="modal-body">
         {% if request.user.is_active %}
-        {% comment %} <form method="POST"
-          action="{% url 'delete_review' therapy.id %}">
+        <form method="POST" action="" data-therapy="{{ therapy.id }}">
           {% csrf_token %}
-          {{ form|crispy }}
-
-          <button type="submit" class="button-styling">Delete Review</button>
-        </form> {% endcomment %}
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+          <p class="text-center">
+            Are you sure you want to delete your review?
+          </p>
+          <p class="text-center alert-big-text bold-red">
+            This cannot be undone!
+          </p>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="button-styling mx-auto">Delete
+              Review</button>
+          </div>
+        </form>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% else %}
         <p>You need to be logged in to do that...</p>
-        <button type="button" class="button-styling cancel"
-          data-bs-dismiss="modal">Cancel</button>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="button-styling cancel"
+            data-bs-dismiss="modal">Cancel</button>
+        </div>
         {% endif %}
       </div>
     </div>
   </div>
 </section>
+{% endblock content %}
 
 {% block extra_js %}
 <script src="{% static 'js/modal.js' %}"></script>
-<script src="{% static 'js/therapy-assignment.js' %}"></script>
 {% endblock extra_js %}

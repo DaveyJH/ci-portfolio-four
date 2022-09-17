@@ -6,7 +6,4 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Therapist)
 class TherapistsAdmin(SummernoteModelAdmin):
     """Add Therapist model to admin pages"""
-
-    summernote_fields = (
-        'bio',
-    )
+    pass
