@@ -21,7 +21,7 @@
 <div id="background" class="d-flex flex-column justify-content-between">
   <h2 class="page-heading c-bg-off-white">{% trans "Sign In" %}</h2>
   <div class="d-flex flex-column justify-content-center
-    align-items-center c-bg-green-grey-80 mt-5 py-4">
+    align-items-center c-bg-green-grey-80 my-5 py-4">
     <p class="text-center px-3 py-2 c-width-175r">
       {% blocktrans %}
       If you have not created an account yet, then please
@@ -30,7 +30,7 @@
       {% endblocktrans %}
     </p>
 
-    <form class="login d-flex flex-column align-items-between" method="POST"
+    <form class="login d-flex flex-column align-items-between px-5" method="POST"
       action="{% url 'account_login' %}">
       {% csrf_token %}
       {{ form.as_p }}

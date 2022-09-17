@@ -1,7 +1,7 @@
 #background {
   height: 100%;
   background-color: var(--white);
-  background: url('../images/pexels-asad-photo-maldives-457881.jpg') 50% 30% / cover no-repeat;
+  background: url('../images/sandy-beach.webp') 50% 30% / cover no-repeat;
 }
 
 .login > p {
@@ -25,6 +25,15 @@
 
 .login input[type="checkbox"] {
   transform: scale(1.6);
+}
+
+/* login error messages render inside a ul element */
+.login ul {
+  list-style-type: none;
+  color: #e84610;
+  padding: 0;
+  font-weight: bold;
+  margin-bottom: .6rem;
 }
 
 .c-width-175r {
