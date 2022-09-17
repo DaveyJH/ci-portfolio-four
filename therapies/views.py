@@ -99,10 +99,15 @@ class TherapyDetailView(
         """Retrieves relevant therapy and creates forms"""
         form = CreateReviewForm()
         therapy = get_object_or_404(Therapy, id=self.kwargs['pk'])
+        reviews = Review.objects.filter(
+                therapy=therapy, approved=True).order_by('-date_time')
+        if self.request.user.is_superuser:
+            reviews = Review.objects.filter(
+                therapy=therapy).order_by('-date_time')
+
         context = {
             'therapy': therapy,
-            'reviews': Review.objects.filter(
-                therapy=therapy).order_by('-date_time'),
+            'reviews': reviews,
             'form': form,
         }
         return context

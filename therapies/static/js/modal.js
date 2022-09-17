@@ -53,7 +53,6 @@ deleteReviewBtn.forEach(btn => btn.addEventListener("click", (e) => {
   const deleteForm = deleteModal.querySelector("form");
   const therapyId = deleteForm.dataset.therapy;
   const reviewId = e.target.id.match(/delete-modal-toggle-(\d+)/)[1];
-  console.log(`/reviews/delete_review/${therapyId}/${reviewId}/`);
   deleteForm.setAttribute(
     "action", `/reviews/delete_review/${therapyId}/${reviewId}/`
   );

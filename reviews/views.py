@@ -42,16 +42,22 @@ class EditReviewView(
     def get_success_url(self, *args, **kwargs):
         """Configures the URL and success message"""
         user = self.request.user
-        therapy_pk = self.request.resolver_match.kwargs['therapy_pk']
+        therapy_pk = self.kwargs['therapy_pk']
         self.success_url = f'/therapies/therapy_details/{str(therapy_pk)}/'
         self.success_message = (
             f'Thanks, {user}. Your edited review is awaiting approval...'
         )
+        if user.is_superuser:
+            self.success_message = (
+                'Review edited!'
+            )
         return self.success_url
 
     def form_valid(self, form, *args, **kwargs):
         """Updates review and sets approved to false"""
         form.instance.approved = False
+        if self.request.user.is_superuser:
+            form.instance.approved = True
         return super(EditReviewView, self).form_valid(form)
 
 
@@ -62,18 +68,23 @@ class DeleteReviewView(
 ):
     """Deletes a review"""
     model = Review
-    success_url = '/'
 
     def delete(self, *args, **kwargs):
         """Deletes the relevant review and redirects to the therapy details"""
         user = self.request.user
         self.object = get_object_or_404(Review, id=self.kwargs['pk'])
-        messages.success(
-            self.request, f'Thanks, {user}. Your review has been removed.'
-        )
+        if user.is_superuser:
+            messages.success(
+                self.request, 'Review deleted!'
+            )
+            self.object.delete()
+        elif user.id == self.object.user.id:
+            messages.success(
+                self.request, f'Thanks, {user}. Your review has been removed.'
+            )
+            self.object.delete()
         therapy_pk = self.request.resolver_match.kwargs['therapy_pk']
         self.success_url = (
             f'/therapies/therapy_details/{str(therapy_pk)}/'
         )
-        self.object.delete()
         return redirect(self.success_url)

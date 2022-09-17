@@ -242,7 +242,8 @@ footer .nav {
 }
 
 .admin-only .button-styling.cancel,
-#background .button-styling.cancel {
+#background .button-styling.cancel,
+.button-styling.cancel {
   background-color: var(--orange-60);
 }
 

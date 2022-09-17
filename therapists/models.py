@@ -29,7 +29,7 @@ class Therapist(models.Model):
     @property
     def avg_rating(self):
         """Returns average rating of therapist"""
-        avg = self.reviews.aggregate(
+        avg = self.reviews.filter(approved=True).aggregate(
             avg=models.Avg('rating'))['avg']  # type: float | None
         if avg:
             if avg.is_integer():
