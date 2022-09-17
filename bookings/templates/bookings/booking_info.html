@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% load dict_key %}
+
+{% block css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/bookings.css' %}">
+{% endblock css %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="message rounded-0 text-center alert alert-{{ message.tags }}">
+  {{ message|safe }}
+</div>
+{% endfor %}
+{% endif %}
+<div id="background" class="d-flex flex-column justify-content-between">
+  <div id="booking-info">
+    {{ booking_info.message|safe }}
+  </div>
+
+  <div id="contact-info">
+    {{ booking_info.contact_info }}
+  </div>
+  <section id="open-times-info">
+    <h4>Open Times</h4>
+    <ul class="d-flex flex-column timings">
+      {% for day in days %}
+      <li>
+        <h5>{{day}}</h5>
+        {% for dict_day, details in booking_info.open_times.items %}
+        {% if dict_day == day %}
+        {% with booking_info.open_times|dict_key:day as times %}
+        <ul>
+          <li>Open : {{times.open}}</li>
+          <li>Close: {{times.close}}</li>
+        </ul>
+        {% endwith %}
+        {% endif %}
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'js/booking-check.js' %}"></script>
+{% endblock extra_js %}

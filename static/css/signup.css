@@ -1,0 +1,43 @@
+#background {
+  height: 100%;
+  background-color: var(--white);
+  background: url('../images/remote-island.jpg') 50% 30% / cover no-repeat;
+}
+
+.signup > p {
+  display: flex;
+  justify-content: space-between;
+  margin: .4em 0;
+}
+
+.signup > p:nth-of-type(10n-8) {
+  display: none;
+}
+
+.signup > p > input {
+  border-radius: var(--small-radius);
+  border-width: 1px;
+  padding: 0 2px;
+}
+
+/* signup error messages render inside a ul element */
+.signup ul {
+  list-style-type: none;
+  color: #e84610;
+  padding: 0;
+  font-weight: bold;
+  margin-bottom: .6rem;
+}
+
+.c-width-175r {
+  max-width: 17.5rem;
+}
+
+#background .button-styling.c-mt-2 {
+  margin-top: 2rem;
+}
+
+#background .button-styling.inline-small:hover {
+  padding: 5px;
+  margin: 1.5px;
+}

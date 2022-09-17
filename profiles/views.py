@@ -23,8 +23,6 @@ class UserProfileView(
         - Returns all reviews for a superuser
         """
         user = get_object_or_404(User, id=self.kwargs['pk'])
-        print(user)
-        print(user.id)
         if not user.is_superuser:
             queryset = Review.objects.filter(user=user.id)
         if user.is_staff and not user.is_superuser:
@@ -47,7 +45,6 @@ class UserProfileView(
         OWNER = get_object_or_404(
             Therapist, first_name="Marek", last_name="Frisk"
         )
-        print(self.queryset)
         context = {
             'reviews': self.get_queryset(),
             'owner': OWNER,

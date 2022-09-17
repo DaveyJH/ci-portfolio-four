@@ -1,0 +1,44 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock css %}
+
+{% block title %} | {% trans "Signup" %}{% endblock %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="message rounded-0 text-center alert alert-{{ message.tags }}">
+  {{ message|safe }}
+</div>
+{% endfor %}
+{% endif %}
+<div id="background" class="d-flex flex-column justify-content-between">
+  <h2 class="page-heading c-bg-off-white">{% trans "Sign Up" %}</h2>
+  <div class="d-flex flex-column justify-content-center
+  align-items-center c-bg-green-grey-80 my-5 py-4">
+  <p class="text-center px-3 py-2 c-width-175r">
+    {% blocktrans %}
+    Already have an account? Then please 
+    <a href="{{ login_url }}" class="button-styling inline-small">sign in</a>
+    {% endblocktrans %}
+  </p>
+
+<form class="signup d-flex flex-column align-items-between px-5 my-2"
+  id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="d-flex flex-column align-items-center">
+    <button class="button-styling c-mt-2"
+      type="submit">{% trans "Sign Up" %}</button>
+</form>
+
+{% endblock %}

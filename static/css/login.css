@@ -1,0 +1,41 @@
+#background {
+  height: 100%;
+  background-color: var(--white);
+  background: url('../images/sandy-beach.webp') 50% 30% / cover no-repeat;
+}
+
+.login > p {
+  display: flex;
+  justify-content: space-between;
+  margin: .4em 0;
+}
+
+.login p:last-of-type {
+  margin: 0 2.2em;
+  position: relative;
+  left: -2px;
+  margin-top: .5em;
+}
+
+.login > p > input {
+  border-radius: var(--small-radius);
+  border-width: 1px;
+  padding: 0 2px;
+}
+
+.login input[type="checkbox"] {
+  transform: scale(1.6);
+}
+
+/* login error messages render inside a ul element */
+.login ul {
+  list-style-type: none;
+  color: #e84610;
+  padding: 0;
+  font-weight: bold;
+  margin-bottom: .6rem;
+}
+
+.c-width-175r {
+  max-width: 17.5rem;
+}
