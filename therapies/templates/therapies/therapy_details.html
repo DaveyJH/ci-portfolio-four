@@ -142,8 +142,8 @@
           </button>
           {% endif %}
           {% if not review.approved and request.user.is_superuser %}
-          {% comment %} TODO add url for review approval page {% endcomment %}
-          <a href="#" class="button-styling mb-2">Approval needed</a>
+          <a href="{% url 'user_profile' user.id %}"
+            class="button-styling mb-2">Approval needed</a>
           {% endif %}
         </div>
       </div>
@@ -262,4 +262,5 @@
 
 {% block extra_js %}
 <script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'js/remaining-characters.js' %}"></script>
 {% endblock extra_js %}
