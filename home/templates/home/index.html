@@ -10,7 +10,7 @@
   <nav class="d-flex justify-content-evenly mobile-hide" id="desktop-second-nav">
     <a href="{% url 'therapies' %}" class="link-button-lg link-button-lg-desktop">Therapies</a>
     <a href="{% url 'therapists' %}" class="link-button-lg link-button-lg-desktop">Therapists</a>
-    <a href="#" class="link-button-lg link-button-lg-desktop">Bookings</a>
+    <a href="{% url 'booking_info' %}" class="link-button-lg link-button-lg-desktop">Bookings</a>
   </nav>
 {% endblock pre_content %}
 
@@ -30,7 +30,7 @@
     <nav class="d-flex flex-column justify-content-evenly desktop-hide" id="mobile-second-nav">
       <a href="{% url 'therapies' %}" class="link-button-lg">Therapies</a>
       <a href="{% url 'therapists' %}" class="link-button-lg">Therapists</a>
-      <a href="#" class="link-button-lg">Bookings</a>
+      <a href="{% url 'booking_info' %}" class="link-button-lg">Bookings</a>
     </nav>
 
     <div id="address-info">
