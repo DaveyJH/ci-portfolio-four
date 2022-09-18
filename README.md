@@ -1,5 +1,5 @@
-# Name of project
-<!-- ![Multiple Device Demo](./readme-content/images/multi-device.png) -->
+# Mindful Massage
+![Multiple Device Demo](./docs/readme/images/multi-site-v1.png)
 ## Live Site
 <!-- [nameOfSite](siteURL)) -->
 ## Repository
@@ -8,7 +8,7 @@
 
 ## Table of Contents
 
-- [Name of project](#name-of-project)
+- [Mindful Massage](#mindful-massage)
   - [Live Site](#live-site)
   - [Repository](#repository)
   - [Table of Contents](#table-of-contents)
