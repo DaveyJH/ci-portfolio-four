@@ -55,6 +55,10 @@ nav .link-button-lg {
   border-radius: var(--small-radius);
 }
 
+#address-info p {
+  margin-bottom: .3rem;
+}
+
 /* desktop */
 #desktop-second-nav {
   padding: 1rem;
