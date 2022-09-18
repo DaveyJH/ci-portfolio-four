@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from django.http import Http404
+from django.http import HttpResponseServerError
 from .models import Home
 
 
@@ -14,12 +14,12 @@ class HomeView(TemplateView):
 
         ---
         Raises:
-            Http404 if no Home object is found
+            500 error if no Home object is found
         """
         try:
             home = Home.objects.all()[0]
         except IndexError:
-            raise Http404()
+            raise HttpResponseServerError("No Home object in database")
         context = {
             'home': home,
         }
