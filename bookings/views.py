@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import HttpResponseServerError
 from django.views.generic import TemplateView
 from .models import BookingInfo
 from home.models import Home
@@ -15,13 +15,13 @@ class BookingInfoView(TemplateView):
 
         ---
         Raises:
-            Http404 if no Home or BookingInfo object is found
+            500 error if no Home or BookingInfo object is found
         """
         try:
             booking_details = BookingInfo.objects.all()[0]
             home = Home.objects.all()[0]
         except IndexError:
-            raise Http404()
+            raise HttpResponseServerError()
         context = {
             'booking_details': booking_details,
             'address': home.address,
