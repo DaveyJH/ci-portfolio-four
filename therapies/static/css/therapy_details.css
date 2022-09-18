@@ -1,8 +1,7 @@
 #background {
   background-color: var(--grey);
-  background: url('https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE')
-  center center / cover
-  no-repeat;
+  background: url('../images/milk-hands.webp')
+    center center / cover no-repeat;
 }
 
 .star-rating {

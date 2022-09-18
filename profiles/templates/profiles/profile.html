@@ -7,14 +7,19 @@
 <link rel="stylesheet" href="{% static 'css/profiles.css' %}">
 {% endblock css %}
 
+{% block title %} | Profile{% endblock title %}
+
 {% block content %}
 <div id="background" class="d-flex flex-column">
   <h2 class="page-heading c-bg-off-white">Profile</h2>
   <section class="mb-4">
-    <h3 class="text-center c-bg-grey card-heading rounded-2 my-4 mx-2 py-1">
-      Your Reviews</h3>
+    <div class="c-width-320r">
+      <h3 class="text-center c-bg-grey card-heading
+        rounded-2 my-4 mx-2 py-1">
+        Your Reviews</h3>
+    </div>
     {% if reviews|length == 0 %}
-    <section class="c-bg-green-grey-80 mb-4 p-2">
+    <section class="c-bg-green-grey-80 mb-4 p-2 c-width-600r">
       <div class="d-flex flex-column
           justify-content-center align-items-center px-2">
         <h4 class="text-center w-100 c-bg-grey-60 rounded-2 my-2 py-1 px-2">
@@ -23,88 +28,78 @@
     </section>
     {% else %}
     {% for review in reviews %}
-    <section class="c-bg-green-grey-80 mb-4 p-2">
-      <div class="d-flex flex-column
-          justify-content-center align-items-center px-2">
-        <h4 class="text-center w-100 c-bg-grey-60 rounded-2 my-2 py-1 px-2">
-          {{ review }}</h4>
-        <p class="text-center py-2 px-1 mb-2">
-          {{ review.content }}
-        </p>
-        <div class="d-flex justify-content-evenly w-100 star-rating mb-3">
-          <i class="fa-solid fa-star"></i>
-          {% if review.rating > 1 %}
-          <i class="fa-solid fa-star"></i>
-          {% if review.rating > 2 %}
-          <i class="fa-solid fa-star"></i>
-          {% if review.rating > 3 %}
-          <i class="fa-solid fa-star"></i>
-          {% if review.rating > 4 %}
-          <i class="fa-solid fa-star"></i>
-          {% else %}
-          <i class="fa-regular fa-star"></i>
-          {% endif %}
-          {% else %}
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          {% endif %}
-          {% else %}
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          {% endif %}
-          {% else %}
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          {% endif %}
-        </div>
-        <p class="d-flex w-100 justify-content-between mb-2">
-          <span>Performed by:</span><span>{{ review.therapist }}</span>
-        </p>
-        <div class="d-flex flex-column align-items-center">
-          {% if not review.approved %}
-          <p class="text-center bold-red">
-            This review is awaiting approval...
+    <section class="c-bg-green-grey-80 mb-4 p-2 c-width-600r">
+      <div class="c-width-320r">
+        <div class="d-flex flex-column
+            justify-content-center align-items-center px-2">
+          <h4 class="text-center w-100 c-bg-grey-60 rounded-2 my-2 py-1 px-2">
+            {{ review }}</h4>
+          <p class="text-center py-2 px-1 mb-2">
+            {{ review.content }}
           </p>
-          {% endif %}
-          {% with request.user.first_name as uf %}
-          {% with request.user.last_name as ul %}
-          {% with review.therapist.first_name as tf %}
-          {% with review.therapist.last_name as tl %}
-          {% with owner.first_name as owf %}
-          {% with owner.last_name as owl %}
-          {% with user.is_superuser as sup %}
-          {% if tf == uf and tl == ul or sup and tf == owf and tl == owl %}
-          <p class="text-cenetr bold-red">
-            This review is about you!
+          <div class="d-flex justify-content-evenly w-100 star-rating mb-3">
+            <i class="fa-solid fa-star"></i>
+            {% if review.rating > 1 %}
+            <i class="fa-solid fa-star"></i>
+            {% if review.rating > 2 %}
+            <i class="fa-solid fa-star"></i>
+            {% if review.rating > 3 %}
+            <i class="fa-solid fa-star"></i>
+            {% if review.rating > 4 %}
+            <i class="fa-solid fa-star"></i>
+            {% else %}
+            <i class="fa-regular fa-star"></i>
+            {% endif %}
+            {% else %}
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            {% endif %}
+            {% else %}
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            {% endif %}
+            {% else %}
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            {% endif %}
+          </div>
+          <p class="d-flex w-100 justify-content-between mb-2">
+            <span>Performed by:</span><span>{{ review.therapist }}</span>
           </p>
-          {% endif %}
-          {% if sup and review.user == request.user %}
-          <p class="text-cenetr bold-red">
-            You wrote this review!
-          </p>
-          {% endif %}
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% comment %} {% if request.user == review.user %}
-          <button class="button-styling mb-2"
-            id="edit-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
-            data-bs-target="#edit-modal">
-            Edit review
-          </button>
-          <button class="button-styling mb-2 cancel"
-            id="delete-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
-            data-bs-target="#delete-modal">
-            Delete review
-          </button>
-          {% endif %} {% endcomment %}
+          <div class="d-flex flex-column align-items-center">
+            {% if not review.approved %}
+            <p class="text-center bold-red">
+              This review is awaiting approval...
+            </p>
+            {% endif %}
+            {% with request.user.first_name as uf %}
+            {% with request.user.last_name as ul %}
+            {% with review.therapist.first_name as tf %}
+            {% with review.therapist.last_name as tl %}
+            {% with owner.first_name as owf %}
+            {% with owner.last_name as owl %}
+            {% with user.is_superuser as sup %}
+            {% if tf == uf and tl == ul or sup and tf == owf and tl == owl %}
+            <p class="text-cenetr bold-red">
+              This review is about you!
+            </p>
+            {% endif %}
+            {% if sup and review.user == request.user %}
+            <p class="text-cenetr bold-red">
+              You wrote this review!
+            </p>
+            {% endif %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+          </div>
         </div>
       </div>
     </section>
@@ -113,67 +108,4 @@
   </section>
 </div>
 
-{% comment %} modals {% endcomment %}
-
-{% comment %} <section id="edit-modal" class="modal fade" tabindex="-1"
-  aria-labelledby="edit-modal-label">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="edit-modal-label">Edit review</h2>
-      </div>
-      <div class="modal-body">
-        {% if request.user.is_active %}
-        <form method="POST" action="">
-          {% csrf_token %}
-          {{ form|crispy }}
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="button-styling">Edit Review</button>
-          </div>
-        </form>
-        <div class="d-flex justify-content-center">
-          <button type="button" class="button-styling cancel"
-            data-bs-dismiss="modal">Cancel</button>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="delete-modal" class="modal fade" tabindex="-1"
-  aria-labelledby="delete-modal-label">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="delete-modal-label">Delete review</h2>
-      </div>
-      <div class="modal-body">
-        {% if request.user.is_active %}
-        <form method="POST" action="">
-          {% csrf_token %}
-          <p class="text-center">
-            Are you sure you want to delete your review?
-          </p>
-          <p class="text-center alert-big-text bold-red">
-            This cannot be undone!
-          </p>
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="button-styling mx-auto">Delete
-              Review</button>
-          </div>
-        </form>
-        <div class="d-flex justify-content-center">
-          <button type="button" class="button-styling cancel"
-            data-bs-dismiss="modal">Cancel</button>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section> {% endcomment %}
 {% endblock content %}
-
-{% block extra_js %}
-<script src="{% static 'js/modal.js' %}"></script>
-{% endblock extra_js %}

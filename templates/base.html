@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+{% url 'home' as home_url %}
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,16 +21,18 @@
   <body>
     <header class="c-bg-off-white">
       <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">
-            <picture>
-              <source type="image/jpg" srcset="{% static 'images/stone_icon.jpg' %}">
-              <img src="{% static 'images/stone_icon.webp' %}" alt="mindful massage three stone logo" width="30" height="24" class="d-inline-block align-text-top" title="home" id="brand-logo">
-            </picture>
-            <span class="visually-hidden">home</span></a>
-          <h1>Mindful Massage</h1>
-          
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <div id="nav-adjust-div" class="container-fluid flex-nowrap">
+          <div class="d-flex align-items-center flex-grow-1">
+            <a class="navbar-brand" href="{% url 'home' %}">
+              <picture>
+                <source type="image/jpg" srcset="{% static 'images/stone_icon.jpg' %}">
+                <img src="{% static 'images/stone_icon.webp' %}" alt="mindful massage three stone logo" width="30" height="24" class="d-inline-block align-text-top" title="home" id="brand-logo">
+              </picture>
+              <span class="visually-hidden">home</span>
+            </a>
+            <h1>Mindful Massage</h1>
+          </div>
+          <button id="nav-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -39,15 +41,7 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
-              {% if request.user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"
-                  href="{% url 'user_profile' request.user.id%}">Profile</a>
-              </li>
-              {% else %}
+              {% if not request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
               </li>
@@ -55,15 +49,33 @@
                 <a class="nav-link" href="{% url 'account_login' %}">Login</a>
               </li>
               {% endif %}
-              <li class="nav-item desktop-hide">
+              <li class="nav-item
+              {% if request.path == home_url %}
+                desktop-hide
+              {% endif %}">
                 <a class="nav-link" href="{% url 'therapies' %}">Therapies</a>
               </li>
-              <li class="nav-item desktop-hide">
+              <li class="nav-item
+              {% if request.path == home_url %}
+                desktop-hide
+              {% endif %}">
                 <a class="nav-link" href="{% url 'therapists' %}">Therapists</a>
               </li>
-              <li class="nav-item desktop-hide">
+              <li class="nav-item
+              {% if request.path == home_url %}
+                desktop-hide
+              {% endif %}">
                 <a class="nav-link" href="{% url 'booking_info' %}">Bookings</a>
               </li>
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link"
+                  href="{% url 'user_profile' request.user.id%}">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+              </li>
+            {% endif %}
             </ul>
           </div>
         </div>
@@ -112,6 +124,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="{% static 'js/message-timing.js' %}"></script>
+    <script src="{% static 'js/nav-position.js' %}"></script>
     {% block extra_js %}
     {% endblock extra_js %}
   </body>

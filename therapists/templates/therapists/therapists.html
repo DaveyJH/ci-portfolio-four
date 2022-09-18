@@ -19,61 +19,63 @@
     {% endif %}
     <h2 class="page-heading c-bg-off-white">Therapists</h2>
     {% for therapist in therapists %}
-    <section class="c-bg-green-grey-80 mb-4 p-2">
-      <div class="therapist-summary d-flex justify-content-between">
-        {% if forloop.counter|divisibleby:2 %}
-        <div class="p-2 flex-shrink-0">
-          <div class="overflow-hidden position-relative rounded-4 image-square">
-            <img 
-            {% if "no_image" in therapist.image.url %}
-              src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
-            {% else %}
-              src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
-            {% endif %} height="150" width="150" class="img-fluid">
-          </div>
-        </div>
-        {% endif %}
-        <div class="therapist-brief d-flex flex-column flex-grow-1 justify-content-between my-2">
-          <ul class="fa-ul specialism-ul d-flex flex-column flex-grow-1 justify-content-center">
-              {% for therapy in therapies %}
-                {% if forloop.counter <= 3 %}
-                  {% if therapist in therapy.specialism.all %}
-                    <li class="specialism-li">
-                      <span class="fa-li"><i class="fa-solid fa-spa"></i></span>{{ therapy }}
-                    </li>
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-          </ul>
-          <div class="therapist-figures d-flex flex-column align-items-center mt-1">
-            <p class="therapist-hourly">
-              {{ therapist.hourly_rate }}.00/hr
-            </p>
-            <p class="therapist-rating">
-              {% if therapist.avg_rating %}
-                {{ therapist.avg_rating }}
+    <section class="c-bg-green-grey-80 mb-4 p-2 c-width-600r">
+      <div class="c-width-320r">
+        <div class="therapist-summary d-flex justify-content-between">
+          {% if forloop.counter|divisibleby:2 %}
+          <div class="p-2 flex-shrink-0">
+            <div class="overflow-hidden position-relative rounded-4 image-square">
+              <img
+              {% if "no_image" in therapist.image.url %}
+                src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
               {% else %}
-                5
-              {% endif %}/ 5 <i class="fa-solid fa-star"></i>
-            </p>
+                src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
+              {% endif %} height="150" width="150" class="img-fluid">
+            </div>
           </div>
-        </div>
-        {% if not forloop.counter|divisibleby:2 %}
-        <div class="p-2 flex-shrink-0">
-          <div class="overflow-hidden position-relative rounded-4 image-square">
-            <img 
-            {% if "no_image" in therapist.image.url %}
-              src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
-            {% else %}
-              src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
-            {% endif %} height="150" width="150" class="img-fluid">
+          {% endif %}
+          <div class="therapist-brief d-flex flex-column flex-grow-1 justify-content-between my-2">
+            <ul class="fa-ul specialism-ul d-flex flex-column flex-grow-1 justify-content-center">
+                {% for therapy in therapies %}
+                  {% if forloop.counter <= 3 %}
+                    {% if therapist in therapy.specialism.all %}
+                      <li class="specialism-li">
+                        <span class="fa-li"><i class="fa-solid fa-spa"></i></span>{{ therapy }}
+                      </li>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+            </ul>
+            <div class="therapist-figures d-flex flex-column align-items-center mt-1">
+              <p class="therapist-hourly">
+                {{ therapist.hourly_rate }}.00/hr
+              </p>
+              <p class="therapist-rating">
+                {% if therapist.avg_rating %}
+                  {{ therapist.avg_rating }}
+                {% else %}
+                  5
+                {% endif %}/ 5 <i class="fa-solid fa-star"></i>
+              </p>
+            </div>
           </div>
+          {% if not forloop.counter|divisibleby:2 %}
+          <div class="p-2 flex-shrink-0">
+            <div class="overflow-hidden position-relative rounded-4 image-square">
+              <img
+              {% if "no_image" in therapist.image.url %}
+                src="{% static 'images/anonymous.jpg' %}" alt="an anonymous silhouette of a person sat on the pontoon of a lake, between two mountains"
+              {% else %}
+                src="{{ CLOUD }}{{ therapist.image }}" alt="{{ therapist.image_alt_text }}"
+              {% endif %} height="150" width="150" class="img-fluid">
+            </div>
+          </div>
+          {% endif %}
         </div>
-        {% endif %}
-      </div>
-      <div class="therapist-details text-center my-2">
-        <h3>{{ therapist }}</h3>
-        <p>{{ therapist.bio|safe }}</p>
+        <div class="therapist-details text-center my-2">
+          <h3>{{ therapist }}</h3>
+          <p>{{ therapist.bio|safe }}</p>
+        </div>
       </div>
     </section>
     {% endfor %}
@@ -85,7 +87,7 @@
 <section class="admin-only c-bg-orange">
   <h2>Admin</h2>
   <div class="c-bg-green-grey-80 p-2">
-    <ul class="fa-ul admin-list">
+    <ul class="fa-ul admin-list c-width-320r">
       <li>
         <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapist' %}">New Therapist</a>
       </li>

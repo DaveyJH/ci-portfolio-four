@@ -1,0 +1,5 @@
+#background {
+  background-color: var(--grey);
+  background: url('../images/jet.webp')
+    center center / cover no-repeat;
+}

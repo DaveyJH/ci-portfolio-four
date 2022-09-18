@@ -1,0 +1,55 @@
+#background {
+  background-color: var(--grey);
+  background: url('../images/hanging-tools.webp')
+    center center / cover no-repeat;
+}
+
+#booking-info {
+  background: var(--green-grey-90);
+  border-radius: var(--small-radius);
+  padding: 1.2em;
+  font-size: 1em;
+  max-width: 32ch;
+  margin: 2rem;
+  margin-top: .5rem;
+  box-shadow: 0 0 13px 3px var(--green);
+}
+
+#booking-info p:last-child {
+  text-align: right;
+}
+
+#background #contact-info > a {
+  font-size: 1.8rem;
+  width: auto;
+}
+
+#open-times-info {
+  line-height: 1.1rem;
+  background-color: var(--green-grey-90);
+  width: fit-content;
+  border-radius: var(--small-radius);
+  margin: 1rem auto;
+}
+
+#open-times-info h4 {
+  text-decoration: 1px underline;
+}
+
+#open-times-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#open-times-info li .timing-holder {
+  padding-left: 50%;
+  border-bottom: solid 1px var(--dark);
+}
+
+#open-times-info ul > li > ul {
+  text-align: right;
+}
+
+#open-times-info li:last-of-type .timing-holder {
+  border-bottom: none;
+}

@@ -19,57 +19,59 @@
     {% endif %}
     <h2 class="page-heading c-bg-off-white">Therapies</h2>
     {% for therapy in therapies %}
-    <section class="c-bg-green-grey-80 mb-4 p-2">
-      <div class="d-flex justify-content-between">
-        {% if forloop.counter|divisibleby:2 %}
-        <div class="p-2 flex-shrink-0">
-          <div class="overflow-hidden position-relative rounded-4 image-square">
-            <img 
-            {% if "no_image" in therapy.image.url %}
-            src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
-            {% else %}
-            src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
-            {% endif %} height="150" width="150" class="img-fluid">
-          </div>
-        </div>
-        {% endif %}
-        <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center my-2">
-          <p class="text-center">
-            {% if therapy.duration_is_variable %}
-            <i class="fa-solid fa-clock-rotate-left"></i>
-              Variable time
-            {% else %}
-            <i class="fa-regular fa-clock"></i>
-              {{ therapy.duration }} mins.
-            {% endif %}
-          </p>
-          <p>
-            <i class="fa-solid fa-star"></i> {% if therapy.avg_rating %}
-                {{ therapy.avg_rating }}
-              {% else %}
-                5
-              {% endif %}/ 5
-          </p>
-        </div>
-        {% if not forloop.counter|divisibleby:2 %}
-        <div class="p-2 flex-shrink-0">
-          <div class="overflow-hidden position-relative rounded-4 image-square">
-            <img 
-            {% if "no_image" in therapy.image.url %}
+    <section class="c-bg-green-grey-80 mb-4 p-2 c-width-600r">
+      <div class="c-width-320r">
+        <div class="d-flex justify-content-between">
+          {% if forloop.counter|divisibleby:2 %}
+          <div class="p-2 flex-shrink-0">
+            <div class="overflow-hidden position-relative rounded-4 image-square">
+              <img
+              {% if "no_image" in therapy.image.url %}
               src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
-            {% else %}
+              {% else %}
               src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
-            {% endif %} height="150" width="150" class="img-fluid">
+              {% endif %} height="150" width="150" class="img-fluid">
+            </div>
           </div>
+          {% endif %}
+          <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center my-2">
+            <p class="text-center">
+              {% if therapy.duration_is_variable %}
+              <i class="fa-solid fa-clock-rotate-left"></i>
+                Variable time
+              {% else %}
+              <i class="fa-regular fa-clock"></i>
+                {{ therapy.duration }} mins.
+              {% endif %}
+            </p>
+            <p class="text-nowrap">
+              <i class="fa-solid fa-star"></i> {% if therapy.avg_rating %}
+                  {{ therapy.avg_rating }}
+                {% else %}
+                  5
+                {% endif %}/ 5
+            </p>
+          </div>
+          {% if not forloop.counter|divisibleby:2 %}
+          <div class="p-2 flex-shrink-0">
+            <div class="overflow-hidden position-relative rounded-4 image-square">
+              <img
+              {% if "no_image" in therapy.image.url %}
+                src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
+              {% else %}
+                src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
+              {% endif %} height="150" width="150" class="img-fluid">
+            </div>
+          </div>
+          {% endif %}
         </div>
-        {% endif %}
-      </div>
-      <div class="therapy-details text-center my-2">
-        <h3>{{ therapy }}</h3>
-        <p>{{ therapy.description|safe }}</p>
-      </div>
-      <div class="d-flex flex-column align-items-center mb-2">
-        <a href="{% url 'therapy_details' therapy.id %}" class="button-styling">More info...</a>
+        <div class="therapy-details text-center my-2">
+          <h3>{{ therapy }}</h3>
+          <p>{{ therapy.description|safe }}</p>
+        </div>
+        <div class="d-flex flex-column align-items-center mb-2">
+          <a href="{% url 'therapy_details' therapy.id %}" class="button-styling">More info...</a>
+        </div>
       </div>
     </section>
     {% endfor %}
@@ -81,7 +83,7 @@
     <section class="admin-only c-bg-orange">
       <h2>Admin</h2>
       <div class="c-bg-green-grey-80 p-2">
-        <ul class="fa-ul admin-list">
+        <ul class="fa-ul admin-list c-width-320r">
           <li>
             <span class="fa-li"><i class="fa-solid fa-plus"></i></span></i><a href="{% url 'add_therapy' %}">New Therapy</a>
           </li>
