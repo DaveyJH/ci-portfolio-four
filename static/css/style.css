@@ -5,6 +5,7 @@
   --green-grey-40: #dfe4dc66;
   --green-grey-60: #dfe4dc99;
   --green-grey-80: #dfe4dccc;
+  --green-grey-90: #dfe4dcdd;
   --green: #84a98c;
   --dark: #2f3e46;
   --dark-20: #2f3e4633;
@@ -326,12 +327,6 @@ button.dropdown-list {
   .desktop-hide {
     display: none !important;
   }
-
-  /* .navbar-brand,
-  .navbar-expand-lg .navbar-collapse {
-    flex-basis: 30%;
-    flex-grow: 0;
-  } */
 
   .navbar-collapse {
     font-size: 1.6rem;

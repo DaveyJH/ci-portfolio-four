@@ -16,7 +16,6 @@ class HomeView(TemplateView):
         Raises:
             Http404 if no Home object is found
         """
-
         try:
             home = Home.objects.all()[0]
         except IndexError:
