@@ -1,5 +1,5 @@
 const multiChoiceDivRefs = document.querySelectorAll(
-  "#div_id_body_area, #div_id_therapists, #div_id_specialism"
+  "#div_id_body_area, #div_id_therapists, #div_id_specialists"
 );
 const multiChoiceLabelRefs = Array.from(multiChoiceDivRefs).map(
   div => div.querySelector("label"));
