@@ -18,12 +18,12 @@ class BookingInfoView(TemplateView):
             Http404 if no Home or BookingInfo object is found
         """
         try:
-            booking_info = BookingInfo.objects.all()[0]
+            booking_details = BookingInfo.objects.all()[0]
             home = Home.objects.all()[0]
         except IndexError:
             raise Http404()
         context = {
-            'booking_info': booking_info,
+            'booking_details': booking_details,
             'address': home.address,
             'days': [
                 "Monday",
