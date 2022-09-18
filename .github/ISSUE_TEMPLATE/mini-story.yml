@@ -1,0 +1,64 @@
+name: User Story - Task
+description: Default user story template for granular functionality
+title: 'User Story - Task: '
+labels: ["user story", "task"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Granular story"
+  - type: markdown
+    attributes:
+      value: |
+        As a
+  - type: input
+    id: user-type
+    attributes:
+      placeholder: What type of user?
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: ", I"
+  - type: input
+    id: functionality
+    attributes:
+      placeholder: What would you like to do?
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: so that I
+  - type: input
+    id: benefit
+    attributes:
+      placeholder: What does the functionality allow you to do?
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "## Acceptance criteria"
+  - type: input
+    id: criteria-1
+      placeholder: What is the acceptance criteria?
+    validations:
+      required: true
+  - type: input
+    id: criteria-2
+      placeholder: What is the acceptance criteria?
+    validations:
+      required: true
+  - type: input
+    id: criteria-3
+      placeholder: What is the acceptance criteria?
+    validations:
+      required: true
+  - type: input
+    id: criteria-4
+      placeholder: What is the acceptance criteria?
+    validations:
+      required: true
+  - type: input
+    id: criteria-5
+      placeholder: What is the acceptance criteria?
+    validations:
+      required: true
