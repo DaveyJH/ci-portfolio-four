@@ -5,12 +5,14 @@
 {% block css %}
   {{block.super}}
   <link rel="stylesheet" href="{% static 'css/therapies.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add.css' %}">
 {% endblock css %}
 
 {% block title %} | Add Therapy{% endblock title %}
 
 {% block content %}
-  <section class="admin-only">
+<div id="background" class="d-flex flex-column justify-content-between">
+  <section class="admin-only text-center c-bg-off-white c-width-600r">
     <h2 class="page-heading c-bg-orange">Add Therapy</h2>
     <div class="c-width-320r">
       <form class="px-2" method="POST" action="{% url 'add_therapy' %}" enctype="multipart/form-data">
@@ -23,6 +25,7 @@
       </form>
     </div>
   </section>
+</div>
 {% endblock content %}
 
 {% block extra_js %}

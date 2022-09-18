@@ -1,0 +1,5 @@
+#background {
+  background-color: var(--grey);
+  background: url('../images/mech-hand.webp')
+    center center / cover no-repeat;
+}

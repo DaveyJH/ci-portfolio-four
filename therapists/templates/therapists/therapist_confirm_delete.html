@@ -4,15 +4,16 @@
 {% block css %}
   {{block.super}}
   <link rel="stylesheet" href="{% static 'css/therapists.css' %}">
-  <link rel="stylesheet" href="{% static 'css/delete-therapist.css' %}">
+  <link rel="stylesheet" href="{% static 'css/delete.css' %}">
 {% endblock css %}
 
 {% block title %} | Delete Therapist | {{therapist}}{% endblock title %}
 
 {% block content %}
-  <section class="admin-only text-center">
+<div id="background" class="d-flex flex-column justify-content-between">
+  <section class="admin-only text-center c-bg-off-white c-width-600r">
     <h2 class="page-heading c-bg-orange">Confirm Therapist Deletion</h1>
-    <section class="c-bg-green-grey-80 mb-4 p-2 c-width-600r">
+    <section class="c-bg-green-grey-80 mb-4 p-2">
       <div class="c-width-320r">
         <div class="therapist-summary d-flex justify-content-between">
           <div class="p-2 flex-shrink-0">
@@ -71,4 +72,5 @@
       </div>
     </form>
   </section>
+</div>
 {% endblock %}
