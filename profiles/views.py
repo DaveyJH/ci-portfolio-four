@@ -1,13 +1,15 @@
+import re
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from reviews.models import Review
 from therapists.models import Therapist
 
 
 class UserProfileView(
     LoginRequiredMixin,
+    UserPassesTestMixin,
     ListView
 ):
     """
@@ -50,3 +52,15 @@ class UserProfileView(
             'owner': OWNER,
         }
         return context
+
+    def test_func(self):
+        """Checks logged in user against profile owner
+
+        Returns:
+            True if ids match, else False
+        """
+        profile_id = re.compile(r".*\/profile\/(\d+)\/?")
+        return (
+            str(self.request.user.id) == profile_id.match(
+                self.request.path).group(1)
+        )

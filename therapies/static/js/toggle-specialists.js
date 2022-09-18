@@ -24,3 +24,18 @@ therapistRefs.forEach(elem => elem.addEventListener("click", (e) => {
     }
   });
 }));
+// show applicable specialists
+// i have left it too late to work out why the specialist don't appear checked!
+therapistRefs.forEach(checkbox => {
+  if (checkbox.checked) {
+    const value = checkbox.value;
+    specialistTherapistDivRefs.forEach(div => {
+      if (div.querySelector("input").value === value) {
+        div.classList.toggle(
+          "visually-hidden",
+          value ? false : true
+        );
+      }
+    });
+  }
+});
