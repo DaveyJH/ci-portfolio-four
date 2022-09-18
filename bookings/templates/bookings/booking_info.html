@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="{% static 'css/bookings.css' %}">
 {% endblock css %}
 
+{% block title %} | Booking{% endblock title %}
+
 {% block content %}
 {% if messages %}
 {% for message in messages %}
@@ -16,6 +18,7 @@
 {% endfor %}
 {% endif %}
 <div id="background" class="d-flex flex-column justify-content-between">
+  <h2 class="page-heading c-bg-off-white">Bookings</h2>
   <div id="booking-info">
     {{ booking_info.message|safe }}
   </div>

@@ -1,7 +1,8 @@
 #background {
   height: 100%;
   background-color: var(--white);
-  background: url('../images/candle-table.webp') center center / cover no-repeat;
+  background: url('../images/candle-table.webp')
+    center center / cover no-repeat;
   padding: 3rem 2rem 2rem;
 }
 

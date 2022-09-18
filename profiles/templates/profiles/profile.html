@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="{% static 'css/profiles.css' %}">
 {% endblock css %}
 
+{% block title %} | Profile{% endblock title %}
+
 {% block content %}
 <div id="background" class="d-flex flex-column">
   <h2 class="page-heading c-bg-off-white">Profile</h2>
@@ -93,18 +95,6 @@
           {% endwith %}
           {% endwith %}
           {% endwith %}
-          {% comment %} {% if request.user == review.user %}
-          <button class="button-styling mb-2"
-            id="edit-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
-            data-bs-target="#edit-modal">
-            Edit review
-          </button>
-          <button class="button-styling mb-2 cancel"
-            id="delete-modal-toggle-{{ review.id }}" data-bs-toggle="modal"
-            data-bs-target="#delete-modal">
-            Delete review
-          </button>
-          {% endif %} {% endcomment %}
         </div>
       </div>
     </section>
@@ -113,67 +103,4 @@
   </section>
 </div>
 
-{% comment %} modals {% endcomment %}
-
-{% comment %} <section id="edit-modal" class="modal fade" tabindex="-1"
-  aria-labelledby="edit-modal-label">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="edit-modal-label">Edit review</h2>
-      </div>
-      <div class="modal-body">
-        {% if request.user.is_active %}
-        <form method="POST" action="">
-          {% csrf_token %}
-          {{ form|crispy }}
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="button-styling">Edit Review</button>
-          </div>
-        </form>
-        <div class="d-flex justify-content-center">
-          <button type="button" class="button-styling cancel"
-            data-bs-dismiss="modal">Cancel</button>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="delete-modal" class="modal fade" tabindex="-1"
-  aria-labelledby="delete-modal-label">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="delete-modal-label">Delete review</h2>
-      </div>
-      <div class="modal-body">
-        {% if request.user.is_active %}
-        <form method="POST" action="">
-          {% csrf_token %}
-          <p class="text-center">
-            Are you sure you want to delete your review?
-          </p>
-          <p class="text-center alert-big-text bold-red">
-            This cannot be undone!
-          </p>
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="button-styling mx-auto">Delete
-              Review</button>
-          </div>
-        </form>
-        <div class="d-flex justify-content-center">
-          <button type="button" class="button-styling cancel"
-            data-bs-dismiss="modal">Cancel</button>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section> {% endcomment %}
 {% endblock content %}
-
-{% block extra_js %}
-<script src="{% static 'js/modal.js' %}"></script>
-{% endblock extra_js %}

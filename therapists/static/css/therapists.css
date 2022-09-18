@@ -1,6 +1,7 @@
 #background {
   background-color: var(--grey);
-  background: url('../images/splash-stones.jpg') center center / cover no-repeat;
+  background: url('../images/splash-stones.webp')
+    center center / cover no-repeat;
 }
 
 /* font awesome reset */

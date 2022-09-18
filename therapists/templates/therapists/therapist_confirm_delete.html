@@ -4,9 +4,10 @@
 {% block css %}
   {{block.super}}
   <link rel="stylesheet" href="{% static 'css/therapists.css' %}">
+  <link rel="stylesheet" href="{% static 'css/delete-therapist.css' %}">
 {% endblock css %}
 
-{% block title %} | Delete Therapist{% endblock title %}
+{% block title %} | Delete Therapist | {{therapist}}{% endblock title %}
 
 {% block content %}
   <section class="admin-only text-center">
