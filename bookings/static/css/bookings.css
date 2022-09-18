@@ -22,6 +22,7 @@
 #background #contact-info > a {
   font-size: 1.8rem;
   width: auto;
+  letter-spacing: 1px;
 }
 
 #open-times-info {
