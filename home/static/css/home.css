@@ -31,7 +31,11 @@
   text-align: center;
   box-shadow: 3px 3px 11px var(--dark);
   border-radius: var(--small-radius);
-  min-width: min(13.5rem, 80vmin);
+  width: min(13.5rem, 80vmin);
+}
+
+nav .link-button-lg {
+  font-family: var(--curly-font);
 }
 
 #mobile-second-nav a:nth-of-type(2) {
