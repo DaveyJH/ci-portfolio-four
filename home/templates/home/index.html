@@ -7,6 +7,13 @@
 {% endblock css %}
 
 {% block pre_content %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="message rounded-0 text-center alert alert-{{ message.tags }}">
+      {{ message|safe }}
+    </div>
+  {% endfor %}
+{% endif %}
   <nav class="d-flex justify-content-evenly mobile-hide" id="desktop-second-nav">
     <a href="{% url 'therapies' %}" class="link-button-lg link-button-lg-desktop">Therapies</a>
     <a href="{% url 'therapists' %}" class="link-button-lg link-button-lg-desktop">Therapists</a>
@@ -15,13 +22,6 @@
 {% endblock pre_content %}
 
 {% block content %}
-{% if messages %}
-  {% for message in messages %}
-    <div class="message rounded-0 text-center alert alert-{{ message.tags }}">
-      {{ message|safe }}
-    </div>
-  {% endfor %}
-{% endif %}
   <div id="background" class="d-flex flex-column justify-content-between">
     <div id="home-info">
       {{ home.content|safe }}
