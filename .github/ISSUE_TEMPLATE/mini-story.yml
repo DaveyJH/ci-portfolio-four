@@ -1,36 +1,29 @@
 name: User Story - Task
-description: Default user story template for granular functionality
+description: "Default user story template for granular functionality"
 title: 'User Story - Task: '
 labels: ["user story", "task"]
 body:
   - type: markdown
     attributes:
       value: "## Granular story"
-  - type: markdown
-    attributes:
-      value: |
-        As a
   - type: input
     id: user-type
     attributes:
+      label: "As a"
       placeholder: What type of user?
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: ", I"
   - type: input
     id: functionality
     attributes:
+      label: ", I"
       placeholder: What would you like to do?
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: so that I
   - type: input
     id: benefit
     attributes:
+      label: "so that I"
       placeholder: What does the functionality allow you to do?
     validations:
       required: true
@@ -39,26 +32,53 @@ body:
       value: "## Acceptance criteria"
   - type: input
     id: criteria-1
+    attributes:
+      label: first criteria
       placeholder: What is the acceptance criteria?
     validations:
       required: true
   - type: input
     id: criteria-2
+    attributes:
+      label: second criteria
       placeholder: What is the acceptance criteria?
     validations:
-      required: true
+      required: false
   - type: input
     id: criteria-3
+    attributes:
+      label: third criteria
       placeholder: What is the acceptance criteria?
     validations:
-      required: true
+      required: false
   - type: input
     id: criteria-4
+    attributes:
+      label: fourth criteria
       placeholder: What is the acceptance criteria?
     validations:
-      required: true
+      required: false
   - type: input
     id: criteria-5
+    attributes:
+      label: fifth criteria
       placeholder: What is the acceptance criteria?
     validations:
-      required: true
+      required: false
+  - type: markdown
+    attributes:
+      value: "## Optional criteria"
+  - type: input
+    id: optional-criteria-1
+    attributes:
+      label: first optional criteria
+      placeholder: What is the acceptance criteria?
+    validations:
+      required: false
+  - type: input
+    id: optional-criteria-2
+    attributes:
+      label: second optional criteria
+      placeholder: What is the acceptance criteria?
+    validations:
+      required: false
