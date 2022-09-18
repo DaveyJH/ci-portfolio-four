@@ -12,14 +12,16 @@
 {% block content %}
   <section class="admin-only">
     <h2 class="page-heading c-bg-orange">Edit Therapy</h2>
-    <form class="px-2" method="POST" action="{% url 'edit_therapy' therapy.id %}" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <div class="d-flex flex-column align-items-center">
-        <button type="submit">Submit</button>
-        <a href="{% url 'therapies' %}" class="button-styling cancel">Cancel</a>
-      </div>
-    </form>
+    <div class="c-width-320r">
+      <form class="px-2" method="POST" action="{% url 'edit_therapy' therapy.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="d-flex flex-column align-items-center">
+          <button type="submit">Submit</button>
+          <a href="{% url 'therapies' %}" class="button-styling cancel">Cancel</a>
+        </div>
+      </form>
+    </div>
   </section>
 {% endblock content %}
 
