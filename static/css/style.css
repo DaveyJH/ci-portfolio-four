@@ -307,7 +307,7 @@ button.dropdown-list {
 
 @media screen and (min-width: 375px) {
   h1 {
-    font-size: calc(1.675rem + 1.5vw);
+    font-size: calc(1.675rem + .5vw);
   }
 
   #brand-logo {
@@ -327,11 +327,11 @@ button.dropdown-list {
     display: none !important;
   }
 
-  .navbar-brand,
+  /* .navbar-brand,
   .navbar-expand-lg .navbar-collapse {
     flex-basis: 30%;
     flex-grow: 0;
-  }
+  } */
 
   .navbar-collapse {
     font-size: 1.6rem;
