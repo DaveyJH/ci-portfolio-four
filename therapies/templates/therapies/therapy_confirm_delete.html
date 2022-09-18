@@ -19,7 +19,7 @@
             <div class="overflow-hidden position-relative rounded-4 image-square">
               <img
               {% if "no_image" in therapy.image.url %}
-              src="https://dummyimage.com/600x400/4a4f4f/efb820.png&text=%20%20%20PLACEHOLDER+IMAGE" alt=""
+              src="{% static 'images/oils.jpg' %}" alt="Some massage oils"
               {% else %}
               src="{{ CLOUD }}{{ therapy.image }}" alt="{{ therapy.image_alt_text }}"
               {% endif %} height="150" width="150" class="img-fluid">
