@@ -2,7 +2,7 @@
 name: Test
 about: Default test template
 title: 'Test: '
-labels: test
+labels: ['test', 'documentation']
 assignees: ''
 
 ---
