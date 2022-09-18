@@ -3,3 +3,11 @@
   background-color: var(--white);
   background: url('../images/red-flower.webp') 50% 30% / cover no-repeat;
 }
+
+.small-message {
+  background: var(--green-grey-90);
+  border-radius: var(--small-radius);
+  font-size: 1em;
+  max-width: 30ch;
+  box-shadow: 0 0 13px 3px var(--green);
+}
