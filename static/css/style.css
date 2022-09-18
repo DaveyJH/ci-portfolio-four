@@ -291,6 +291,12 @@ button.dropdown-list {
   max-width: 17.5rem;
 }
 
+/* noscript ------------- */
+noscript {
+  margin: 2rem 3rem;
+  text-align: center;
+}
+
 /* media queries -------------- */
 @media screen and (min-width: 320px) {
   h1 {
