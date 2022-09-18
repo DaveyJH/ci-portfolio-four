@@ -85,8 +85,11 @@ control. The original user
 
 [Issues](https://github.com/DaveyJH/ci-portfolio-four/issues?q=is%3Aissue+is%3Aclosed+label%3A%22user+story%22)
 were created for the initial concepts that were to be included within the site.
-Each issue consists of a user type, referencing the persona document linked
-above, a required functionality and the benefit it provides.
+Each epic issue consists of a user type, referencing the persona document linked
+above, a required functionality and the benefit it provides. As part of the
+testing procedure, I wrote very granular user stories to ensure all
+functionality was as expected. Note that I have referenced this in the [personal
+development](#personal-development) section at the end of this document.
 
 ***
 
@@ -328,4 +331,56 @@ The site is now live and operational -->
 
 ### Personal Development
 
-<!-- notes -->
+As mentioned in this document, the time to achieve this project was very
+limited. In total I had just over 2 weeks to design, develop and deploy the
+site, bar some initial conceptual ideas from a long time ago. Working full time
+and then continuing to work with this site has meant I have worked very long
+hours. Considering the circumstances, I am very happy with the outcome. I
+learned a lot about django from their documentation and would like to explore it
+further when I have less time pressure.
+
+With regards to the agile process, I worked in the best way I could without
+delaying myself by exploring the many features of GitHUb and the project board.
+It has come to my attention that there is an iteration feature within the
+project board, and this would have been far better suited than the approach I
+took toward sprints. I have used the 'Milestones' as general groupings rather
+than for epics. This allowed me to keep track, efficiently, of my project, but
+does leave a somewhat confusing organisational structure for other
+visitors/potential collaborators.
+
+Having 'found my feet' through this project, there are many things I would do
+differently from the inital setup right through to the final stages:
+
+- I would like to utilise `.yml` templates for issues in the future. They allow
+  rapid creation of simlarly formatted issues, which would allow a more granular
+  disection of the user stories at an early stage.
+- I intend to explore the full capabilities of the project boards available
+  through GitHub; for a free service they are very impressive and have a wide
+  array of functionality.
+- Now I have a better understanding of django and the relationships available, I
+  would be comfortable diving in to more intricate Models and database
+  structures. This would allow me to create more accurate and detailed ERDs from
+  the start.
+- Finding the astounding number of predifined classes within django and it's
+  related packages has made me realise that a great deal can be achieved through
+  a fairly small amount of Python code. The OOP pillars feature heavily
+  throughout the frame work and my time working with this project, and the
+  exploration done in my current role, has led to an eagerness to push these
+  concepts.
+- As much as I am happy with the layout across all device types, my original
+  design did allow more of a layout shift between device types. However, with
+  such a short time available to me to complete the responsive side of the
+  design, I have had to limit the differences. As much as I appreciated that
+  consistency is a benefit for users, I do not think that users necessarily
+  anticipate that consistency across all devices. Having explored the simple
+  implementation of Boostrap, I would like to delve further into the
+  configurable settings within the framework. as well as exploring other similar
+  options such as Tailwind.
+- Work in a test driven development(TDD) approach. I am fairly confident with
+  how to create a mutlitude of tests for this site, but do not have the time.
+  Had I worked via TDD, I would have far less testing to do at these final
+  stages and would have thorough documentation to provide. This would also help
+  ensure no bugs were created along the way.
+
+Finally, having put in over **110 hours** of screen time **within 7 days**, I
+will certainly look to work on projects over a longer time period in future.
