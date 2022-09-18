@@ -1,0 +1,5 @@
+#background {
+  background-color: var(--grey);
+  background: url('../images/lonely-boat.webp')
+    center center / cover no-repeat;
+}
