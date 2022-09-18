@@ -10,7 +10,6 @@
   --dark: #2f3e46;
   --dark-20: #2f3e4633;
   --light-green: #c5dfb9;
-  --light-green-80: #c5dfb9cc;
   --orange: #f9cb9c;
   --orange-60: #f9cb9c99;
   --grey: #c8d0ca;
@@ -60,19 +59,6 @@ h4 {
 }
 
 /* utilities */
-/* TODO - remove before final deployement
-identify image with no alt text */
-img[alt=""],
-img:not([alt]) {
-  border: red 10px dashed !important;
-}
-
-a[href="#"],
-a:not([href]) {
-  background-color: fuchsia !important;
-}
-/* *********************************** */
-
 html,
 body {
   height: 100%;
@@ -300,11 +286,12 @@ button.dropdown-list {
   border: none;
 }
 
+/* width settings */
 .c-width-175r {
   max-width: 17.5rem;
 }
 
-/* media queries */
+/* media queries -------------- */
 @media screen and (min-width: 320px) {
   h1 {
     font-size: 1.5rem;
