@@ -4,6 +4,9 @@
 <html lang="en">
 {% url 'home' as home_url %}
   <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Grape+Nuts&display=swap" rel="stylesheet">
@@ -81,6 +84,12 @@
         </div>
       </nav>
     </header>
+    <noscript>
+      <p class="bold-red">
+        This site requires JavaScript, you do not have it enabled.<br>
+        You may find that your experience is not as calming as we hope!
+      </p>
+    </noscript>
     <div id="flex-height">
     {% block pre_content %}
 

@@ -11,7 +11,7 @@ const toggleBullet = (item, addIcon, removeIcon) => {
   item.querySelector("i").classList.toggle(removeIcon, false);
 };
 
-editListRef.addEventListener("click", () => {
+editListRef?.addEventListener("click", () => {
   const editItemRefs = editListRef.nextElementSibling.
     querySelectorAll("li");
   if (editItemRefs[0].dataset.type !== "question") {
@@ -36,7 +36,7 @@ editListRef.addEventListener("click", () => {
   }
 });
 
-deleteListRef.addEventListener("click", () => {
+deleteListRef?.addEventListener("click", () => {
   const deleteItemRefs = deleteListRef.nextElementSibling.
     querySelectorAll("li");
   if (deleteItemRefs[0].dataset.type !== "question") {
