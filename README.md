@@ -43,7 +43,21 @@
     - [Existing Features](#existing-features)
     - [Features Left to Implement](#features-left-to-implement)
   - [Data Model](#data-model)
+    - [PostgreSQL](#postgresql)
   - [Technologies Used](#technologies-used)
+    - [Python Packages](#python-packages)
+    - [Other Tech](#other-tech)
+      - [*Instant Eyedropper*](#instant-eyedropper)
+      - [*WebAIM Contrast Checker*](#webaim-contrast-checker)
+      - [*Windows Snipping Tool*](#windows-snipping-tool)
+      - [*Balsamiq*](#balsamiq)
+      - [*Font Awesome*](#font-awesome)
+      - [*Google Fonts*](#google-fonts)
+      - [*Multi Device Mockup Generator*](#multi-device-mockup-generator)
+      - [*W3C Markup Validation Service*](#w3c-markup-validation-service)
+      - [*flake8*](#flake8)
+      - [*Visual Studio Code*](#visual-studio-code)
+      - [VSCode Extensions](#vscode-extensions)
   - [Testing](#testing)
   - [Bugs](#bugs)
     - [Current](#current)
@@ -191,9 +205,7 @@ rendering. This allowed rapid development of more simplified functionality.
 Initial wireframes were made for the original conception idea. As functionality
 was reduced, these wireframes have also become guidelines for the more basic
 functions and remain in place for future development. The wireframes were
-designed using 
-<!-- todo add link -->
-Balsamiq, with a mobile-first approach.
+designed using [Balsamiq](#balsamiq), with a mobile-first approach.
 
 ##### Samples from Mobile
 
@@ -229,9 +241,9 @@ allows multiple colours to be checked against each other in one action, rather
 than having to input values repeatedly. The chart was referenced throughout the
 design and styling process to ensure high contrasts were maintained. Some
 transparency has been applied in places, and thus, the resulting colours have
-been checked via the use of the eye dropper tool,
-<!-- todo link to eyedropper/tech used -->
-mentioned in the technologies used section, and a one-hit contrast check.
+been checked via the use of the [eye dropper tool](#instant-eyedropper),
+mentioned in the technologies used section, and a
+[one-hit contrast check](#webaim-contrast-checker).
 
 ![color scheme](./docs/design/mindful-contrast.png)
 
@@ -245,8 +257,9 @@ overall feel of the site. To add a little more style, the headings and some
 links/buttons have a slightly cursive font that still remains, largely, easy to
 read.
 
-Both fonts are from Google fonts, meaning they can be imported via their API and
-giving wide coverage to keep the styling maintained across various devices.
+Both fonts are from [Google fonts](#google-fonts), meaning they can be imported
+via their API and giving wide coverage to keep the styling maintained across
+various devices.
 
 ##### Headings
 
@@ -332,13 +345,125 @@ bookings) are available in the
 [`docs/erd/` directory](https://github.com/DaveyJH/ci-portfolio-four/tree/main/docs/design/erd)
 in the GitHub repository.
 
+### PostgreSQL
+<!-- todo add link to postgresql -->
+A relational database was needed for the site, and as such, PostgreSQL was
+chosen. As a widely implemented database platform, the documentation available
+for working with this is quite extensive and there are many extensions available
+to assist with its use. Due to the use of `ArrayField`s within the models, I was
+unable to use the generated `db.sqlite3` instance, that is installed when
+initialising django, for development. Instead, I used a database hosted on
+ElephantSQL and successfully transfered the majority of data from that
+development database into the deployed database hosted on Heroku.
+
+As the site
+was deployed to two hosting platforms (due to uncertainty with the future of
+free tiers available with Heroku) I have opted to maintain the Render instance
+with the use of the development database, thus all 'test' entries have been
+purged and 'real' data has been added. To ensure the two sites began with
+similar data, I used a database cloning method as detailed in the
+[deployment](#deployment) section below.
+
 ## Technologies Used
 
-<!-- tech used -->
-<!-- - *[techNameOne](techURL)*
-       - Description -->
-<!-- - *[techNameTwo](techURL)*
-       - Description -->
+### Python Packages
+
+|Package|Use|
+|--:|--|
+|[django](https://www.djangoproject.com/)|web framework that encourages rapiddevelopment and clean, pragmatic design|
+|[dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/)|facilitates integration with Cloudinary|
+|[cloudinary](https://pypi.org/project/cloudinary/)|easy uploading of images to Cloudinary|
+|[django-crispy-forms](https://pypi.org/project/django-crispy-forms/)|allows DRY forms to be created rapidly through HTML templates|
+|[django-summernote](https://pypi.org/project/django-summernote/)|allows use of text-rich editors for form inputs|
+|[python-dotenv](https://pypi.org/project/python-dotenv/)|reads key-value pairs from a `.env` file. Negates the need to write a Python file for environment variables (as would be done in an `env.py` file)|
+|[gunicon](https://pypi.org/project/gunicorn/)|natively suuports django to allow use of commands|
+|[psycopg2](https://pypi.org/project/psycopg2/)|PostgreSQL database adapter for Python|
+|[django-phonenumber-field](https://pypi.org/project/django-phonenumber-field/)|allows storing of configurable telephone numbers in django models|
+|[whitenoise](https://pypi.org/project/whitenoise/)|allows easy implementation of static files|
+|||
+
+*For a full list of installed Python packages, see
+[`requirements.txt`](.txthttps://github.com/DaveyJH/ci-portfolio-four/blob/main/requirements.txt)*
+
+Most packages have relevant documentation hosted on the
+[Python package index](https://pypi.org/) site. More expansive docs are found
+for many of the packages at [Read the Docs](https://readthedocs.org/)
+
+***
+
+### Other Tech
+
+#### *[Instant Eyedropper](http://instant-eyedropper.com/)*
+
+A quick and simple application to obtain hex values from any colour on my
+display. I downloaded this while playing around with my laptop layout/display
+settings. I have the app set to run on startup and remain minimized in my
+system tray. This allows quick access and if I click the colour, it
+automatically copies the hex value to my clipboard.
+
+#### *[WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)*
+
+A basic contrast checking service for conformity to the Web Content
+Accessibility Guidelines. The service allows input of a foreground and
+background colour and displays the resulting contrast ratio, including a quick
+reference to meeting WCAG AA / AAA standards. This was used for 'one-shot'
+colour instances.
+
+#### *[Windows Snipping Tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b)*
+
+A screenshot tool built in to Windows. It allows quick, partial screenshots
+to be taken that can be saved as image files.
+
+#### *[Balsamiq](https://balsamiq.com/)*
+
+Balsamiq was used to create
+[wireframes](./docs/design/mindful_massage_wireframes.pdf) for the project.
+
+#### *[Font Awesome](https://fontawesome.com/)*
+
+The project uses icons from Font Awesome version 6.2.0.
+
+#### *[Google Fonts](https://fonts.google.com/)*
+
+The fonts used in the website are imported from Google Fonts.
+
+#### *[Multi Device Mockup Generator](https://techsini.com/multi-mockup/index.php)*
+
+The image at the top of this document was created using a free service
+provided by TechSini.&#8203;com
+
+#### *[W3C Markup Validation Service](validator.w3.org)*
+
+A service to check the HTML and CSS files for errors.
+[HTML validation results here](#w3c-validator).
+
+#### *[flake8](https://flake8.pycqa.org/en/latest/)*
+
+A Python code validation service. View the [flake8 process here](#flake8)
+
+#### *[Visual Studio Code](https://code.visualstudio.com/)*
+  
+A free, streamlined code editor. The [extensions](#vscode-extensions)
+available have allowed me to customize my workspace and become more
+efficient.
+
+***
+
+#### VSCode Extensions
+
+Links to the VSCode marketplace for each extension used throughout this project:
+
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+- [GitHub Pull Request and Issue Provider](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github)
+- [Highlight Matching Tag](https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag)
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [Reflow Markdown](https://marketplace.visualstudio.com/items?itemName=marvhen.reflow-markdown)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+
+***
 
 ## Testing
 
