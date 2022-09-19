@@ -23,7 +23,7 @@
   - [Brief](#brief)
   - [UX &#8722; User Experience Design](#ux--user-experience-design)
     - [User Requirements](#user-requirements)
-    - [Initial Concept](#initial-concept)
+    - [Initial ConceptThe initial idea of the site was to provide a digital booking system, combining](#initial-conceptthe-initial-idea-of-the-site-was-to-provide-a-digital-booking-system-combining)
       - [Wireframes](#wireframes)
         - [Samples from Mobile](#samples-from-mobile)
         - [Complete wireframes](#complete-wireframes)
@@ -36,6 +36,7 @@
   - [Features](#features)
     - [Existing Features](#existing-features)
     - [Features Left to Implement](#features-left-to-implement)
+  - [Data Model](#data-model)
   - [Technologies Used](#technologies-used)
   - [Testing](#testing)
   - [Bugs](#bugs)
@@ -69,7 +70,7 @@ as the therapies offered. Users should be able to sign in and leave reviews, as
 well as view reviews left by others.
 
 Full CRUD functionality should be achievable through the front-end of the site,
-with different levels of user having specific actions and interactions.
+with different levels of users having specific actions and interactions.
 
 ***
 
@@ -77,7 +78,7 @@ with different levels of user having specific actions and interactions.
 
 ### User Requirements
 
-The original user stories were based on psuedo personas created for the project.
+The original user stories were based on pseudo personas created for the project.
 Due to time constraints and other priorities, the scope of the project has been
 reduced from the initial conception and is well documented through version
 control. The original user
@@ -93,9 +94,7 @@ development](#personal-development) section at the end of this document.
 
 ***
 
-### Initial Concept
-
-The intital idea of the site was to provide a digital booking system, combining
+### Initial ConceptThe initial idea of the site was to provide a digital booking system, combining
 reviews and ratings, for a massage spa. Due to time constraints, a lot of the
 functionality has been removed. As a result, the scope has been reassessed
 throughout the development process to ensure a minimum viable product is
@@ -107,7 +106,7 @@ business advisor to review the types of bookings that are being made and could
 lead to business adjustments to maximise profits. As stated, the time
 constraints imposed by external factors meant that I decided very early to
 negate the complexity of involving dates and times with regard to front-end
-rendering. This allowed a rapid development of more simplified functionality.
+rendering. This allowed rapid development of more simplified functionality.
 
 #### Wireframes
 
@@ -151,7 +150,7 @@ The chart shown below was generated via
 allows multiple colours to be checked against each other in one action, rather
 than having to input values repeatedly. The chart was referenced throughout the
 design and styling process to ensure high contrasts were maintained. Some
-tranpsarency has been applied in places, and thus, the resulting colours have
+transparency has been applied in places, and thus, the resulting colours have
 been checked via the use of the eye dropper tool,
 <!-- todo link to eyedropper/tech used -->
 mentioned in the technologies used section, and a one-hit contrast check.
@@ -186,9 +185,9 @@ Dosis
 
 #### Imagery
 
-The imagery used throughout the site is intended to maintain the peaceful,
+The imagery used throughout the site is intended to maintain a peaceful,
 calming nature. All static images are sourced through
-[Pexels.com](https://www.pexels.com/) and are royalty free. There is a list of
+[Pexels.com](https://www.pexels.com/) and are royalty-free. There is a list of
 images used, and inspirational/trial images considered, available on the
 [media wiki here](https://github.com/DaveyJH/ci-portfolio-four/wiki/Media-ideas).
 At the time of writing, the images within the database also came from Pexels.
@@ -224,6 +223,36 @@ F2
   - *Notes regarding feature*
   - Explanation of feature need etc. -->
 ***
+
+## Data Model
+<!-- todo add link to lucidchart in tech used -->
+
+After the initial conceptualisation of the site, an entity relationship
+diagram(ERD) was generated using LucidChart. Being my first project using a
+relational database, this was a new concept to get to grips with and I suspect
+has not been done in the best way.
+
+![original entity relationship diagram](./docs/design/db_erd.png)
+
+As the project developed and the scope changed, the ERD became less accurate to
+the end model. It acted as brilliant guidance and helped me to get the base
+structure of the database created at an early stage, however, it is not quite
+accurate for the final database structure.
+
+I was able to generate an ERD from the database as it has ended up, and I am
+fairly happy with how similar my initial thoughts were to the end result. One
+thing I note is that, due to using functions to generate the average ratings,
+these are not present on the ERD. Many of the `all_auth` entities have been
+excluded from this diagram as they are not being used. Another consideration is
+that I have excluded the original booking entity as it does not feature in this
+iteration of deployment.
+
+![final entity relationship diagram](./docs/design/generated_erd.png)
+
+PDF versions of the displayed original ERD and the generated ERD (including
+bookings) are available in the
+[`docs/erd/` directory](https://github.com/DaveyJH/ci-portfolio-four/tree/main/docs/design/erd)
+in the GitHub repository.
 
 ## Technologies Used
 
@@ -332,14 +361,14 @@ The site is now live and operational -->
 ### Personal Development
 
 As mentioned in this document, the time to achieve this project was very
-limited. In total I had just over 2 weeks to design, develop and deploy the
+limited. In total, I had just over 2 weeks to design, develop and deploy the
 site, bar some initial conceptual ideas from a long time ago. Working full time
 and then continuing to work with this site has meant I have worked very long
 hours. Considering the circumstances, I am very happy with the outcome. I
 learned a lot about django from their documentation and would like to explore it
 further when I have less time pressure.
 
-With regards to the agile process, I worked in the best way I could without
+With regard to the agile process, I worked in the best way I could without
 delaying myself by exploring the many features of GitHUb and the project board.
 It has come to my attention that there is an iteration feature within the
 project board, and this would have been far better suited than the approach I
@@ -349,23 +378,23 @@ does leave a somewhat confusing organisational structure for other
 visitors/potential collaborators.
 
 Having 'found my feet' through this project, there are many things I would do
-differently from the inital setup right through to the final stages:
+differently from the initial setup right through to the final stages:
 
 - I would like to utilise `.yml` templates for issues in the future. They allow
-  rapid creation of simlarly formatted issues, which would allow a more granular
-  disection of the user stories at an early stage.
+  rapid creation of similarly formatted issues, which would allow a more
+  granular dissection of the user stories at an early stage.
 - I intend to explore the full capabilities of the project boards available
-  through GitHub; for a free service they are very impressive and have a wide
+  through GitHub; for a free service, they are very impressive and have a wide
   array of functionality.
 - Now I have a better understanding of django and the relationships available, I
-  would be comfortable diving in to more intricate Models and database
+  would be comfortable diving into more intricate Models and database
   structures. This would allow me to create more accurate and detailed ERDs from
   the start.
-- Finding the astounding number of predifined classes within django and it's
+- Finding the astounding number of predefined classes within django and its
   related packages has made me realise that a great deal can be achieved through
   a fairly small amount of Python code. The OOP pillars feature heavily
-  throughout the frame work and my time working with this project, and the
-  exploration done in my current role, has led to an eagerness to push these
+  throughout the framework and my time working with this project, and the
+  exploration done in my current role, have led to an eagerness to push these
   concepts.
 - As much as I am happy with the layout across all device types, my original
   design did allow more of a layout shift between device types. However, with
@@ -373,11 +402,11 @@ differently from the inital setup right through to the final stages:
   design, I have had to limit the differences. As much as I appreciated that
   consistency is a benefit for users, I do not think that users necessarily
   anticipate that consistency across all devices. Having explored the simple
-  implementation of Boostrap, I would like to delve further into the
-  configurable settings within the framework. as well as exploring other similar
+  implementation of Bootstrap, I would like to delve further into the
+  configurable settings within the framework, as well as exploring other similar
   options such as Tailwind.
 - Work in a test driven development(TDD) approach. I am fairly confident with
-  how to create a mutlitude of tests for this site, but do not have the time.
+  how to create a multitude of tests for this site, but do not have the time.
   Had I worked via TDD, I would have far less testing to do at these final
   stages and would have thorough documentation to provide. This would also help
   ensure no bugs were created along the way.
