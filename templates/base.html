@@ -1,8 +1,16 @@
 {% load static %}
 
+{% url 'home' as home_url %}
+{% url 'therapies' as therapies_url %}
+{% url 'therapists' as therapists_url %}
+{% url 'reviews' as reviews_url %}
+{% url 'booking_info' as bookings_url %}
+{% url 'account_login' as account_login_url %}
+{% url 'account_logout' as account_logout_url %}
+{% url 'account_signup' as account_signup_url %}
+
 <!DOCTYPE html>
 <html lang="en">
-  {% url 'home' as home_url %}
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,41 +50,67 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                <a class="nav-link
+                {% if request.path == home_url %}
+                  active
+                {% endif %}
+                " aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               {% if not request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                <a class="nav-link
+                {% if request.path == account_signup_url  %}
+                  active
+                {% endif %}" href="{% url 'account_signup' %}">Register</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                <a class="nav-link
+                {% if request.path == account_login_url  %}
+                  active
+                {% endif %}" href="{% url 'account_login' %}">Login</a>
               </li>
               {% endif %}
               <li class="nav-item
               {% if request.path == home_url %}
                 desktop-hide
               {% endif %}">
-                <a class="nav-link" href="{% url 'therapies' %}">Therapies</a>
+                <a class="nav-link
+                  {% if request.path == therapies_url %}
+                    active
+                  {% endif %}
+                  " href="{% url 'therapies' %}">Therapies</a>
               </li>
               <li class="nav-item
               {% if request.path == home_url %}
                 desktop-hide
               {% endif %}">
-                <a class="nav-link" href="{% url 'therapists' %}">Therapists</a>
+                <a class="nav-link
+                  {% if request.path == therapists_url %}
+                    active
+                  {% endif %}" href="{% url 'therapists' %}">Therapists</a>
               </li>
               <li class="nav-item
               {% if request.path == home_url %}
                 desktop-hide
               {% endif %}">
-                <a class="nav-link" href="{% url 'booking_info' %}">Bookings</a>
+                <a class="nav-link
+                  {% if request.path == bookings_url  %}
+                    active
+                  {% endif %}" href="{% url 'booking_info' %}">Bookings</a>
               </li>
             {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link"
+                <a class="nav-link
+                {% if "profiles/profile" in request.path %}
+                  active
+                {% endif %}"
                   href="{% url 'user_profile' request.user.id%}">Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                <a class="nav-link
+                {% if request.path == account_logout_url  %}
+                  active
+                {% endif %}" href="{% url 'account_logout' %}">Logout</a>
               </li>
             {% endif %}
             </ul>
