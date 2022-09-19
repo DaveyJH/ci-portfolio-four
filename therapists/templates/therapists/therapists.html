@@ -82,6 +82,7 @@
   </div>
 {% endblock content %}
 
+{% comment %} admin only section {% endcomment %}
 {% block extra_content %}
 {% if request.user.is_superuser %}
 <section class="admin-only c-bg-orange">
