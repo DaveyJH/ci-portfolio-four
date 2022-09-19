@@ -1,7 +1,7 @@
 name: User Story - Task
 description: "Default user story template for granular functionality"
 title: 'User Story - Task: '
-labels: ["user story", "task"]
+labels: ["user story", "task", "sprint-14"]
 body:
   - type: markdown
     attributes:
