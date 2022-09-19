@@ -483,33 +483,123 @@ look at daisy's testing documentation and [webinar](https://us02web.zoom.us/rec/
 
 ## Bugs
 
+[Bugs](https://github.com/DaveyJH/ci-portfolio-four/issues?q=label%3Abug+) were
+noted with a `bug` label on GitHub.
+
 ### Current
 
-<!-- current bugs -->
+1. [Phone number does not convert to local format in Sweden.](https://github.com/DaveyJH/ci-portfolio-four/issues/97)
 
-<!-- - bugOne explanation
+    *By utilising the `django-phonenumber-field` package, I had intended for the
+    phone number supplied to display in local format for users in Sweden. A big
+    thanks to @Jays-T for testing this, and reporting to me that it **does not**
+    appear as intended. With the impact of this being so negligble, the bug
+    remains in the deployed version.*
 
-*notes on explanation* -->
-***
-<!-- - bugTwo explanation
+    Potential resolution:
 
-*notes on explanation* -->
-***
+- There are two likely causes of this issue. First, the package may need some
+  initial configuration in its `__init__.py` file. However, after consideration,
+  I suspect this is not the root cause as I have entered a telephone number in
+  the local Swedish format (starting with a zero) in the database and it is
+  rendering with the Swedish country dialling code in all instances.
+- The second, and more likely, is that I have not specified in what way the
+  phone number should render via the options within the package, or have
+  misinterpreted the use of the `PHONE_NUMBER_DEFAULT_REGION` setting in
+  `settings.py`. As I would be reliant on assistance from somebody in Sweden to
+  test this, and it would need to be tested on the deployed version, I have
+  decided not to risk causing further issues that may render the telephone
+  number as 'local' in areas that are not Sweden.
+
+2. [Therapy specialists do not populate as checked when editing a therapy.](https://github.com/DaveyJH/ci-portfolio-four/issues/90)
+
+    *When a superuser opens the 'edit therapy' form, all data self populates
+    **apart from the specialists**. The impact is minor on the user experience,
+    and as it only effects superusers, I would be satisfied with detailing the
+    issue, and need to ensure specialists are checked, in some handover
+    documentation.*
 
 ### Resolved
 
-<!-- resolved bugs -->
-<!-- 1. bugOne
+1.
+   [Lists are rendering in an unusual way in the admin section of the therapists page](https://github.com/DaveyJH/ci-portfolio-four/pull/49)
 
-![bugOneImg](bugOneImgURL)
+    *Commit -
+    **[0ef646f](https://github.com/DaveyJH/ci-portfolio-four/pull/49/commits/0ef646f2ccf17298fc10b981a0b206b851c26ab2#diff-a34e70e0ddac5f02fba0410361c1a0c90d1417fb86059e0f289c46ce3a10a390R82-R83)**
+    : During the process of modifying the lists in the admin section, an `</li>`
+    tag was misplaced. Repositioning the tage resolved the issue.*
+2.
+   [Navbar button drops to a new line on some devices](https://github.com/DaveyJH/ci-portfolio-four/issues/76)
+  
+    *Commit -
+    **[495e4c1](https://github.com/DaveyJH/ci-portfolio-four/commit/495e4c1654c7b31ea86d2e038e352d27b99de0a4)**
+    : Due to the size of the `h1` element and the use of Bootstrap, a `nowrap`
+    class is now toggled via JavaScript to prevent the layout shift.*
+3.
+   [Some FontAwesome icons are rendering with a different colour to the text](https://github.com/DaveyJH/ci-portfolio-four/issues/78)
+  
+    *Commit -
+    **[606dc35](https://github.com/DaveyJH/ci-portfolio-four/commit/606dc3547e4a503d661ec4c6fc986e425586bfaa#diff-a5ea33c888430601a659bcbef2da1944097953737f2606282efc13ca6e5fbabaR148-R151)**
+    : 3rd party style rules have been overridden in the CSS.*
+4.
+   [The site is far less user friendly if JavaScript is not enabled](https://github.com/DaveyJH/ci-portfolio-four/issues/79)
+  
+    *Commit -
+    **[5cec5c7](https://github.com/DaveyJH/ci-portfolio-four/commit/5cec5c7246373dc31aeb7fd11e3eb35e82e4eaf3)**
+    : A styled `noscript` element has been added to the site.*
+5.
+   [The bookings page causes a 404 error](https://github.com/DaveyJH/ci-portfolio-four/issues/88)
+  
+    *Commit -
+    **[abb543a](https://github.com/DaveyJH/ci-portfolio-four/commit/abb543ac31002f738b5e44890b1169109b5199f1)**
+    : On discovering this bug, it led to me finding I had left `/` off the URL
+    pattern. I also changed the context variable name to avoid conflicts with
+    the URL name. This did not resolve the issue.*
 
-*Commit - **[sha](commit link with highlighted lines)** - explanation of fix* -->
-***
-<!-- 1. bugTwo
+    *Commit -
+    **[6b30a98](https://github.com/DaveyJH/ci-portfolio-four/commit/6b30a98a9d520d993de2e0c9155ba99163d7212d)**
+    : Having tried the fix above, I realised I was viewing a database that had
+    no `BookingInfo` object instances. As I had configured the site to raise an
+    error if this were the case, the error was expected. However, I decided to
+    alter the exception raised to a `500` error as it indicates to the user that
+    the error is within the server/database.*
+6.
+   [When validating the HTML, an error was raised regarding an open element existing when trying to close a form element](https://github.com/DaveyJH/ci-portfolio-four/issues/89)
+  
+    *Commit -
+    **[b0737fa](https://github.com/DaveyJH/ci-portfolio-four/commit/b0737fa72be8587c75250b6b528f7b62e4b94391#diff-46192b4b57fb419f7f8ce5009a659bbc36c5bbaaa481f4c5ea06e46df8b659f6R42)**
+    : A closing `</div>` tag was added to the relevant HTML template.*
+7.
+   [A skipped heading level was reported by Wave accessibility checker](https://github.com/DaveyJH/ci-portfolio-four/issues/98)
+  
+    *Commit -
+    **[6857133](https://github.com/DaveyJH/ci-portfolio-four/commit/6857133fc9d14366dec76bd9efb5a3ab181c5b62#diff-52a3585ac5621885b8c9fbdde0079453c1f917d189c54bde982de76f162fac52R35)**
+    : The erroneous `h4` tags were replaced with `h3` tags.*
+8.
+   [The lower paragraph on the logout page was hard to read](https://github.com/DaveyJH/ci-portfolio-four/issues/99)
+  
+    *Commit -
+    **[2736484](https://github.com/DaveyJH/ci-portfolio-four/commit/273648441f040b508084689777c50508cf406163)**
+    : The paragraph was styled with CSS to make it more visible.*
+9.
+   [Any logged in user was able to view any user's profile](https://github.com/DaveyJH/ci-portfolio-four/issues/100)
+  
+    *Commit -
+    **[2192c56](https://github.com/DaveyJH/ci-portfolio-four/commit/2192c56fd0a5225493a3509e51fa715fa263223a)**
+    : A `UserPassesTestMixin` was added to the `UserProfileView`. It utilises a
+    regex to retrieve the URL being visited and references it against the
+    currently logged in user's id attribute. Yay for regex!*
+9.
+   [The active page was not indicated to the user](https://github.com/DaveyJH/ci-portfolio-four/issues/117)
+  
+    *Commit -
+    **[e71d9bf](https://github.com/DaveyJH/ci-portfolio-four/commit/e71d9bf757b1d63266353989a470eb71d53a004d)**
+    : Logic was added to the `base.html` template to check the current URL path
+    against the list of URL pattern names.*
 
-![bugTwoImg](bugTwoImgURL)
 
-*Commit - **[sha](commit link with highlighted lines)** - explanation of fix* -->
+
+
 ***
 
 ## Development
