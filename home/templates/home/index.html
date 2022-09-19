@@ -14,6 +14,7 @@
     </div>
   {% endfor %}
 {% endif %}
+{% comment %} additional nav for desktop {% endcomment %}
   <nav class="d-flex justify-content-evenly mobile-hide" id="desktop-second-nav">
     <a href="{% url 'therapies' %}" class="link-button-lg link-button-lg-desktop">Therapies</a>
     <a href="{% url 'therapists' %}" class="link-button-lg link-button-lg-desktop">Therapists</a>
@@ -26,7 +27,9 @@
     <div id="home-info">
       {{ home.content|safe }}
     </div>
-
+    {% comment %}
+      additional nav for home page - hidden on desktop
+    {% endcomment %}
     <nav class="d-flex flex-column justify-content-evenly desktop-hide" id="mobile-second-nav">
       <a href="{% url 'therapies' %}" class="link-button-lg">Therapies</a>
       <a href="{% url 'therapists' %}" class="link-button-lg">Therapists</a>
