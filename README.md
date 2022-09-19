@@ -23,7 +23,13 @@
   - [Brief](#brief)
   - [UX &#8722; User Experience Design](#ux--user-experience-design)
     - [User Requirements](#user-requirements)
-    - [Initial ConceptThe initial idea of the site was to provide a digital booking system, combining](#initial-conceptthe-initial-idea-of-the-site-was-to-provide-a-digital-booking-system-combining)
+      - [First Time User](#first-time-user)
+      - [Returning User](#returning-user)
+        - [Client](#client)
+        - [Staff](#staff)
+      - [Owner](#owner)
+      - [Developer](#developer)
+    - [Initial Concept](#initial-concept)
       - [Wireframes](#wireframes)
         - [Samples from Mobile](#samples-from-mobile)
         - [Complete wireframes](#complete-wireframes)
@@ -84,17 +90,83 @@ reduced from the initial conception and is well documented through version
 control. The original user
 [personas are viewable here.](https://github.com/DaveyJH/ci-portfolio-four/wiki/User-Personas)
 
-[Issues](https://github.com/DaveyJH/ci-portfolio-four/issues?q=is%3Aissue+is%3Aclosed+label%3A%22user+story%22)
+[Epics](https://github.com/DaveyJH/ci-portfolio-four/issues?q=is%3Aissue+label%3A%22user+story%22+-label%3Atest+label%3Aepic+)
 were created for the initial concepts that were to be included within the site.
 Each epic issue consists of a user type, referencing the persona document linked
-above, a required functionality and the benefit it provides. As part of the
-testing procedure, I wrote very granular user stories to ensure all
-functionality was as expected. Note that I have referenced this in the [personal
-development](#personal-development) section at the end of this document.
+above, a required functionality and the benefit it provides. The original user
+epics have been broken down into smaller issues for the development process.
+
+As part of the testing procedure, I wrote very
+[granular user stories](https://github.com/DaveyJH/ci-portfolio-four/issues?q=is%3Aissue+label%3A%22user+story%22+-label%3Aepic+-label%3Atest)
+to ensure all functionality was as expected. Note that I have referenced this in
+the [personal development](#personal-development) section at the end of this
+document.
+
+Below is a non-exhaustive list of some of the user stories:
+
+#### First Time User
+
+> *"As a potential customer, I would like to know what the site is about"*
+>
+> *"As a non-registered user, I would like to explore some of the site"*
+>
+> *"As a non-registered user, I would like to be able to sign up"*
+>
+> *"As a potential customer, I would like to view the main services offered"*
+
+#### Returning User
+
+##### Client
+
+> *"As a returning user, I would like to be able to log in to my account"*
+>
+> *"As a returning user, I would like to be able to view reviews written by me"*
+>
+> *"As a returning user, I would like to be able to edit reviews written by me"*
+>
+> *"As a returning user, I would like to be able to delete reviews written by
+> me"*
+
+##### Staff
+
+> *"As a staff member, I would like to be able to log in to my account"*
+>
+> *"As a staff member, I would like to be able to view reviews written about
+> me in one location"*
+>
+> *"As a staff member, I would like other users to be able to view some
+> information about me"*
+
+#### Owner
+
+> *"As the owner, I would like to be able to add therapists"*
+>
+> *"As the owner, I would like to be able to add therapies"*
+>
+> *"As the owner, I would like to be able to edit therapists"*
+>
+> *"As the owner, I would like to be able to edit therapies"*
+>
+> *"As the owner, I would like to be able to delete therapists"*
+>
+> *"As the owner, I would like to be able to delete therapies"*
+>
+> *"As the owner, I would like to be able to approve reviews"*
+>
+> *"As the owner, I would like to provide contact info for my business"*
+>
+> *"As the owner, I would like to be able to update the business info"*
+
+#### Developer
+
+> *"As the developer, I would like to ensure the site meets the essential user
+> requirements"*
 
 ***
 
-### Initial ConceptThe initial idea of the site was to provide a digital booking system, combining
+### Initial Concept
+
+The initial idea of the site was to provide a digital booking system, combining
 reviews and ratings, for a massage spa. Due to time constraints, a lot of the
 functionality has been removed. As a result, the scope has been reassessed
 throughout the development process to ensure a minimum viable product is
@@ -107,6 +179,8 @@ lead to business adjustments to maximise profits. As stated, the time
 constraints imposed by external factors meant that I decided very early to
 negate the complexity of involving dates and times with regard to front-end
 rendering. This allowed rapid development of more simplified functionality.
+
+***
 
 #### Wireframes
 
