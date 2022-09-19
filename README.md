@@ -63,6 +63,10 @@
 This site is to represent capabilities with the django framework. It should
 employ full Create, Read, Update, Delete (CRUD) functionality.
 
+The assessment checklist is available to view in the
+[`docs/` directory](https://github.com/DaveyJH/ci-portfolio-four/tree/main/docs)
+of the project repository.
+
 ***The needs within this project are not genuine and are made purely for the
 purpose of completing my Code Institute fourth project***
 
