@@ -1115,29 +1115,33 @@ non-exhaustive list of users and images is available on the
 
 - The additional code to allow copying of the database query to a local CSV file
   was modified from
-  [this write up](https://jamesbedont.com/export-a-heroku-postgres-table-to-a-csv-file). Thanks @JamesBedont
+  [this write up](https://jamesbedont.com/export-a-heroku-postgres-table-to-a-csv-file).
+  Thanks [@JamesBedont](https://github.com/jamesbedont)
 - My wonderful friends from NerdAlert...
-  - @Abibubble
-  - @manni8436
-  - @suzybee1987
-  - @natalie-kate
-  - @kera-cudmore
-  - @Medusas71
-  - @AlexaH88
+  - [@Abibubble](https://github.com/Abibubble)
+  - [@manni8436](https://github.com/manni8436)
+  - [@suzybee1987](https://github.com/suzybee1987)
+  - [@natalie-kate](https://github.com/natalie-kate)
+  - [@kera-cudmore](https://github.com/kera-cudmore)
+  - [@Medusas71](https://github.com/Medusas71)
+  - [@AlexaH88](https://github.com/AlexaH88)
 - The time taken by those above to test the site, continually motivate and
   consistently encourage was very much appreciated during this slog of a
   project!
-- @Jays-T for living in Sweden, and being a rockstar!
-- @Daisy-McG for introducing me to all the mixins, some daft late night calls
-  and all around solid advice with regard to all aspects of the project
-- @Gareth-McGirr for having completed a similar project that I was able to use
-  as a reference and resource to aid the rapid development process
+- [@Jays-T](https://github.com/jays-t) for living in Sweden, and being a rockstar!
+- [@Daisy-McG](https://github.com/daisy-mcg) for introducing me to all the
+  mixins, some daft late night calls and all around solid advice with regard to
+  all aspects of the project
+- [@Gareth-McGirr](https://github.com/gareth-mcgirr) for having completed a
+  similar project that I was able to use as a reference and resource to aid the
+  rapid development process
 - The wonderful staff at [Code Institute](https://codeinstitute.net) for
   introducing me to this framework and giving me the foundations to develop this
   site
-- @MrBim and @auxfuse for their absolutely wonderful nuttiness and continued
-  pushes to keep me going...also for some awesome distractions when truly
-  needed!
+- [@MrBim](https://github.com/MrBim) and
+  [@auxfuse](https://github.com/auxfuse/auxfuse) for their absolutely wonderful
+  nuttiness and continued pushes to keep me going...also for some awesome
+  distractions when truly needed!
 - Some of the general ideas for keeping images square came from
   [this SO thread](https://stackoverflow.com/questions/23400232/force-bootstrap-responsive-image-to-be-square)]
 - [Real Python](https://realpython.com/django-redirects/) for the very quick
