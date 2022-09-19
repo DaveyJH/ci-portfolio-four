@@ -48,6 +48,7 @@
     - [Python Packages](#python-packages)
     - [Other Tech](#other-tech)
       - [*Bootstrap 5.2*](#bootstrap-52)
+      - [*Lucidchart*](#lucidchart)
       - [*Instant Eyedropper*](#instant-eyedropper)
       - [*WebAIM Contrast Checker*](#webaim-contrast-checker)
       - [*Windows Snipping Tool*](#windows-snipping-tool)
@@ -384,6 +385,8 @@ documentation is widely available for this and varies depending on the vendor.
 
 ### Python Packages
 
+Some of the main packages used throughout the project:
+
 |Package|Use|
 |--:|--|
 |[django](https://www.djangoproject.com/)|web framework that encourages rapid development and clean, pragmatic design. django version 3.2 was used as this is the current version with long term support (LTS)|
@@ -396,6 +399,7 @@ documentation is widely available for this and varies depending on the vendor.
 |[psycopg2](https://pypi.org/project/psycopg2/)|PostgreSQL database adapter for Python|
 |[django-phonenumber-field](https://pypi.org/project/django-phonenumber-field/)|allows storing of configurable telephone numbers in Django models|
 |[whitenoise](https://pypi.org/project/whitenoise/)|allows easy implementation of static files|
+|[flake8](https://pypi.org/project/flake8/)|linter for Python files to check for compliance with PEP8 styling|
 |||
 
 *For a full list of installed Python packages, see
@@ -411,7 +415,18 @@ for many of the packages at [Read the Docs](https://readthedocs.org/)
 
 #### *[Bootstrap 5.2](https://getbootstrap.com/docs/5.2/getting-started/introduction/)*
 
-Bootstrap is a powerful, feature-packed frontend toolkit. It has many classes that allow very responsive styling with little need to write custom CSS.
+Bootstrap is a powerful, feature-packed frontend toolkit. It has many classes
+that allow very responsive styling with little need to write custom CSS.
+
+#### *[Lucidchart](https://www.lucidchart.com/)*
+
+Lucidchart was used to generate the original ERD. At the end of the development
+stage, it was re-used to generate an ERD from a `.csv` file that was created
+from a database query. The query/csv creation process was done by following
+Lucidchart's tutorial, with the addition of adding `/COPY` preceding the
+provided snippet and
+`TO './db_expo.csv' WITH (FORMAT csv, DELIMITER ',',  HEADER true);` succeeding
+it. This was performed in a Heroku CLI terminal.
 
 #### *[Instant Eyedropper](http://instant-eyedropper.com/)*
 
@@ -482,6 +497,7 @@ Links to the VSCode marketplace for each extension used throughout this project:
 - [Reflow Markdown](https://marketplace.visualstudio.com/items?itemName=marvhen.reflow-markdown)
 - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [Django](https://marketplace.visualstudio.com/items?itemName=batisteo.vscode-django)
 
 ***
 
@@ -1085,14 +1101,53 @@ The site is now live and operational -->
 ## Credits
 
 ### Content
-<!-- - the a comes from b -->
-<!-- - the c comes from d -->
+
+General massage therapist sites and write ups for the therapies included in the
+final database.
+
 ### Media
-<!-- - the a comes from b -->
-<!-- - the c comes from d -->
+
+Media on the site was obtained from [Pexels](https://pexels.com). A
+non-exhaustive list of users and images is available on the
+[media wiki here](https://github.com/DaveyJH/ci-portfolio-four/wiki/Media-ideas).
+
 ### Acknowledgements
-<!-- - acknowledge a, found at [b](bURL), for c -->
-<!-- - acknowledge d, found at [e](eURL), for f -->
+
+- The additional code to allow copying of the database query to a local CSV file
+  was modified from
+  [this write up](https://jamesbedont.com/export-a-heroku-postgres-table-to-a-csv-file). Thanks @JamesBedont
+- My wonderful friends from NerdAlert...
+  - @Abibubble
+  - @manni8436
+  - @suzybee1987
+  - @natalie-kate
+  - @kera-cudmore
+  - @Medusas71
+  - @AlexaH88
+- The time taken by those above to test the site, continually motivate and
+  consistently encourage was very much appreciated during this slog of a
+  project!
+- @Jays-T for living in Sweden, and being a rockstar!
+- @Daisy-McG for introducing me to all the mixins, some daft late night calls
+  and all around solid advice with regard to all aspects of the project
+- @Gareth-McGirr for having completed a similar project that I was able to use
+  as a reference and resource to aid the rapid development process
+- The wonderful staff at [Code Institute](https://codeinstitute.net) for
+  introducing me to this framework and giving me the foundations to develop this
+  site
+- @MrBim and @auxfuse for their absolutely wonderful nuttiness and continued
+  pushes to keep me going...also for some awesome distractions when truly
+  needed!
+- Some of the general ideas for keeping images square came from
+  [this SO thread](https://stackoverflow.com/questions/23400232/force-bootstrap-responsive-image-to-be-square)]
+- [Real Python](https://realpython.com/django-redirects/) for the very quick
+  reference regarding redirects
+- [Classy CBV](https://ccbv.co.uk/projects/Django/3.2/) for providing a very
+  useful list of methods available within class based views
+- A variety of other sources, for ideas and thoughts that led me to progressing
+  with my code
+- Anybody else I may have omitted to include in these final hours of working!
+
 ***
 
 ### Personal Development
