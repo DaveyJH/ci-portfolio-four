@@ -100,7 +100,7 @@ class TherapyDetailView(
         form = CreateReviewForm()
         therapy = get_object_or_404(Therapy, id=self.kwargs['pk'])
         reviews = Review.objects.filter(
-                therapy=therapy, approved=True).order_by('-date_time')
+            therapy=therapy, approved=True).order_by('-date_time')
         if self.request.user.is_superuser:
             reviews = Review.objects.filter(
                 therapy=therapy).order_by('-date_time')
