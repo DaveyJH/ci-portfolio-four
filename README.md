@@ -47,6 +47,7 @@
   - [Technologies Used](#technologies-used)
     - [Python Packages](#python-packages)
     - [Other Tech](#other-tech)
+      - [*Bootstrap 5.2*](#bootstrap-52)
       - [*Instant Eyedropper*](#instant-eyedropper)
       - [*WebAIM Contrast Checker*](#webaim-contrast-checker)
       - [*Windows Snipping Tool*](#windows-snipping-tool)
@@ -408,6 +409,10 @@ for many of the packages at [Read the Docs](https://readthedocs.org/)
 
 ### Other Tech
 
+#### *[Bootstrap 5.2](https://getbootstrap.com/docs/5.2/getting-started/introduction/)*
+
+Bootstrap is a powerful, feature-packed frontend toolkit. It has many classes that allow very responsive styling with little need to write custom CSS.
+
 #### *[Instant Eyedropper](http://instant-eyedropper.com/)*
 
 A quick and simple application to obtain hex values from any colour on my
@@ -611,9 +616,6 @@ noted with a `bug` label on GitHub.
     **[e71d9bf](https://github.com/DaveyJH/ci-portfolio-four/commit/e71d9bf757b1d63266353989a470eb71d53a004d)**
     : Logic was added to the `base.html` template to check the current URL path
     against the list of URL pattern names.*
-
-
-
 
 ***
 
