@@ -63,6 +63,18 @@
     - [Current](#current)
     - [Resolved](#resolved)
   - [Development](#development)
+    - [GitHub](#github)
+    - [VSCode](#vscode)
+      - [Cloning](#cloning)
+      - [Editing](#editing)
+    - [Working With Python](#working-with-python)
+      - [Venv](#venv)
+      - [Packages](#packages)
+    - [Django](#django)
+      - [Creation](#creation)
+      - [Server](#server)
+      - [.env](#env)
+    - [Agile Process](#agile-process)
   - [Deployment](#deployment)
   - [Credits](#credits)
     - [Content](#content)
@@ -74,7 +86,7 @@
 
 ## Objective
 
-This site is to represent capabilities with the django framework. It should
+This site is to represent capabilities with the Django framework. It should
 employ full Create, Read, Update, Delete (CRUD) functionality.
 
 The assessment checklist is available to view in the
@@ -271,7 +283,6 @@ Grape Nuts
 Dosis  
 ![dosis google font](./docs/design/font-dosis.png)
 
-<!-- typography -->
 ***
 
 #### Imagery
@@ -352,7 +363,7 @@ chosen. As a widely implemented database platform, the documentation available
 for working with this is quite extensive and there are many extensions available
 to assist with its use. Due to the use of `ArrayField`s within the models, I was
 unable to use the generated `db.sqlite3` instance, that is installed when
-initialising django, for development. Instead, I used a database hosted on
+initialising Django, for development. Instead, I used a database hosted on
 ElephantSQL and successfully transfered the majority of data from that
 development database into the deployed database hosted on Heroku.
 
@@ -370,15 +381,15 @@ similar data, I used a database cloning method as detailed in the
 
 |Package|Use|
 |--:|--|
-|[django](https://www.djangoproject.com/)|web framework that encourages rapiddevelopment and clean, pragmatic design|
+|[django](https://www.djangoproject.com/)|web framework that encourages rapid development and clean, pragmatic design. django version 3.2 was used as this is the current version with long term support (LTS)|
 |[dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/)|facilitates integration with Cloudinary|
 |[cloudinary](https://pypi.org/project/cloudinary/)|easy uploading of images to Cloudinary|
 |[django-crispy-forms](https://pypi.org/project/django-crispy-forms/)|allows DRY forms to be created rapidly through HTML templates|
 |[django-summernote](https://pypi.org/project/django-summernote/)|allows use of text-rich editors for form inputs|
 |[python-dotenv](https://pypi.org/project/python-dotenv/)|reads key-value pairs from a `.env` file. Negates the need to write a Python file for environment variables (as would be done in an `env.py` file)|
-|[gunicon](https://pypi.org/project/gunicorn/)|natively suuports django to allow use of commands|
+|[gunicon](https://pypi.org/project/gunicorn/)|natively suuports Django to allow use of commands|
 |[psycopg2](https://pypi.org/project/psycopg2/)|PostgreSQL database adapter for Python|
-|[django-phonenumber-field](https://pypi.org/project/django-phonenumber-field/)|allows storing of configurable telephone numbers in django models|
+|[django-phonenumber-field](https://pypi.org/project/django-phonenumber-field/)|allows storing of configurable telephone numbers in Django models|
 |[whitenoise](https://pypi.org/project/whitenoise/)|allows easy implementation of static files|
 |||
 
@@ -514,6 +525,237 @@ look at daisy's testing documentation and [webinar](https://us02web.zoom.us/rec/
 
 ## Development
 
+*The images contained within this section may have different wording than
+expected, many are duplicated from a prevcious project due to time constraints*
+
+The site was made using [GitHub](#GitHub) and [VSCode](#VSCode)
+
+### GitHub
+
+[GitHub Website](https://github.com)
+
+- Sign in to GitHub.
+- I used mo own template that can be accessed
+  [here](https://github.com/DaveyJH/template) and is available for public use
+  via the **Use this template** button.
+
+![Use Template](./docs/readme//images/development/use-template.png)
+
+*Alternatively*
+
+- Click ![GitHub Icon](./docs/readme//images/development/github.png) and select
+  **New** from the panel on the left, next to **Repositories**
+
+![New Repository](./docs/readme//images/development/new-repo.png)
+
+- Select the template you wish to use
+
+![Select Template](./docs/readme//images/development/template.png)
+
+- Give the repository a name and description and then click **Create repository**
+
+![Create Repo](./docs/readme//images/development/create-repo.png)
+
+The repository has now been created and is ready for editing
+
+---
+
+### VSCode
+
+[VSCode Website](https://code.visualstudio.com/)
+
+For general information on using GitHub with VSCode see their documentation
+[here](https://code.visualstudio.com/docs/editor/github).  
+*This section assumes you have successfully linked your GitHub account to the
+application.*
+
+#### Cloning
+
+- Open the command panel using your keyboard shortcut or **View** > **Command
+  Palette...**
+
+![View>Command](./docs/readme//images/development/view-command.png)
+
+- With the command palette open, type *clone* and click **Git: Clone** and then
+  **![GitHub Icon](./docs/readme//images/development/git-icon.png)Clone from
+  GitHub**
+
+![Command Palette](./docs/readme//images/development/commands.png)
+
+- Type the GitHub username followed by / and the repository you wish to work on
+
+![Repo Clone](./docs/readme//images/development/clone.png)
+
+- Click the repository from the drop-down list and save it in a local directory
+  of your choosing
+
+The repository is now ready for development
+
+#### Editing
+
+- The explorer tab enables viewing of the files within the repository
+
+![Explorer](./docs/readme//images/development/explorer.png)
+
+- Open files from the explorer tab in the editor window and perform changes as
+  necessary
+
+![Editor](./docs/readme//images/development/editor-tab.png)
+
+- Save files as appropriate, add, commit and push them. There are multiple ways
+  to do this
+  - VSCode Source Control
+    - Select the **Source Control** tab that looks like a repository branch
+
+    ![Source Control](./docs/readme//images/development/source-control.png)
+
+    - Click the **+** sign next to files you wish to add to staged changes
+
+    ![SC Add](./docs/readme//images/development/sc-add-commit.png)
+
+    - Type a commit message and click the tick icon to commit
+
+    ![SC Commit](./docs/readme//images/development/commit-tick.png)
+
+    - When ready to push your repository back to GitHub click the push/pull icon
+      in the bar at the bottom of the application
+  
+    ![SC Push](./docs/readme//images/development/sc-push.png)
+
+    - *I have many keyboard shortcuts set to speed up this process, they are
+      configurable within the VSCode settings*
+
+  - Terminal  
+  *These steps assume you are in the root directory of your repository and typing
+  in the terminal*
+    - Type `git add .` and press Enter to add all modified or untracked file
+
+    ![Terminal All](./docs/readme//images/development/terminal-add-all.png)
+
+    - Type `git add fileNameHere.extension assets/anotherFileHere.extension` and
+      press Enter to add specific files, remembering to include sub-directories
+      where necessary
+  
+    ![Terminal Add](./docs/readme//images/development/terminal-add.png)
+
+    - Type `git commit -m "meaningful message here"` to commit your staged files
+      with the typed commit message
+
+    ![Terminal Commit](./docs/readme//images/development/terminal-commit.png)
+
+    - Type `git push` to push your repository to the remote repository held at
+    GitHub
+
+    ![Terminal Push](./docs/readme//images/development/terminal-push.png)
+
+    - *There are many other stages to editing, such as branches, git stash,
+      reverting commit messages and others. For more information,
+      refer to the [git documentation](https://git-scm.com)*
+
+### Working With Python
+
+This section assumes you have python installed on your machine and added to
+PATH. *I am unfamiliar with macOS/Linux so these steps may be different for
+users of those systems.*
+
+#### Venv
+
+A virtual environment is advised when working with Python. I chose to use
+`venv`.
+
+- With the terminal in the route directory of my project I used
+  `python -m venv .venv` to create a virtual environment in the `.venv`
+  directory.
+- I the used `source .venv/scripts/activate` to enable the virtual environment.
+- The `(.venv)` displayed above the current directory show the venv is active.  
+  ![Venv active](./docs/readme//images/development/venv-active.png)
+
+This allows local installation of packages within the virtual environment and
+can help to prevent errors with global installs.
+
+#### Packages
+
+*`pip3` can be replaced with `pip` in the following commands depending on your
+Python configuration and VSCode settings.*
+
+To install all packages within this repo you can run `pip3 install -r
+requirements.txt` in the terminal. This installs all packages from the text
+file. The text file was created using `pip3 freeze > requirements.txt`.
+
+To install individual packages you need to review the appropriate
+documentation for the install command. All packages I have found and used were
+installed using something similar to `pip3 install <package_name>`. The documentation
+files are linked above under the [python packages](#python-packages) heading.
+
+To run a file from the terminal I type `python -m file_name_here`, where
+'file_name_here' is the name of the file I wish to run. `-m` allows the file to
+be run without the need for adding its file extension (`.py`).
+
+It is also possible to run small snippets of python code by typing `python` and
+pressing enter. This allows me to create variables and run functions without
+saving any data. Using this live python terminal, you can also import files
+you have already created by typing `import file_name_here`.
+
+### Django
+
+#### Creation
+
+To initialise a Django (v3.2) application, first Django must be installed within
+your Python environment. This is done via the command `pip install django==3.2`
+
+Once the install completes, a new project can be inititalised with
+`django-admin startproject <project name> .`, the `.` means the project will be
+created in the current working directory of your terminal.
+
+From there, many commands are available through the `manage.py` file. The first
+process for me was to create a number of apps so that I could segragate my
+functionality, this was achieved by running `./manage.py startapp <app name>`.
+
+#### Server
+
+With the `.venv` active, type `./manage.py runserver` or
+`python -m manage runserver` in your terminal to initiate the server. You must
+ensure that your localhost IP address or host name is added to the
+`ALLOWED_HOSTS` list in the `settings.py` file. Once the server is running, you
+are able to navigate your site as required via your web browser of choice. The
+default port for this is `8000`, but is configurable as you desire.
+
+For me, it was nice to be able to test the service on multlple phsyical devices
+connected to my home network. To allow this, I ran
+`./manage.py runserver 0.0.0.0:8000` which allows connections from any IP
+address. I also added to my `settings.py` file to allow the currently assigned
+(DHCP) IP address of my laptop to be added to the `ALLOWED_HOSTS` variable.
+
+[This commit details the additional code required](https://github.com/DaveyJH/ci-portfolio-four/commit/2fec88cf6539a782ef3925b9a708804717c5af2e)
+to allow this. These lines were removed before final deployment to remove any
+additional security vulnerabilities. The print statements were added as a visual
+aid to myself, so that I was able to connect from my other devicees without
+having to run `ipconfig` on my local machine each time.
+
+#### .env
+
+As mentioned above in the [Python packages](#python-packages) section, I
+utilised a `.env` file for my environment variables. If you intend to run this
+application from a clone of the repository, you will need your own file with the
+following key-value pairs:
+
+|key|value|
+|-|-|
+|SECRET_KEY| a secret key, this can be generated using `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` within your terminal|
+|HOST|the IP address or host name where the server will be run|
+|DATABASE_URL|a production database URL, with user, password and database name as necessary|
+|DATABASE_DEV|a development database URL, with user, password and database name as necessary|
+|CLOUDINARY_URL|a Cloudinary account API Environment variable, available from a Cloudinary account dashboard|
+|DEVELOPMENT|*optional* any value assigned to this variable will cause the `DATABASE_DEV` URL to be used for database connections, and will set `DEBUG` to `True` through the logic in the `settings.py` file|
+|CLOUDINARY|to allow my context preprocessor to work, this is required. the value can be obtained by visiting any image uploaded to your Cloudinary storage and removing the final partition of the URL. I suspect this is not done in the best way, but I have tested multiple images using the varying URL patterns and Cloudinary appears to resolve any URLs related my account to the correct image|
+
+Each of these key-value pairs should be entered into the `.env` file as:  
+`KEY=VALUE`  
+Note there is no space around the `=` sign, and there is no need for quotation
+marks.
+
+### Agile Process
+
 <!-- section missed in first project. 
 !describe development process -->
 
@@ -525,23 +767,23 @@ look at daisy's testing documentation and [webinar](https://us02web.zoom.us/rec/
 - Navigate to the relevant GitHub Repository [here](github repo URL)
 - Select "Settings" from the options below the name of the repository
 
-![Settings Snip](./readme-content/images/github-settings.png)
+![Settings Snip](./docs/readme//images/github-settings.png)
 - Select "Pages" from the left hand menu
 
-![Pages Snip](./readme-content/images/pages-select.png)
+![Pages Snip](./docs/readme//images/pages-select.png)
 - Select "Branch: main" as the source and leave the directory as "/(root)"
 
-![Source Snip](./readme-content/images/pages-source.png)
+![Source Snip](./docs/readme//images/pages-source.png)
 
 - Click the Save button
 
 - Take note of the URL provided
 
-![URL Snip](./readme-content/images/pages-url.png)
+![URL Snip](./docs/readme//images/pages-url.png)
 
 - GitHub takes a short while to publish the page. The bar turns green if you refresh the pages tab and the page has been deployed
 
-![Confirmed Deployment Snip](./readme-content/images/pages-deployed.png)
+![Confirmed Deployment Snip](./docs/readme//images/pages-deployed.png)
 - Click the link or copy the URL to a browser to reach the deployed page
 https://daveyjh.github.io/ci-portfolio-one-v4/
 
@@ -568,7 +810,7 @@ limited. In total, I had just over 2 weeks to design, develop and deploy the
 site, bar some initial conceptual ideas from a long time ago. Working full time
 and then continuing to work with this site has meant I have worked very long
 hours. Considering the circumstances, I am very happy with the outcome. I
-learned a lot about django from their documentation and would like to explore it
+learned a lot about Django from their documentation and would like to explore it
 further when I have less time pressure.
 
 With regard to the agile process, I worked in the best way I could without
@@ -589,11 +831,11 @@ differently from the initial setup right through to the final stages:
 - I intend to explore the full capabilities of the project boards available
   through GitHub; for a free service, they are very impressive and have a wide
   array of functionality.
-- Now I have a better understanding of django and the relationships available, I
+- Now I have a better understanding of Django and the relationships available, I
   would be comfortable diving into more intricate Models and database
   structures. This would allow me to create more accurate and detailed ERDs from
   the start.
-- Finding the astounding number of predefined classes within django and its
+- Finding the astounding number of predefined classes within Django and its
   related packages has made me realise that a great deal can be achieved through
   a fairly small amount of Python code. The OOP pillars feature heavily
   throughout the framework and my time working with this project, and the
