@@ -76,6 +76,10 @@
       - [.env](#env)
     - [Agile Process](#agile-process)
   - [Deployment](#deployment)
+    - [Heroku](#heroku)
+    - [Render](#render)
+      - [Changes to repo for Render](#changes-to-repo-for-render)
+      - [Deployment to Render](#deployment-to-render)
   - [Credits](#credits)
     - [Content](#content)
     - [Media](#media)
@@ -367,13 +371,13 @@ initialising Django, for development. Instead, I used a database hosted on
 ElephantSQL and successfully transfered the majority of data from that
 development database into the deployed database hosted on Heroku.
 
-As the site
-was deployed to two hosting platforms (due to uncertainty with the future of
-free tiers available with Heroku) I have opted to maintain the Render instance
-with the use of the development database, thus all 'test' entries have been
-purged and 'real' data has been added. To ensure the two sites began with
-similar data, I used a database cloning method as detailed in the
-[deployment](#deployment) section below.
+As the site was deployed to two hosting platforms (due to uncertainty with the
+future of free tiers available with Heroku) I have opted to maintain the Render
+instance with the use of the development database, thus all 'test' entries have
+been purged and 'real' data has been added.
+
+This document does not included the steps to create the database instances,
+documentation is widely available for this and varies depending on the vendor.
 
 ## Technologies Used
 
@@ -558,7 +562,7 @@ The site was made using [GitHub](#GitHub) and [VSCode](#VSCode)
 
 The repository has now been created and is ready for editing
 
----
+***
 
 ### VSCode
 
@@ -756,10 +760,206 @@ marks.
 
 ### Agile Process
 
-<!-- section missed in first project. 
-!describe development process -->
+[A GitHub project](https://github.com/users/DaveyJH/projects/1/views/1) was
+created for the site's development. Due to the very short time period to work on
+the project, I set a sprint time of 16 hours initially, with a story point being
+worth 60 minutes. Unfortunately, I was unable to work for a few of those days,
+but I was finding that my story points were roughly twice the duration they
+needed to be. With that in mind, the sprints became 8 hour durations with the
+story points representing 30 minutes. I was confident with my understanding of
+the templating employed by django, so sprints consisted of a lot of tasks
+considering the time constraints.
+
+![sprint board](./docs/readme/images/development/agile/sprint-board.png)
+
+Each sprint focused on a main section of functionality, rather than an
+individual user story. This decision allowed me to iterate through similar tasks
+at a rapid rate and use the experience from the first task to lead into the
+second, the third and so on. This also meant that some sprints contained
+entirely 'must have' items, an approach that should not be followed as a rule of
+thumb. However, due to the time constraints, this was the most pragmatic way of
+getting the project completed to a standard I was happy with in the timeframe
+available.
+
+All sprints, apart from
+[sprint 11](https://github.com/users/DaveyJH/projects/1/views/14), were
+successfully completed with all tasks achieved. I did not include the issues
+that were labelled as
+'[wont haves](https://github.com/DaveyJH/ci-portfolio-four/issues?q=is%3Aissue+label%3A%22wont+have%22)'
+from the start, as I knew they would only be rejected in the review of the
+sprint. As the development process continued, I tailored my story point
+assignment to suit the rate at which I was completing tasks, with 16 available
+story points in each sprint.
+
+Had I worked on the project over a longer time
+period, I would have been able to assess and adjust these values with more
+accuracy. However, considering the short development time, I have been happy
+with how I managed the project. All issues have informative labels, the
+milestones created were used to track a grouping of functionality rather than
+progress toward an epic. My project 'views' represent the sprints undertaken and
+the [insights tab](https://github.com/users/DaveyJH/projects/1/insights) allowed
+me to create a makeshift burndown chart for each sprint.
+
+I displayed tasks by label groupings within the sprint charts. This allowed me
+to keep track of progress toward the general processes required, and gave a more
+morale-boosting experience which helped a lot!
+
+![burndown chart](./docs/readme/images/development/agile/burndown.png)
+
+One of the most useful charts is shown below. This helped to track the overall
+progress, with each label being displayed.
+
+![work remaming by label chart](./docs/readme/images/development/agile/total-work-by-label.png)
+
+I also used a simplified version of this by grouping the issues by milestones.
+As mentioned earlier, this allowed me to keep track of the main functionality
+and development process needed.
+
+![burndown chart](./docs/readme/images/development/agile/total-work-alternative.png)
+
+The most simple chart of all showed the work remaining, but this was not a good
+reflection during some stages of the process as issues were added before the
+sprints, thus this chart was misleading at times.
+
+![burndown chart](./docs/readme/images/development/agile/total-work.png)
+
+In hindsight, I would certainly have approached certain aspects of this process
+in a different way. However, looking at the amount of work achieved in the
+timeframe available, I am very satisfied with how I have managed the time I had
+available.
 
 ## Deployment
+
+The site is deployed to two locations due to uncertainty around Heroku's free
+tier options.
+
+### Heroku
+
+1. Navigate to your [Heroku dashboard](https://dashboard.heroku.com/apps)
+2. Click "New" and select "Create new app".  
+  ![New heroku](./docs/readme/images/deployment/heroku-new.png)
+3. Input a meaningful name for your app and choose the region best suited to
+  your location.  
+  ![Create new app](./docs/readme/images/deployment/heroku-create.png)
+4. Select "Settings" from the tabs.  
+  ![Settings tab](./docs/readme/images/deployment/heroku-settings.png)
+5. Click "Reveal Config Vars".  
+ ![Config vars button](./docs/readme/images/deployment/heroku-config-vars.png)
+6. Input all key-value pairs as necessary from the `.env` file. **Ensure DEBUG
+   and DEVELOPMENT are not included**.
+   ![Config vars](./docs/readme/images/deployment/heroku-config-var.png)
+7. Click "Add buildpack".  
+ ![Add buildpack](./docs/readme/images/deployment/heroku-add-buildpacks.png)
+8. Add "python" from the list or search if necessary, remember to
+ click save.  
+ ![Select buildpacks](./docs/readme/images/deployment/heroku-select-buildpacks.png)
+9. Select "Deploy" from the tabs.  
+![Settings tab](./docs/readme/images/deployment/heroku-deploy-tab.png)
+10. Select "GitHub - Connect to GitHub" from deployment methods.  
+ ![Select GitHub](./docs/readme/images/deployment/heroku-select-github.png)
+11. Click "Connect to GitHub" in the created section.  
+ ![Connect to GitHub](./docs/readme/images/deployment/heroku-connect-github.png)
+12. Search for the GitHub repository by name.  
+ ![Heroku repo search](./docs/readme/images/deployment/heroku-search.png)
+13. Click to connect to the relevant repo.  
+ ![Heroku connect to repo](./docs/readme/images/deployment/heroku-connect-repo.png)
+14. Either click `Enable Automatic Deploys` for automatic deploys or `Deploy
+ Branch` to deploy manually. Manually deployed branches will need
+ re-deploying each time the repo is updated.  
+ ![Heroku deploy branch](./docs/readme/images/deployment/heroku-deploy-branch.png)
+15. Click `View` to view the deployed site.  
+    ![Heroku view](./docs/readme/images/deployment/heroku-view.png)
+16. The live site can also be accessed from your repo in GitHub from the
+    environments section of the repo.
+    - Click the link to view deployments history.  
+    ![GitHub environments](./docs/readme/images/deployment/github-environments.png)
+    - Click `View deployment`. This page also shows all the deployment
+      history.  
+    ![GitHub view deployment](./docs/readme/images/deployment/github-view-deployment.png)
+
+The site is now live and operational
+
+### Render
+
+#### Changes to repo for Render
+
+Minor changes are required for deployment to Render:
+
+1. Create a file in the root directory of your repository called build.sh:
+
+2. Paste in the following code:
+
+```shell
+set -o errexit
+
+pip install -r requirements.txt
+python manage.py collectstatic --noinput
+python manage.py makemigrations && python manage.py migrate
+```
+
+3. Save the file.
+
+4. In your settings.py file add the following code below the declaration of your
+   `ALLOWED_HOSTS` variable:
+
+```python
+# Add Render.com URL to allowed hosts
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+```
+
+*Do not forget to change DEBUG to False.*
+
+5. No Procfile is required for deployment to Render.com - it can be deleted
+
+#### Deployment to Render
+
+I deployed to Render from a separate branch on my repository.
+
+1. Navigate to your [Render dashboard](https://dashboard.render.com/)
+2. Click "New +"  
+  ![new button](./docs/readme/images/deployment/render/new.png)
+3. Select "Web Service"  
+  ![web service selection](./docs/readme/images/deployment/render/web-service.png)
+4. Search for relevant repo and click "Connect"  
+  ![connect repo](./docs/readme/images/deployment/render/connect-repo.png)
+5. Add a name  
+  ![add a name](./docs/readme/images/deployment/render/add-name.png)
+     - If the name is already in use, a random hash will be added to the name of
+       your deployed URL.
+6. Ensure these settings are configured:  
+      |setting|value|
+      |-:|-|
+      |Root Directory|the root directory of your project|
+      |Environment|Python 3|
+      |Region|a region local to you|
+      |Branch|the branch to deploy from|
+
+    ![settings](./docs/readme/images/deployment/render/settings.png)
+7. Set your Build Command to `./build.sh`  
+  ![build command](./docs/readme/images/deployment/render/build-command.png)
+8. Set your Start Command to the `gunicorn <project_name>.wsgi:application`  
+  ![start command](docs/readme/images/deployment/render/start-command.png)
+    - Note: The .wsgi command must follow the name of your django project that
+        was created with `django-admin startproject <PROJECT_NAME> .`
+9. Scroll down and click "Advanced":  
+  ![advanced button](docs/readme/images/deployment/render/advanced.png)
+10. Click "Add Environment Variable":
+11. Add a key: WEB_CONCURRENCY and a value: 4
+  ![web concurrency setting](docs/readme/images/deployment/render/web-concurrency.png)
+12. Click "Add Secret File"  
+  ![secret button](docs/readme/images/deployment/render/secret-file.png)
+13. Paste in the contents of your env.py or .env file that contains your
+    environment variables and ensure the name is identical to its original:
+14. Click "Save"
+15. Click "Create Web Service"
+  ![web service](docs/readme/images/deployment/render/web-service.png)
+17. Wait for deployment and then open the deployed site via the link below your
+    WEB SERVICE name
+  ![deployed](docs/readme/images/deployment/render/deployed.png)
+
+***
 
 <!-- !check this section, may need adjusting as using additional languages -->
 
