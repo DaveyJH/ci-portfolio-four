@@ -21,7 +21,7 @@ class UserProfileView(
     def get_queryset(self, *args, **kwargs):
         """
         - Returns all reviews by a standard user OR
-        - Return all approved reviews about a staff user OR
+        - Return all approved reviews about a staff user AND their reviews OR
         - Returns all reviews for a superuser
         """
         user = get_object_or_404(User, id=self.kwargs['pk'])

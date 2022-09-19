@@ -43,7 +43,7 @@
     - [Existing Features](#existing-features)
     - [Features Left to Implement](#features-left-to-implement)
   - [Data Model](#data-model)
-    - [PostgreSQL](#postgresql)
+    - [Relational Database](#relational-database)
   - [Technologies Used](#technologies-used)
     - [Python Packages](#python-packages)
     - [Other Tech](#other-tech)
@@ -59,8 +59,17 @@
       - [*W3C Markup Validation Service*](#w3c-markup-validation-service)
       - [*flake8*](#flake8)
       - [*Visual Studio Code*](#visual-studio-code)
+      - [*PostgreSQL*](#postgresql)
       - [VSCode Extensions](#vscode-extensions)
   - [Testing](#testing)
+    - [Python Testing](#python-testing)
+      - [Manual Python Testing](#manual-python-testing)
+      - [PEP8 Testing](#pep8-testing)
+    - [W3C Validator](#w3c-validator)
+      - [HTML](#html)
+      - [CSS](#css)
+    - [JSHint](#jshint)
+    - [Lighthouse](#lighthouse)
   - [Bugs](#bugs)
     - [Current](#current)
     - [Resolved](#resolved)
@@ -304,6 +313,13 @@ At the time of writing, the images within the database also came from Pexels.
 
 ## Features
 
+It should be noted that the word 'Hej' is a Swedish word, and not a typo.
+
+Additionally, as detailed below, the navbar is slightly reduced on the home page
+as the other pages are accessible through styled links in a secondary nav
+element. This leads to a cleaner home page, meaning less cognitive overload and
+an overall more pleasant experience.
+
 ### Existing Features
 
 <!-- - Feature 1 - allows users X to achieve Y, by having them fill out Z -->
@@ -333,12 +349,11 @@ F2
 ***
 
 ## Data Model
-<!-- todo add link to lucidchart in tech used -->
 
 After the initial conceptualisation of the site, an entity relationship
-diagram(ERD) was generated using LucidChart. Being my first project using a
-relational database, this was a new concept to get to grips with and I suspect
-has not been done in the best way.
+diagram(ERD) was generated using [Lucidchart](#lucidchart). Being my first
+project using a relational database, this was a new concept to get to grips with
+and I suspect has not been done in the best way.
 
 ![original entity relationship diagram](./docs/design/db_erd.png)
 
@@ -362,16 +377,17 @@ bookings) are available in the
 [`docs/erd/` directory](https://github.com/DaveyJH/ci-portfolio-four/tree/main/docs/design/erd)
 in the GitHub repository.
 
-### PostgreSQL
-<!-- todo add link to postgresql -->
-A relational database was needed for the site, and as such, PostgreSQL was
-chosen. As a widely implemented database platform, the documentation available
-for working with this is quite extensive and there are many extensions available
-to assist with its use. Due to the use of `ArrayField`s within the models, I was
-unable to use the generated `db.sqlite3` instance, that is installed when
-initialising Django, for development. Instead, I used a database hosted on
-ElephantSQL and successfully transfered the majority of data from that
-development database into the deployed database hosted on Heroku.
+### Relational Database
+
+A relational database was needed for the site, and as such,
+[PostgreSQL](#postgresql) was chosen. As a widely implemented
+database platform, the documentation available for working with this is quite
+extensive and there are many extensions available to assist with its use. Due to
+the use of `ArrayField`s within the models, I was unable to use the generated
+`db.sqlite3` instance, that is installed when initialising Django, for
+development. Instead, I used a database hosted on ElephantSQL and successfully
+transfered the majority of data from that development database into the deployed
+database hosted on Heroku.
 
 As the site was deployed to two hosting platforms (due to uncertainty with the
 future of free tiers available with Heroku) I have opted to maintain the Render
@@ -477,10 +493,14 @@ A service to check the HTML and CSS files for errors.
 A Python code validation service. View the [flake8 process here](#flake8)
 
 #### *[Visual Studio Code](https://code.visualstudio.com/)*
-  
+
 A free, streamlined code editor. The [extensions](#vscode-extensions)
 available have allowed me to customize my workspace and become more
 efficient.
+
+#### *[PostgreSQL](https://www.postgresql.org/)*
+
+An open source relational database.
 
 ***
 
@@ -502,6 +522,76 @@ Links to the VSCode marketplace for each extension used throughout this project:
 ***
 
 ## Testing
+
+### Python Testing
+
+#### Manual Python Testing
+
+Due to time constraints, I have been unable to implement automated testing. As
+such, all manual testing results are detail in the following section.
+
+<!-- todo link to github issues -->
+
+#### PEP8 Testing
+
+The Python files have all been checked using [flake8](#flake8). As shown, the
+command `flake8 . --exclude .venv/,__pycache__/,**/migrations/**` was used to
+run a check on the entire project directory, excluding the directories passed in
+as arguments. I have not excluded the `test.py` files as an aid to show that the
+flake8 command has successfully been run. No other errors or warning are  
+reported.
+![flake8 results](docs/testing/python/flake8-results.png)
+
+Doc strings are included throughout the Python files and code is styled to be
+readable, with closing brackets clearly showing where arguments etc. are
+finished. The style is largely based on Google's style guide, and is fully
+compliant with PEP8. The only excpetions to this are the migration files and
+testing files, which were generated by Django.
+
+***
+
+### W3C Validator
+
+The W3C validator was used to test the HTML and W3C jigsaw to test the CSS. No
+errors were reported in the final deployment.
+
+#### HTML
+
+![HTML Results](./docs/testing/html/validator/html-index.png)
+
+[All HTML validation tests](https://github.com/DaveyJH/ci-portfolio-four/tree/main/docs/testing/html/validator)
+
+#### CSS
+
+![CSS results](./docs/testing/css/jigsaw/css-home.png)
+
+***
+
+### JSHint
+
+JSHint was used to check the JavaScript files.
+
+![JSHint result](./docs/testing/js/jshint/js-version11.png)
+
+To ensure the testing was working correctly, on the basis of nothing being
+shown, JSHint was run with version 8 selected instead of version 11, this
+identified warnings with optional chaining.
+
+![JSHint result](./docs/testing/js/jshint/js-version8.png)
+
+***
+
+### Lighthouse
+
+Lighthouse testing has been performed. The results are satisfactory and the
+suggested modification with regard to a depracated API appears to be a false
+error. The other suggestion is relating to the sizing of the header image icon.
+This is a design choice, the image looks better when stretched. If more time
+were available, image editing software could be utilised to edit the image but
+the effect is negligble so it will remain as is.
+
+![Lighthouse results](./docs/testing/images/lighthouse.png)  
+![Lighthouse suggestions](./docs/testing/images/best-practices.png)
 
 <!-- explain testing
 ? item tested
@@ -632,6 +722,13 @@ noted with a `bug` label on GitHub.
     **[e71d9bf](https://github.com/DaveyJH/ci-portfolio-four/commit/e71d9bf757b1d63266353989a470eb71d53a004d)**
     : Logic was added to the `base.html` template to check the current URL path
     against the list of URL pattern names.*
+10. Meta tags were reported after the first 1024 characters by the HTML
+    validator
+  
+    *Commit -
+    **[58e549c](https://github.com/DaveyJH/ci-portfolio-four/commit/58e549c06ecefeddeabe7cbfbe512f0a445f09bc)**
+    : `meta` tags were moved to the top of the `head` element. No issue was
+    recorded for this bug.*
 
 ***
 
@@ -870,13 +967,14 @@ marks.
 
 [A GitHub project](https://github.com/users/DaveyJH/projects/1/views/1) was
 created for the site's development. Due to the very short time period to work on
-the project, I set a sprint time of 16 hours initially, with a story point being
-worth 60 minutes. Unfortunately, I was unable to work for a few of those days,
-but I was finding that my story points were roughly twice the duration they
-needed to be. With that in mind, the sprints became 8 hour durations with the
-story points representing 30 minutes. I was confident with my understanding of
-the templating employed by django, so sprints consisted of a lot of tasks
-considering the time constraints.
+the project, I set a sprint time of 16 hours initially, with story points
+representing effort required. Unfortunately, I was unable to work for a few of
+those days, but I was finding that my story points were roughly twice the
+duration they needed to be. With that in mind, the sprints became 8 hour
+durations with the story points representing more functionality due to the speed
+at which issues were being completed. I was confident with my understanding of
+the templating employed by django, so intitial sprints consisted of a lot of
+tasks considering the time constraints.
 
 ![sprint board](./docs/readme/images/development/agile/sprint-board.png)
 
@@ -1069,35 +1167,6 @@ I deployed to Render from a separate branch on my repository.
 
 ***
 
-<!-- !check this section, may need adjusting as using additional languages -->
-
-<!-- **Github Pages**
-- Navigate to the relevant GitHub Repository [here](github repo URL)
-- Select "Settings" from the options below the name of the repository
-
-![Settings Snip](./docs/readme//images/github-settings.png)
-- Select "Pages" from the left hand menu
-
-![Pages Snip](./docs/readme//images/pages-select.png)
-- Select "Branch: main" as the source and leave the directory as "/(root)"
-
-![Source Snip](./docs/readme//images/pages-source.png)
-
-- Click the Save button
-
-- Take note of the URL provided
-
-![URL Snip](./docs/readme//images/pages-url.png)
-
-- GitHub takes a short while to publish the page. The bar turns green if you refresh the pages tab and the page has been deployed
-
-![Confirmed Deployment Snip](./docs/readme//images/pages-deployed.png)
-- Click the link or copy the URL to a browser to reach the deployed page
-https://daveyjh.github.io/ci-portfolio-one-v4/
-
-The site is now live and operational -->
-***
-
 ## Credits
 
 ### Content
@@ -1115,31 +1184,35 @@ non-exhaustive list of users and images is available on the
 
 - The additional code to allow copying of the database query to a local CSV file
   was modified from
-  [this write up](https://jamesbedont.com/export-a-heroku-postgres-table-to-a-csv-file). Thanks @JamesBedont
+  [this write up](https://jamesbedont.com/export-a-heroku-postgres-table-to-a-csv-file).
+  Thanks [@JamesBedont](https://github.com/jamesbedont)
 - My wonderful friends from NerdAlert...
-  - @Abibubble
-  - @manni8436
-  - @suzybee1987
-  - @natalie-kate
-  - @kera-cudmore
-  - @Medusas71
-  - @AlexaH88
+  - [@Abibubble](https://github.com/Abibubble)
+  - [@manni8436](https://github.com/manni8436)
+  - [@suzybee1987](https://github.com/suzybee1987)
+  - [@natalie-kate](https://github.com/natalie-kate)
+  - [@kera-cudmore](https://github.com/kera-cudmore)
+  - [@Medusas71](https://github.com/Medusas71)
+  - [@AlexaH88](https://github.com/AlexaH88)
 - The time taken by those above to test the site, continually motivate and
   consistently encourage was very much appreciated during this slog of a
   project!
-- @Jays-T for living in Sweden, and being a rockstar!
-- @Daisy-McG for introducing me to all the mixins, some daft late night calls
-  and all around solid advice with regard to all aspects of the project
-- @Gareth-McGirr for having completed a similar project that I was able to use
-  as a reference and resource to aid the rapid development process
+- [@Jays-T](https://github.com/jays-t) for living in Sweden, and being a rockstar!
+- [@Daisy-McG](https://github.com/daisy-mcg) for introducing me to all the
+  mixins, some daft late night calls and all around solid advice with regard to
+  all aspects of the project
+- [@Gareth-McGirr](https://github.com/gareth-mcgirr) for having completed a
+  similar project that I was able to use as a reference and resource to aid the
+  rapid development process
 - The wonderful staff at [Code Institute](https://codeinstitute.net) for
   introducing me to this framework and giving me the foundations to develop this
   site
-- @MrBim and @auxfuse for their absolutely wonderful nuttiness and continued
-  pushes to keep me going...also for some awesome distractions when truly
-  needed!
+- [@MrBim](https://github.com/MrBim) and
+  [@auxfuse](https://github.com/auxfuse/auxfuse) for their absolutely wonderful
+  nuttiness and continued pushes to keep me going...also for some awesome
+  distractions when truly needed!
 - Some of the general ideas for keeping images square came from
-  [this SO thread](https://stackoverflow.com/questions/23400232/force-bootstrap-responsive-image-to-be-square)]
+  [this SO thread](https://stackoverflow.com/questions/23400232/force-bootstrap-responsive-image-to-be-square)
 - [Real Python](https://realpython.com/django-redirects/) for the very quick
   reference regarding redirects
 - [Classy CBV](https://ccbv.co.uk/projects/Django/3.2/) for providing a very
