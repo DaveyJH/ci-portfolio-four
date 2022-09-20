@@ -71,6 +71,7 @@
       - [CSS](#css)
     - [JSHint](#jshint)
     - [Lighthouse](#lighthouse)
+    - [wave](#wave)
   - [Bugs](#bugs)
     - [Current](#current)
     - [Resolved](#resolved)
@@ -743,6 +744,15 @@ the effect is negligble so it will remain as is.
 
 ![Lighthouse results](./docs/testing/images/lighthouse.png)  
 ![Lighthouse suggestions](./docs/testing/images/best-practices.png)
+
+### wave
+
+The site was run through
+[Wave accessibility evaluation tool](https://wave.webaim.org/). The only errors
+found to be reported are due to the image inputs. There are some alerts which
+are largely false positives. The results are documented as images in the
+[`docs/testing/wave/`](https://github.com/DaveyJH/ci-portfolio-four/tree/main/docs/testing)
+directory.
 
 ## Bugs
 
