@@ -27,7 +27,12 @@
           </div>
           <div class="d-flex flex-column flex-grow-1 justify-content-evenly align-items-center my-2">
             <p>
-              <i class="fa-regular fa-clock"></i> {{ therapy.duration }} mins.
+              {% if therapy.duration_is_variable %}
+              <i class="fa-solid fa-clock-rotate-left"></i> Variable time
+              {% else %}
+              <i class="fa-regular fa-clock"></i>
+              {{ therapy.duration }} mins.
+              {% endif %}
             </p>
             <p class="text-nowrap">
               <i class="fa-solid fa-star"></i> {% if therapy.avg_rating %}
