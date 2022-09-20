@@ -147,7 +147,8 @@ to ensure all functionality was as expected. Note that I have referenced this in
 the [personal development](#personal-development) section at the end of this
 document.
 
-Below is a non-exhaustive list of some of the user stories:
+Below is a non-exhaustive list of some of the user stories. These are the key
+uer stories that must be achieved for an MVP to be considered complete:
 
 #### First Time User
 
@@ -185,7 +186,7 @@ Below is a non-exhaustive list of some of the user stories:
 #### Owner
 
 > *"As the owener, I would like to be able to log in to my account"*
-> 
+>
 > *"As the owner, I would like to be able to add therapists"*
 >
 > *"As the owner, I would like to be able to add therapies"*
@@ -834,7 +835,7 @@ noted with a `bug` label on GitHub.
 *The images contained within this section may have different wording than
 expected, many are duplicated from a prevcious project due to time constraints*
 
-The site was made using [GitHub](#GitHub) and [VSCode](#VSCode)
+The site was made using [GitHub](#github) and [VSCode](#vscode)
 
 ### GitHub
 
