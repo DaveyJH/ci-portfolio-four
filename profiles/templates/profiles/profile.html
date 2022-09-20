@@ -38,6 +38,7 @@
             {{ review.content }}
           </p>
           <div class="d-flex justify-content-evenly w-100 star-rating mb-3">
+            {% comment %} review star logic {% endcomment %}
             <i class="fa-solid fa-star"></i>
             {% if review.rating > 1 %}
             <i class="fa-solid fa-star"></i>
@@ -70,11 +71,13 @@
             <span>Performed by:</span><span>{{ review.therapist }}</span>
           </p>
           <div class="d-flex flex-column align-items-center">
+            {% comment %} logic for alert on reveiws {% endcomment %}
             {% if not review.approved %}
             <p class="text-center bold-red">
               This review is awaiting approval...
             </p>
             {% endif %}
+            {% comment %} allows short line logic {% endcomment %}
             {% with request.user.first_name as uf %}
             {% with request.user.last_name as ul %}
             {% with review.therapist.first_name as tf %}

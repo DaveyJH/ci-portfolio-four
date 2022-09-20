@@ -14,6 +14,7 @@ import os
 import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
+import sys
 
 load_dotenv()
 
@@ -120,6 +121,21 @@ if not DEVELOPMENT:
 else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_DEV"))
+    }
+
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get("DATABASE_TEST_NAME"),
+            'USER': os.environ.get("DATABASE_TEST_USER"),
+            'PASSWORD': os.environ.get("DATABASE_TEST_PASSWORD"),
+            'HOST': 'ec2-63-32-248-14.eu-west-1.compute.amazonaws.com',
+            'PORT': 5432,
+            'TEST': {
+                'NAME': os.environ.get("DATABASE_TEST_NAME")
+            },  # This allows Heroku db testing
+        }
     }
 
 # Password validation

@@ -74,7 +74,7 @@ class DeleteTherapyView(
     success_message = '%(therapy_name)s deleted successfully!'
 
     def delete(self, request, *args, **kwargs):
-        """ Display success message """
+        """ Display success message and delete object """
         obj = self.get_object()
         messages.success(self.request, self.success_message % obj.__dict__)
         return super(DeleteTherapyView, self).delete(request)
@@ -96,11 +96,11 @@ class TherapyDetailView(
         return reverse_lazy('therapy_detail', pk=self.kwargs['pk'])
 
     def get_context_data(self, *args, **kwargs):
-        """Retrieves relevant therapy and creates forms"""
+        """Retrieves relevant therapy object and creates forms"""
         form = CreateReviewForm()
         therapy = get_object_or_404(Therapy, id=self.kwargs['pk'])
         reviews = Review.objects.filter(
-                therapy=therapy, approved=True).order_by('-date_time')
+            therapy=therapy, approved=True).order_by('-date_time')
         if self.request.user.is_superuser:
             reviews = Review.objects.filter(
                 therapy=therapy).order_by('-date_time')
