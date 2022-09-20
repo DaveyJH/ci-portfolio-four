@@ -51,3 +51,49 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bookings/booking_info.html')
         self.assertTemplateUsed(response, 'base.html')
+
+
+class TestModels(TestCase):
+
+    def test_booking_info_count(self):
+        """Tests a valid booking info object can be added"""
+        self.assertEqual(len(BookingInfo.objects.all()), 0)
+        self.booking_info = BookingInfo(
+            message="A message",
+            contact_info="0761234567",
+            open_times={
+                "Monday": {
+                    "open": "0900",
+                    "close": "1400",
+                },
+                "Tuesday": {
+                    "open": "0900",
+                    "close": "1400",
+                },
+                "Wednesday": {
+                    "open": "0900",
+                    "close": "1400",
+                },
+                "Thursday": {
+                    "open": "0900",
+                    "close": "1400",
+                },
+                "Friday": {
+                    "open": "0900",
+                    "close": "1400",
+                },
+                "Saturday": {
+                    "open": "0900",
+                    "close": "1400",
+                },
+                "Sunday": {
+                    "open": "0900",
+                    "close": "1400",
+                },
+            }
+        )
+        self.booking_info.save()
+        self.assertEqual(len(BookingInfo.objects.all()), 1)
+        self.assertEqual(
+            BookingInfo.objects.all().first().message, "A message"
+        )
