@@ -63,6 +63,7 @@
       - [VSCode Extensions](#vscode-extensions)
   - [Testing](#testing)
     - [Python Testing](#python-testing)
+    - [Django Testing](#django-testing)
       - [Manual Python Testing](#manual-python-testing)
       - [PEP8 Testing](#pep8-testing)
     - [W3C Validator](#w3c-validator)
@@ -147,7 +148,8 @@ to ensure all functionality was as expected. Note that I have referenced this in
 the [personal development](#personal-development) section at the end of this
 document.
 
-Below is a non-exhaustive list of some of the user stories:
+Below is a non-exhaustive list of some of the user stories. These are the key
+uer stories that must be achieved for an MVP to be considered complete:
 
 #### First Time User
 
@@ -185,7 +187,7 @@ Below is a non-exhaustive list of some of the user stories:
 #### Owner
 
 > *"As the owener, I would like to be able to log in to my account"*
-> 
+>
 > *"As the owner, I would like to be able to add therapists"*
 >
 > *"As the owner, I would like to be able to add therapies"*
@@ -622,12 +624,64 @@ Links to the VSCode marketplace for each extension used throughout this project:
 
 ### Python Testing
 
+### Django Testing
+
+A small amount of automated blackbox testing was performed via Django's built in
+test framework. The tests were written to demonstrate the general approach that
+would have been taken had there been more time. An added complication to this
+process became evident as the models require postgreSQL databases due to their
+ArrayFields. As such, additional environmant variables were added and a third
+postgreSQL instance was initialised for testing purposes. The key-value pairs
+consist of the database name, user and password.
+
+The process for the tests follows a logical construct as detailed below:
+
+- Create a setup function to initialise any variables and/or data that is to
+  persist through all tests in the module
+- Create granular tests with specific goals in mind
+- Run tests using `./manage.py test --keepdb`. `keepdb` seemed to be required to
+  allow me to utilise a Heroku database for the testing procedure
+- Record results of tests
+
+Results:  
+
+![automated test results](./docs/testing/images/auto-tests.png)
+
+No whitebox testing has been performed.
+
 #### Manual Python Testing
 
-Due to time constraints, I have been unable to implement automated testing. As
-such, all manual testing results are detail in the following section.
+Due to time constraints, I have been unable to implement much automated testing.
+As such, manual testing processes and results are detail in the following
+section.
 
-<!-- todo link to github issues -->
+User testing was carried out by some friends, with the only comment being that
+the navbar layout shifted on small screens. The general process for the testing
+carried out was as follows:
+
+- Give specific detail of granular function to be tested
+- Determine login status required for test
+- Determine user type if login was required
+- Determine actions to take to carry out test
+- Specify expected result
+- Carry out test
+- Record result
+
+There has not been time to detail all of the tests and results in this document,
+but the
+[test label](https://github.com/DaveyJH/ci-portfolio-four/issues?q=is%3Aissue+label%3Atest)
+has been applied to most tests carried out. The issues on the project board do
+not include all tests as some tests were carried out during development and some
+were performed by alpha user testers. As there was such a tight timeframe to
+develop and deploy the project, extensive testing was done during the
+development stages to ensure no major bugs were present.
+
+For future projects, testing will be documented along the way to prevent an
+overload of work at the final stages. I am dissatisfied with the level of detail
+contained with regards to testing here, but the issues in the GitHub project
+show more thorough testing, with images being used for results. There are
+artifacts in those images that indicate that furrther testing was carried out
+along the way, but the lack of documentation is a disappointment.
 
 #### PEP8 Testing
 
@@ -689,20 +743,6 @@ the effect is negligble so it will remain as is.
 
 ![Lighthouse results](./docs/testing/images/lighthouse.png)  
 ![Lighthouse suggestions](./docs/testing/images/best-practices.png)
-
-<!-- explain testing
-? item tested
-? expected result
-? how test was performed
-? actual result
-? differences
-? action required
-? re-test
-- more detail and better format required compared with project 1
-look at daisy's testing documentation and [webinar](https://us02web.zoom.us/rec/play/9FIKllHX2ZiQNFRhYPn_hBh_ZeA8964ZvIDLnhpKGAf1NLVc3_hBJ6zSL8Hv5Hx7ALnPtDmbg8CmFAs.YVsZ9LR_uI7OjEwH)-->
-
-<!-- validation of html, css and script. -->
-<!-- lighthouse testing -->
 
 ## Bugs
 
@@ -834,7 +874,7 @@ noted with a `bug` label on GitHub.
 *The images contained within this section may have different wording than
 expected, many are duplicated from a prevcious project due to time constraints*
 
-The site was made using [GitHub](#GitHub) and [VSCode](#VSCode)
+The site was made using [GitHub](#github) and [VSCode](#vscode)
 
 ### GitHub
 
