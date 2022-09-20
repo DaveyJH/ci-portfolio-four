@@ -184,6 +184,8 @@ Below is a non-exhaustive list of some of the user stories:
 
 #### Owner
 
+> *"As the owener, I would like to be able to log in to my account"*
+> 
 > *"As the owner, I would like to be able to add therapists"*
 >
 > *"As the owner, I would like to be able to add therapies"*
@@ -322,30 +324,125 @@ an overall more pleasant experience.
 
 ### Existing Features
 
-<!-- - Feature 1 - allows users X to achieve Y, by having them fill out Z -->
-<!-- 1. feature1
->*"User... **story quote**"*
-- *explanation*-->
-F1
-***
-<!-- - Feature 2 - allows users X to achieve Y, by having them fill out Z -->
-<!-- 1. feature2
->*"User... **story quote**"*
-- *explanation*
-  ![imgName](imgURL)
--->
-F2
+1. The home page is informative
+    > *"As a potential customer, I would like to know what the site is about"*
+      - The home page has a clear indication of the nature of the business and
+        the purpose of the site  
+        ![home page info](./docs/testing/images/home.png)
+2. Information is available without logging in
+    > *"As a non-registered user, I would like to explore some of the site"*
+    >
+    > *"As a potential customer, I would like to view the main services offered"*
+    - The therapies and therapists can be viewed without logging in  
+     ![not logged in navbar](./docs/testing/images/logged-out-nav.png)
+3. A user can sign up
+    > *"As a non-registered user, I would like to be able to sign up"*
+    - There is a link to register which navigates to a sign up form that allows
+      a user to sign up  
+      ![sign up form](./docs/testing/images/signup.png)
+4. A registered user can log in
+    > *"As a returning user, I would like to be able to log in to my account"*
+    >
+    > *"As a staff member, I would like to be able to log in to my account"*
+    >
+    > *"As the owener, I would like to be able to log in to my account"*
+    - There is a link to login which navigates to a sign in form that allows
+      a user to sign in to an existing account  
+      ![sign in form](./docs/testing/images/signin.png)
+5. A registered user can see their reviews
+    > *"As a returning user, I would like to be able to view reviews written by
+    > me"*
+    - There is a link to a profile page when logged in, the profile page
+      displays all reviews written by the user  
+      ![profile page with reviews](./docs/testing/images/profile.png)
+6. A registered user can edit their reviews
+    > *"As a returning user, I would like to be able to edit reviews written by
+    > me"*
+    - When viewing a review on the therapies page, if it is written by the
+      logged in user, it is possible to edit the review  
+      ![edit review option](./docs/testing/images/edit-review.png)
+7. A registered user can delete their reviews
+    > *"As a returning user, I would like to be able to delete reviews written by
+    > me"*
+    - When viewing a review on the therapies page, if it is written by the
+      logged in user, it is possible to delete the review. This action must be
+      confirmed by the user  
+      ![delete review option](./docs/testing/images/confirm-delete-review.png)
+8. A staff member can see reviews about them
+    > *"As a staff member, I would like to be able to view reviews written about
+    > me in one location"*
+    - A logged in staff member's profile page includes any review they have
+      written, as well as any review written about them. An alert is shown to
+      indicate which reviews are written about them  
+      ![reviews about staff](./docs/testing/images/staff-review.png)
+9. Users can view details about staff members
+    > *"As a staff member, I would like other users to be able to view some
+    > information about me"*
+    - The therapists page has a bio and some additional information about staff
+      members  
+      ![information about therapist](./docs/testing/images/staff-info.png)
+10. Superusers can add therapists
+    > *"As the owner, I would like to be able to add therapists"*
+    - A superuser is able to add therapists  
+      ![add therapist form](./docs/testing/images/add-therapist.png)
+11. Superusers can add therapies
+    > *"As the owner, I would like to be able to add therapies"*
+    - A superuser is able to add therapists  
+      ![add therapy form](./docs/testing/images/add-therapy.png)
+12. Superusers can edit therapists
+    > *"As the owner, I would like to be able to edit therapists"*
+    - A superuser is able to edit therapists  
+      ![edit therapist form](./docs/testing/images/edit-therapist.png)
+13. Superusers can edit therapies
+    > *"As the owner, I would like to be able to edit therapies"*
+    - A superuser is able to edit therapists  
+      ![edit therapy form](./docs/testing/images/edit-therapy.png)
+14. Superusers can delete therapists
+    > *"As the owner, I would like to be able to delete therapists"*
+    - A superuser is able to delete therapists. This action must be confirmed  
+      ![delete therapist form](./docs/testing/images/delete-therapist.png)
+15. Superusers can delete therapies
+    > *"As the owner, I would like to be able to delete therapies"*
+    - A superuser is able to delete therapists. This action must be confirmed  
+      ![add therapy form](./docs/testing/images/delete-therapy.png)
+16. Superusers can approve reviews
+    > *"As the owner, I would like to be able to approve reviews"*
+    - A superuser is able to approve reviews  
+      ![add therapy form](./docs/testing/images/approve-review.png)
+17. Contact information is available on the site
+    > *"As the owner, I would like to provide contact info for my business"*
+    - An address is viewable on the home page, and contact telephone number is
+      available as a direct call anchor on the bookings page  
+      ![add therapy form](./docs/testing/images/contact-info.png)
+      ![add therapy form](./docs/testing/images/address-info.png)
+18. Superusers can update the welcome page and bookings page
+    > *"As the owner, I would like to be able to update the business info"*
+    - A superuser is able to update the home page object and the bookings page
+      object  
+      ![add therapy form](./docs/testing/images/update-info.png)
+19. The user stories above are all possible
+    > *"As the developer, I would like to ensure the site meets the essential
+    > user requirements"*
+    - All essential user stories have been covered
+
 ***
 
 ### Features Left to Implement
 
-<!-- features left to implement -->
-<!-- 1. Explain desired feature 1
-  - *Notes regarding feature*
-  - Explanation of feature need etc. -->
-<!-- 2. Explain desired feature 2
-  - *Notes regarding feature*
-  - Explanation of feature need etc. -->
+There are many features that would be of benefit to a variety of users:
+
+1. Allow users to edit and delete their reviews directly from their profile page
+2. Provide individual pages for therapists, similar to therapies, to allow
+   treviews to be viewed per therapists
+3. Allow superusers to approve reviews from the frontend
+4. Display related therapy on reviews on profile page
+5. Create electronic booking functionality
+6. Create electronic diaries for staff
+7. Log booking information for business advisor
+8. Allow email signup for lost password recovery
+9. [Populate the specialists automatically in the edit therapy form](https://github.com/DaveyJH/ci-portfolio-four/issues/90)
+10. Display prices for fixed duration therapies
+
 ***
 
 ## Data Model
